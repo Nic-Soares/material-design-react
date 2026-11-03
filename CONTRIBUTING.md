@@ -14,8 +14,11 @@ file describes how the library is developed.
 
 - `main` holds the latest work; changes arrive through short-lived branches
   named `ep-XX-<slug>` or `st-XX.Y-<slug>` after the roadmap item.
-- Pull requests are squash-merged. Until CI exists (roadmap `EP-01`),
-  commits go straight to `main`.
+- Every change reaches `main` through a pull request: the `main` ruleset
+  requires passing CI and signed commits, and blocks force pushes.
+- Pull requests are squash-merged. The pull request title becomes the commit
+  header and its description the body, so both follow the commit message
+  rules below.
 - Commits are signed.
 
 ## Commit messages

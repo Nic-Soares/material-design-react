@@ -2,6 +2,7 @@
 
 <!-- PROJECT SHIELDS -->
 [![Status][status-shield]][roadmap-url]
+[![CI][ci-shield]][ci-url]
 [![License][license-shield]][license-url]
 [![React][react-shield]][react-url]
 [![TypeScript][typescript-shield]][typescript-url]
@@ -243,6 +244,8 @@ Project link: [https://github.com/Nic-Soares/material-design-react](https://gith
 <!-- MARKDOWN LINKS & IMAGES -->
 [status-shield]: https://img.shields.io/badge/status-early%20development-orange?style=for-the-badge
 [roadmap-url]: docs/planning/ROADMAP.md
+[ci-shield]: https://img.shields.io/github/actions/workflow/status/Nic-Soares/material-design-react/ci.yml?branch=main&style=for-the-badge&label=CI
+[ci-url]: https://github.com/Nic-Soares/material-design-react/actions/workflows/ci.yml
 [license-shield]: https://img.shields.io/badge/license-MIT-blue?style=for-the-badge
 [license-url]: LICENSE
 [react-shield]: https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB

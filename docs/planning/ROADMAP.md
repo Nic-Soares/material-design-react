@@ -10,7 +10,7 @@
 
 | Epic | Status | Where the work lives |
 |---|---|---|
-| `EP-01` Repository baseline | 🟡 In progress — ST-01.1 to ST-01.5 done 2026-11-03 | repo root, `.github/`, `docs/` |
+| `EP-01` Repository baseline | ✅ Done 2026-11-03 — npm scope still to confirm (`ST-01.3`) | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ⬜ Not started | `.storybook/`, test config |
 | `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
@@ -24,8 +24,8 @@
 
 - GitHub Flow: `main` + short-lived branches, merged by pull request
   (squash). No `develop`.
-- Until `EP-01` adds CI and the `main` ruleset, commits go straight to
-  `main`: a pull request has nothing to check yet.
+- Before `ST-01.6` added CI and the `main` ruleset, commits went straight to
+  `main`; since then, every change goes through a pull request.
 - Branch names: `ep-XX-<slug>` or `st-XX.Y-<slug>`.
 - Commits: one-line imperative header, a body that explains why, no trailers.
   The commits before this roadmap used Conventional Commits; from here on
@@ -160,13 +160,16 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 
 ### ST-01.6 — CI and GitHub
 
-- [ ] `ci.yml`: `npm ci`, Biome, typecheck, tests, build, Storybook build —
-      on pull requests and pushes to `main`
-- [ ] Repository: description, topics, homepage (Storybook URL from
-      `EP-02`); squash merge only; delete head branches
-- [ ] Ruleset `main`: require PR, passing CI, signed commits; block force push
+- [x] `ci.yml`: `npm ci`, Biome, typecheck, build, package contents — on pull
+      requests and pushes to `main` (tests and the Storybook build join in
+      `EP-02`)
+- [x] Repository: description, topics; Wiki and Projects off; squash merge
+      only, with the pull request title and description as the commit
+      message; delete head branches — homepage set to the Storybook URL in
+      `EP-02`
+- [x] Ruleset `main`: require PR, passing CI, signed commits; block force push
       and deletion
-- [ ] Secret scanning and push protection on
+- [x] Secret scanning and push protection on
 
 ---
 
