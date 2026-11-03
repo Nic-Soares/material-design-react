@@ -1,0 +1,42 @@
+name: Docs
+
+# Publishes Storybook to Cloudflare Workers (wrangler.jsonc) after every
+# change on main. CI has already checked that it builds.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The newest push wins; an older deploy still running is cancelled
+concurrency:
+  group: docs
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build-storybook
+
+      # The token only has Workers Scripts: Edit on this account
+      # (docs/runbooks/docs-deploy.md)
+      - name: Deploy
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: "false"

@@ -1,0 +1,73 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Material Design React
+
+React components that implement [Material Design 3](https://m3.material.io),
+including M3 Expressive — native elements, accessible by default, themed with
+plain CSS variables.
+
+> **Early development.** The package is set up; tokens and components are
+> being added. Nothing is published to npm yet.
+
+## Install
+
+```sh
+npm install @nic-soares/material-design-react
+```
+
+React 19 and React DOM 19 are peer dependencies.
+
+## Use
+
+Import the stylesheet once, at the root of your app, then the components:
+
+```tsx
+import "@nic-soares/material-design-react/styles.css";
+import { Button } from "@nic-soares/material-design-react";
+
+export function App() {
+  return <Button variant="filled">Save</Button>;
+}
+```
+
+Each component renders its native element and accepts that element's props —
+`id`, `className`, `style`, `aria-*`, event handlers — and a `ref`.
+
+## Theme
+
+Components read only the Material Design 3 system tokens, as CSS variables
+(`--md-sys-color-*`, `--md-sys-typescale-*`, `--md-sys-shape-*`, …). The
+library ships a light and a dark scheme; to use yours, set the same
+variables:
+
+```css
+:root {
+  --md-sys-color-primary: rgb(86 100 34);
+  --md-sys-color-on-primary: rgb(255 255 255);
+}
+```
+
+The dark scheme applies on `[data-theme="dark"]`, or follows the system
+setting when no theme is set. Use the theme button in the toolbar above to
+switch it here.
+
+## Icons
+
+Components take icons as React nodes, so you load only the icons you use, in
+any format. With [Material Symbols](https://fonts.google.com/icons), the icon
+set Material Design recommends:
+
+```tsx
+<Button icon={<span className="material-symbols-outlined">add</span>}>
+  New
+</Button>
+```
+
+## Accessibility
+
+Every component handles keyboard, focus, roles and `aria-*` attributes, and
+its tests run [axe](https://github.com/dequelabs/axe-core) in light and dark.
+The **Accessibility** panel at the bottom of each story runs axe in your
+browser, including the contrast checks.

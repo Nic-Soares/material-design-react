@@ -21,18 +21,28 @@ npm install
 ```sh
 npm run check       # Biome: lint and format, applying fixes
 npm run typecheck   # TypeScript
+npm test            # Vitest: unit and accessibility tests
 npm run build       # dist/: index.js, styles.css, type declarations
 ```
 
-## 4. Editor
+## 4. Docs
+
+```sh
+npm run dev         # Storybook on http://localhost:6006
+```
+
+Stories live next to their component (`src/**/*.stories.tsx`); pages that
+belong to no component live in `docs/storybook/`.
+
+## 5. Editor
 
 Biome formats and lints; install its extension for your editor and make it
 the default formatter for TypeScript, JSON and CSS. Editor settings are not
 versioned.
 
-## 5. Troubleshooting
+## 6. Troubleshooting
 
 | Symptom | Cause | Fix |
 |---|---|---|
 | `tsc` reports options it doesn't know | An older TypeScript on the `PATH` | Run through npm (`npm run typecheck`), which uses the project's version |
-| `npm install` warns about install scripts (`fsevents`) | npm 11 asks before running install scripts | Nothing to do: the package ships prebuilt binaries |
+| `npm install` warns about install scripts (`esbuild`, `fsevents`, `workerd`) | npm 11 asks before running install scripts | Nothing to do: each ships prebuilt binaries as optional dependencies, and the builds, Storybook and `wrangler deploy` all work without the scripts (checked 2026-11-03) |
