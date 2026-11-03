@@ -1,21 +1,55 @@
 {
-  "name": "material-design-react",
-  "private": true,
+  "name": "@nic-soares/material-design-react",
+  "version": "0.0.0",
+  "description": "React components that implement Material Design 3.",
+  "license": "MIT",
+  "author": "Nicolas Santos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nic-Soares/material-design-react.git"
+  },
+  "keywords": [
+    "react",
+    "material-design",
+    "material-3",
+    "components",
+    "ui"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check --write ."
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
-    "prettier": "^3.7.4",
-    "turbo": "^2.7.2",
-    "typescript": "5.9.2"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
+    "@biomejs/biome": "^2.6.4",
+    "@changesets/cli": "^2.31.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "lightningcss": "^1.33.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
   }
 }

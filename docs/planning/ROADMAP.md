@@ -24,6 +24,8 @@
 
 - GitHub Flow: `main` + short-lived branches, merged by pull request
   (squash). No `develop`.
+- Until `EP-01` adds CI and the `main` ruleset, commits go straight to
+  `main`: a pull request has nothing to check yet.
 - Branch names: `ep-XX-<slug>` or `st-XX.Y-<slug>`.
 - Commits: one-line imperative header, a body that explains why, no trailers.
   The commits before this roadmap used Conventional Commits; from here on
