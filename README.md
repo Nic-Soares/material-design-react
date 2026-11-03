@@ -18,7 +18,10 @@
     accessible by default, themed with plain CSS variables.
     <br />
     <br />
-    Documentation (coming soon)
+    <a href="https://material-design-react.nicolassoares-santos.workers.dev"><strong>Documentation »</strong></a>
+    <br />
+    <br />
+    <a href="https://material-design-react.nicolassoares-santos.workers.dev">View Docs</a>
     &middot;
     <a href="https://github.com/Nic-Soares/material-design-react/issues/new?labels=bug">Report Bug</a>
     &middot;
@@ -93,6 +96,9 @@ the UI layer of
 * [![Vite][vite-shield]][vite-url] — library mode
 * [Lightning CSS](https://lightningcss.dev) — CSS Modules and custom media
 * [Biome](https://biomejs.dev) — lint and format
+* [Storybook](https://storybook.js.org) — docs, with the accessibility addon
+* [Vitest](https://vitest.dev), [Testing Library](https://testing-library.com)
+  and [axe-core](https://github.com/dequelabs/axe-core) — tests
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,7 +161,11 @@ npm install
 
 | Command | What it does |
 |---|---|
+| `npm run dev` | Starts Storybook on `http://localhost:6006` |
+| `npm test` | Runs the unit and accessibility tests (Vitest) |
+| `npm run coverage` | Runs the tests with a coverage report |
 | `npm run build` | Builds `dist/`: ESM, `styles.css` and type declarations |
+| `npm run build-storybook` | Builds the docs into `storybook-static/` |
 | `npm run typecheck` | Type-checks the project |
 | `npm run lint` | Lints with Biome |
 | `npm run check` | Lints and formats with Biome, applying fixes |
@@ -171,12 +181,16 @@ Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.
 ```text
 material-design-react/
 ├── .changeset/               # pending release notes (Changesets)
+├── .github/workflows/        # CI and docs deploy
+├── .storybook/               # Storybook config (theme switch, addons)
 ├── docs/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories
-│   └── runbooks/             # releases, local setup, dependency upgrades
+│   ├── runbooks/             # releases, setup, upgrades, docs deploy
+│   └── storybook/            # docs pages not tied to a component
 ├── src/
 │   └── index.ts              # public API
+├── test/                     # test setup and the axe helper
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -184,7 +198,9 @@ material-design-react/
 ├── package.json
 ├── tsconfig.json             # type-checking
 ├── tsconfig.build.json       # type declarations for dist/
-└── vite.config.ts            # library build
+├── vite.config.ts            # library build
+├── vitest.config.ts          # tests
+└── wrangler.jsonc            # the docs Worker on Cloudflare
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

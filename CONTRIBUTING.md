@@ -44,7 +44,7 @@ changeset: `npm run changeset`. See
 ## Before opening a pull request
 
 ```sh
-npm run check && npm run typecheck && npm run build
+npm run check && npm run typecheck && npm test && npm run build && npm run build-storybook
 ```
 
 ## Component definition of done

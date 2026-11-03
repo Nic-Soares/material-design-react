@@ -37,8 +37,16 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      # Unit and accessibility tests, with the coverage report in the log
+      - name: Tests
+        run: npm run coverage
+
       - name: Build
         run: npm run build
+
+      # Docs must build too: a broken story fails the pull request
+      - name: Storybook build
+        run: npm run build-storybook
 
       # The published tarball holds only what consumers need
       - name: Package contents
