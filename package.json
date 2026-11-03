@@ -30,6 +30,7 @@
     "!src/**/*.test.tsx",
     "!src/**/*.stories.tsx",
     "!src/**/*.mdx",
+    "!src/test",
     "CHANGELOG.md"
   ],
   "sideEffects": [

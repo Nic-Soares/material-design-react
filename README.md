@@ -182,15 +182,14 @@ Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.
 material-design-react/
 ├── .changeset/               # pending release notes (Changesets)
 ├── .github/workflows/        # CI and docs deploy
-├── .storybook/               # Storybook config (theme switch, addons)
+├── .storybook/               # Storybook: config, intro page, docs Worker
 ├── docs/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories
-│   ├── runbooks/             # releases, setup, upgrades, docs deploy
-│   └── storybook/            # docs pages not tied to a component
+│   └── runbooks/             # releases, setup, upgrades, docs deploy
 ├── src/
-│   └── index.ts              # public API
-├── test/                     # test setup and the axe helper
+│   ├── index.ts              # public API
+│   └── test/                 # test setup and the axe helper (not published)
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
@@ -198,9 +197,7 @@ material-design-react/
 ├── package.json
 ├── tsconfig.json             # type-checking
 ├── tsconfig.build.json       # type declarations for dist/
-├── vite.config.ts            # library build
-├── vitest.config.ts          # tests
-└── wrangler.jsonc            # the docs Worker on Cloudflare
+└── vite.config.ts            # library build and tests
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

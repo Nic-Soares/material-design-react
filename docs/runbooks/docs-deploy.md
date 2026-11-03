@@ -1,7 +1,8 @@
 # Runbook — Docs deploy (Storybook on Cloudflare)
 
 The docs are Storybook, built to `storybook-static/` and served by a
-Cloudflare Worker that holds only static assets (`wrangler.jsonc`).
+Cloudflare Worker that holds only static assets
+(`.storybook/wrangler.jsonc`).
 
 - URL: <https://material-design-react.nicolassoares-santos.workers.dev>
 - Deployed by `.github/workflows/docs.yml` on every push to `main` (that is,
@@ -45,7 +46,7 @@ From a clean `main`:
 ```sh
 npm run build-storybook
 npx wrangler login      # opens the browser; no token needed locally
-npx wrangler deploy
+npx wrangler deploy -c .storybook/wrangler.jsonc
 ```
 
 ## Troubleshooting

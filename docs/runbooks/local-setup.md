@@ -31,8 +31,9 @@ npm run build       # dist/: index.js, styles.css, type declarations
 npm run dev         # Storybook on http://localhost:6006
 ```
 
-Stories live next to their component (`src/**/*.stories.tsx`); pages that
-belong to no component live in `docs/storybook/`.
+Stories live next to their component (`src/**/*.stories.tsx`); the
+introduction page, which belongs to no component, is
+`.storybook/Introduction.mdx`.
 
 ## 5. Editor
 
