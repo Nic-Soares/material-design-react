@@ -10,7 +10,7 @@
 
 | Epic | Status | Where the work lives |
 |---|---|---|
-| `EP-01` Repository baseline | ⬜ Not started | repo root, `.github/`, `docs/` |
+| `EP-01` Repository baseline | 🟡 In progress — ST-01.1 to ST-01.5 done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ⬜ Not started | `.storybook/`, test config |
 | `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
@@ -115,48 +115,48 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 
 ### ST-01.1 — Single-package layout
 
-- [ ] Remove `turbo.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `apps/`,
+- [x] Remove `turbo.json`, `pnpm-workspace.yaml`, `pnpm-lock.yaml`, `apps/`,
       `packages/eslint-config`, `packages/typescript-config`
-- [ ] Move the package to the root: `src/`, `package.json`
-- [ ] `src/index.ts` as the public entry point (no `"use client"`)
+- [x] Move the package to the root: `src/`, `package.json`
+- [x] `src/index.ts` as the public entry point (no `"use client"`)
 
 ### ST-01.2 — Toolchain
 
-- [ ] `.nvmrc` (26), npm, `package-lock.json`
-- [ ] `tsconfig.json` (strict, `jsx: react-jsx`, declarations)
-- [ ] `biome.json`
-- [ ] `vite.config.ts` in library mode: ESM, React and React DOM external,
+- [x] `.nvmrc` (26), npm, `package-lock.json`
+- [x] `tsconfig.json` (strict, `jsx: react-jsx`, declarations)
+- [x] `biome.json`
+- [x] `vite.config.ts` in library mode: ESM, React and React DOM external,
       CSS Modules, Lightning CSS (custom media)
-- [ ] `tsc` emits declarations to `dist/`
+- [x] `tsc` emits declarations to `dist/`
 
 ### ST-01.3 — Package manifest
 
-- [ ] `name: "@nic-soares/material-design-react"`, `version: "0.0.0"`,
+- [x] `name: "@nic-soares/material-design-react"`, `version: "0.0.0"`,
       `license: "MIT"`, `type: "module"`
-- [ ] `exports`: `.` (types + import) and `./styles.css`
-- [ ] `sideEffects: ["**/*.css"]`, `files: ["dist"]`
-- [ ] `peerDependencies`: React 19
-- [ ] Scripts: `build`, `dev` (Storybook), `test`, `typecheck`, `lint`,
-      `check`, `changeset`, `release`
+- [x] `exports`: `.` (types + import) and `./styles.css`
+- [x] `sideEffects: ["**/*.css"]`, `files: ["dist"]`
+- [x] `peerDependencies`: React 19
+- [x] Scripts: `build`, `typecheck`, `lint`, `format`, `check`, `changeset`,
+      `version`, `release` — `dev` (Storybook) and `test` come with `EP-02`
 - [ ] Confirm the npm account and the `@nic-soares` scope
 
 ### ST-01.4 — Repository files
 
-- [ ] `LICENSE` (MIT), `CHANGELOG.md` (managed by Changesets),
+- [x] `LICENSE` (MIT), `CHANGELOG.md` (managed by Changesets),
       `.gitattributes`, `.gitignore`
-- [ ] README: what the library is, install, theming, usage, links — and
+- [x] README: what the library is, install, theming, usage, links — and
       only links to documents that exist
-- [ ] `docs/adr/`: `001` single package, `002` Vite library mode, `003`
+- [x] `docs/adr/`: `001` single package, `002` Vite library mode, `003`
       tokens and theming contract, `004` native-first component API,
       `005` icons as slots
-- [ ] `docs/runbooks/`: `releases.md`, `local-setup.md`,
+- [x] `docs/runbooks/`: `releases.md`, `local-setup.md`,
       `dependency-upgrades.md`
-- [ ] `CONTRIBUTING.md`: component definition of done (`§3`), branches,
+- [x] `CONTRIBUTING.md`: component definition of done (`§3`), branches,
       commits, changesets
 
 ### ST-01.5 — Versioning
 
-- [ ] Changesets configured (`.changeset/config.json`), public access
+- [x] Changesets configured (`.changeset/config.json`), public access
 
 ### ST-01.6 — CI and GitHub
 
@@ -363,15 +363,7 @@ rest). **Size:** M.
 
 ## 3. Component definition of done
 
-A component is done when:
-
-1. It follows its M3 spec page (anatomy, variants, states, measurements);
-   departures are documented.
-2. It renders the right native element and forwards native props and `ref`.
-3. Text, icons and navigation come from props; it imports nothing from an app.
-4. It reads only `--md-sys-*` tokens (plus its own private variables).
-5. Keyboard and focus work; roles and `aria-*` are right; axe passes in both
-   themes.
-6. Tests cover its behaviour, states and accessibility.
-7. A Storybook page shows every variant and state, light and dark.
-8. A changeset describes it.
+The definition of done lives in
+[`CONTRIBUTING.md`](../../CONTRIBUTING.md#component-definition-of-done), so
+there is one copy to keep up to date. Every component story in `EP-05` and
+`EP-07` closes against it.

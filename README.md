@@ -158,6 +158,9 @@ npm install
 | `npm run typecheck` | Type-checks the project |
 | `npm run lint` | Lints with Biome |
 | `npm run check` | Lints and formats with Biome, applying fixes |
+| `npm run changeset` | Describes a change for the next release |
+
+Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,10 +169,16 @@ npm install
 
 ```text
 material-design-react/
+├── .changeset/               # pending release notes (Changesets)
 ├── docs/
-│   └── planning/ROADMAP.md   # epics and stories
+│   ├── adr/                  # architecture decisions
+│   ├── planning/ROADMAP.md   # epics and stories
+│   └── runbooks/             # releases, local setup, dependency upgrades
 ├── src/
 │   └── index.ts              # public API
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
 ├── biome.json
 ├── package.json
 ├── tsconfig.json             # type-checking
@@ -200,13 +209,16 @@ See the [full roadmap](docs/planning/ROADMAP.md) for epics and stories.
 
 Suggestions and bug reports are welcome through
 [issues](https://github.com/Nic-Soares/material-design-react/issues).
+How the library is developed — workflow, commits, changesets and the
+component definition of done — is in [CONTRIBUTING.md](CONTRIBUTING.md).
+The decisions behind it are in [`docs/adr/`](docs/adr/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License.
+Distributed under the MIT License. See [LICENSE](LICENSE).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -232,7 +244,7 @@ Project link: [https://github.com/Nic-Soares/material-design-react](https://gith
 [status-shield]: https://img.shields.io/badge/status-early%20development-orange?style=for-the-badge
 [roadmap-url]: docs/planning/ROADMAP.md
 [license-shield]: https://img.shields.io/badge/license-MIT-blue?style=for-the-badge
-[license-url]: #license
+[license-url]: LICENSE
 [react-shield]: https://img.shields.io/badge/React%2019-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://react.dev
 [typescript-shield]: https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white
