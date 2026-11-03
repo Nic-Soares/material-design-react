@@ -1,0 +1,11 @@
+// The published Storybook: a Cloudflare Worker that only serves the static
+// build (storybook-static/). Paths are relative to this file.
+// Deployed by .github/workflows/docs.yml.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "material-design-react",
+  "compatibility_date": "2026-11-03",
+  "assets": {
+    "directory": "../storybook-static"
+  }
+}

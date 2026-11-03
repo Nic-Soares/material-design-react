@@ -1,7 +1,7 @@
 name: Docs
 
-# Publishes Storybook to Cloudflare Workers (wrangler.jsonc) after every
-# change on main. CI has already checked that it builds.
+# Publishes Storybook to Cloudflare Workers (.storybook/wrangler.jsonc)
+# after every change on main. CI has already checked that it builds.
 on:
   push:
     branches: [main]
@@ -35,7 +35,7 @@ jobs:
       # The token only has Workers Scripts: Edit on this account
       # (docs/runbooks/docs-deploy.md)
       - name: Deploy
-        run: npx wrangler deploy
+        run: npx wrangler deploy -c .storybook/wrangler.jsonc
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

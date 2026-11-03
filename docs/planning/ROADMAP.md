@@ -11,7 +11,7 @@
 | Epic | Status | Where the work lives |
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
-| `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `test/`, `.github/workflows/docs.yml` |
+| `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
@@ -185,12 +185,12 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 - [x] Accessibility addon
 - [x] Toolbar to switch light and dark themes (`data-theme` on `<html>`)
 - [x] An introduction page: install, use, theme, icons, accessibility
-      (`docs/storybook/Introduction.mdx`)
+      (`.storybook/Introduction.mdx`)
 
 ### ST-02.2 — Tests
 
 - [x] Vitest + Testing Library + jsdom
-- [x] An axe helper every component test uses (`test/axe.ts`, with its own
+- [x] An axe helper every component test uses (`src/test/axe.ts`, with its own
       tests; contrast is left to Storybook, since jsdom doesn't paint)
 - [x] Coverage report in CI
 
