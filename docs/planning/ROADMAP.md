@@ -10,7 +10,7 @@
 
 | Epic | Status | Where the work lives |
 |---|---|---|
-| `EP-01` Repository baseline | ✅ Done 2026-11-03 — npm scope still to confirm (`ST-01.3`) | repo root, `.github/`, `docs/` |
+| `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ⬜ Not started | `.storybook/`, test config |
 | `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
@@ -138,7 +138,9 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 - [x] `peerDependencies`: React 19
 - [x] Scripts: `build`, `typecheck`, `lint`, `format`, `check`, `changeset`,
       `version`, `release` — `dev` (Storybook) and `test` come with `EP-02`
-- [ ] Confirm the npm account and the `@nic-soares` scope
+- [x] Confirm the npm account and the `@nic-soares` scope (`nic-soares`)
+- [x] Ship `src/` with the package (tests and stories excluded), so the
+      declaration maps lead "Go to Definition" to the component source
 
 ### ST-01.4 — Repository files
 
