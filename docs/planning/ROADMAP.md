@@ -11,7 +11,7 @@
 | Epic | Status | Where the work lives |
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
-| `EP-02` Docs and test infrastructure | 🟡 In progress — ST-02.1 and ST-02.2 done 2026-11-03; first deploy on merge | `.storybook/`, `test/`, `.github/workflows/docs.yml` |
+| `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
@@ -198,7 +198,8 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 
 - [x] Workflow: Storybook deployed on every push to `main` (Cloudflare
       Workers, `docs.yml`; token and rotation in `docs/runbooks/docs-deploy.md`)
-- [ ] First deploy checked, and the repository homepage set to the docs URL
+- [x] First deploy checked (the single-permission token is enough), and the
+      repository homepage set to the docs URL
 
 ---
 
