@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | ⬜ Not started | `src/tokens/` |
+| `EP-03` Design tokens | ⬜ Not started | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -66,7 +66,7 @@
 | Runtime / package manager | Node 26 (LTS), npm |
 | Language | TypeScript 7, strict |
 | Build | Vite library mode (CSS Modules, Lightning CSS) + `tsc` for declarations |
-| Output | ESM; `exports`: `.` and `./styles.css`; `sideEffects: ["**/*.css"]` |
+| Output | ESM; `exports`: `.`, `./styles.css` and, from `ST-03.7`, `./color` (ADR-006); `sideEffects: ["**/*.css"]` |
 | Styling | CSS Modules + CSS variables; no CSS-in-JS, no Sass |
 | Docs | Storybook 10 (`@storybook/react-vite`) with the accessibility addon |
 | Tests | Vitest + Testing Library (jsdom) + axe |
@@ -74,6 +74,7 @@
 | Versioning / release | Changesets; publish to npm with provenance from CI |
 | Icons | `ReactNode` slots; the docs show how to use Material Symbols |
 | Theme switch | Light on `:root`, dark on `[data-theme="dark"]` and `prefers-color-scheme: dark` |
+| Color | Generated with Material Color Utilities: spec 2025, Tonal Spot, source `#6750A4`; standard, medium and high contrast; a `/color` entry point builds schemes at runtime |
 | Breakpoints | The five M3 window size classes: 600 / 840 / 1200 / 1600 |
 | License | MIT |
 
@@ -205,17 +206,25 @@ EP-01 Baseline ──► EP-02 Docs/tests ──► EP-03 Tokens ──► EP-04
 
 ## EP-03 — Design tokens
 
-**Dependencies:** `EP-01`. **Size:** M. **Source:** `my-portfolio`
-`client/src/styles/`.
+**Dependencies:** `EP-01`. **Size:** L. **Source:** `my-portfolio`
+`client/src/styles/` (all but color, which is generated).
 
 All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
-### ST-03.1 — Color
+### ST-03.1 — Color tokens, generated
 
-- [ ] Light and dark schemes with every M3 color role (taken from the
-      portfolio's `themes/light.css` and `themes/dark.css`)
-- [ ] Light on `:root`; dark on `[data-theme="dark"]` and
-      `@media (prefers-color-scheme: dark)` when no theme is set
+- [ ] Add `@material/material-color-utilities` (`^0.4.0`) as a dependency
+- [ ] Role-to-variable mapping (`src/color/`): each M3 color role to its
+      `--md-sys-color-*` variable; palette key colors and the watch-only
+      `*-dim` roles left out (ADR-003)
+- [ ] `scripts/generate-color-tokens.ts`: spec 2025, Tonal Spot, source color
+      `#6750A4` → the committed `src/tokens/color.css`
+- [ ] Six schemes: light and dark × standard, medium and high contrast
+- [ ] Selectors: light on `:root`; dark on `[data-theme="dark"]` and
+      `prefers-color-scheme: dark` when no theme is set; medium and high on
+      `[data-contrast="medium"|"high"]`; high under `prefers-contrast: more`
+      when no contrast is set
+- [ ] CI regenerates the file and fails if it differs from the committed one
 
 ### ST-03.2 — State
 
@@ -253,8 +262,27 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 - [ ] `styles.css` carries the tokens and a minimal base (no global reset
       beyond what components need)
-- [ ] Storybook page listing every token with its value in both themes
-- [ ] ADR `003` documents the theming contract consumers rely on
+- [ ] Storybook page listing every token with its value in each scheme
+- [ ] Storybook toolbar: contrast switch next to the theme switch
+- [ ] Storybook branded with the library's name and colors (`manager.ts`)
+- [x] ADR `003` documents the theming contract consumers rely on
+
+### ST-03.7 — Runtime color schemes (`/color`)
+
+- [ ] Entry point `@nic-soares/material-design-react/color` (ADR-006):
+      `exports` in `package.json`, a second entry in the library build,
+      Material Color Utilities kept external
+- [ ] A helper that builds a scheme from a source color, with variant,
+      contrast level and light or dark as options, returning the
+      `--md-sys-color-*` variables
+- [ ] A helper that applies a scheme to an element
+- [ ] Tests: the default source color reproduces `src/tokens/color.css`
+      exactly; every `x` / `on-x` pair meets the contrast of its level
+
+### ST-03.8 — Theme page in Storybook
+
+- [ ] A page to pick a source color, a variant and a contrast level and see
+      the scheme applied, with the CSS to copy
 
 ---
 
