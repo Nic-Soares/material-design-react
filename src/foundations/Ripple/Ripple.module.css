@@ -1,0 +1,42 @@
+/* The pressed state: soft-edged circles of the content color, sized and
+   faded by Ripple.tsx. Hover and focus belong to the state layer. */
+.ripple {
+  /* Component tokens, with the M3 defaults; Ripple.tsx reads the private
+     copies when a press starts */
+  --_pressed-color: var(--md-ripple-pressed-color, currentColor);
+  --_pressed-opacity: var(
+    --md-ripple-pressed-opacity,
+    var(--md-sys-state-pressed-state-layer-opacity, 0.1)
+  );
+  --_easing: var(
+    --md-ripple-easing,
+    var(--md-sys-motion-easing-standard, cubic-bezier(0.2, 0, 0, 1))
+  );
+
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background: radial-gradient(
+    closest-side,
+    var(--_pressed-color) max(calc(100% - 70px), 65%),
+    transparent 100%
+  );
+  transform-origin: center;
+}
+
+/* Windows high contrast draws its own focus and press cues */
+@media (forced-colors: active) {
+  .ripple {
+    display: none;
+  }
+}

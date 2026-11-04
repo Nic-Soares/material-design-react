@@ -209,12 +209,14 @@ material-design-react/
 ├── scripts/                  # color and motion token generators
 ├── src/
 │   ├── color/                # M3 color roles → CSS variables
+│   ├── foundations/          # ripple, state layer, focus ring, hooks
 │   ├── tokens/               # design tokens (color.css is generated)
 │   ├── index.ts              # public API
 │   └── test/                 # test setup and the axe helper (not published)
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
 ├── LICENSE
+├── THIRD_PARTY_LICENSES.md   # notices for code derived from others
 ├── biome.json
 ├── package.json
 ├── tsconfig.json             # type-checking
@@ -271,6 +273,9 @@ Project link: [https://github.com/Nic-Soares/material-design-react](https://gith
 ## Acknowledgments
 
 * [Material Design 3](https://m3.material.io)
+* [Material Web](https://github.com/material-components/material-web) — the
+  ripple is a port of its own (Apache-2.0, see
+  [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md))
 * [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 * [Img Shields](https://shields.io)
 
