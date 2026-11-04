@@ -1,0 +1,148 @@
+/* M3 navigation bar and rail with vertical items (Material 3 Design Kit,
+   the portfolio's kit-based navigation): a 56x32 indicator pill over a
+   Label Medium label. Selected: secondary-container pill, its icon in
+   on-secondary-container, the label in secondary. */
+
+.bar {
+  box-sizing: border-box;
+  display: flex;
+  min-block-size: calc(64px + env(safe-area-inset-bottom, 0px));
+  padding-block-end: env(safe-area-inset-bottom, 0px);
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.bar > * {
+  flex: 1 1 0;
+}
+
+.rail {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  inline-size: 96px;
+  padding-block: 44px 16px;
+  background-color: var(--md-sys-color-surface);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  inline-size: 100%;
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  inline-size: 100%;
+  padding-block: 6px;
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: 24px;
+  --_indicator: transparent;
+}
+
+.indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 56px;
+  block-size: 32px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--_indicator);
+  transition: background-color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+.icon {
+  position: relative;
+}
+
+.label {
+  text-align: center;
+  font-family: var(--md-sys-typescale-label-medium-font);
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  line-height: var(--md-sys-typescale-label-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-label-medium-tracking);
+}
+
+/* State layers on the indicator, in the content color */
+@media (hover: hover) {
+  .item:hover {
+    --_indicator: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface-variant)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      transparent
+    );
+  }
+}
+
+.item:focus-visible {
+  --_indicator: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface-variant)
+      calc(var(--md-sys-state-focus-state-layer-opacity) * 100%),
+    transparent
+  );
+}
+
+.selected {
+  --_indicator: var(--md-sys-color-secondary-container);
+}
+
+.selected .icon {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.selected .label {
+  color: var(--md-sys-color-secondary);
+}
+
+@media (hover: hover) {
+  .selected:hover {
+    --_indicator: color-mix(
+      in srgb,
+      var(--md-sys-color-on-secondary-container)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      var(--md-sys-color-secondary-container)
+    );
+  }
+}
+
+.selected:focus-visible {
+  --_indicator: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container)
+      calc(var(--md-sys-state-focus-state-layer-opacity) * 100%),
+    var(--md-sys-color-secondary-container)
+  );
+}
+
+.item:focus-visible .indicator {
+  outline: 3px solid var(--md-sys-color-secondary);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  .selected .indicator {
+    outline: 2px solid LinkText;
+  }
+}

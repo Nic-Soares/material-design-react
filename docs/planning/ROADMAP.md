@@ -415,9 +415,10 @@ Every story follows the definition of done (`§3`).
 
 ### ST-05.4 — App structure
 
-- [ ] Top app bar: slots for leading, title and trailing content (no logo,
-      no app actions)
-- [ ] Navigation rail and navigation bar: items take `href` or a render prop
+- [x] Top app bar: slots for leading, title and trailing content (no logo,
+      no app actions); small or center-aligned, on-scroll color from the
+      window or a prop
+- [x] Navigation rail and navigation bar: items take `href` or a render prop
       for the consumer's router (no `react-router` import)
 
 ### Stays in the portfolio
