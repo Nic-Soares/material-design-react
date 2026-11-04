@@ -1,0 +1,84 @@
+/* M3 small and center-aligned top app bars: 64px on surface, 4px on the
+   sides so 48px icon buttons line up, Title Large in on-surface at 16px
+   from the edge (56px after a leading button). On scroll the container
+   turns surface-container (the M3 color change, not a shadow). */
+
+.bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  block-size: 64px;
+  padding-inline: 4px;
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  transition: background-color
+    var(--md-sys-motion-spring-default-effects-duration)
+    var(--md-sys-motion-spring-default-effects-easing);
+}
+
+.bar[data-scrolled] {
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.leading,
+.trailing {
+  display: flex;
+  flex: none;
+  align-items: center;
+  color: var(--md-sys-color-on-surface);
+}
+
+.trailing {
+  margin-inline-start: auto;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.title {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--md-sys-typescale-title-large-font);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  font-size: var(--md-sys-typescale-title-large-size);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  letter-spacing: var(--md-sys-typescale-title-large-tracking);
+}
+
+/* A heading passed as the title keeps the bar's type */
+.title > :where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Without leading content the title starts at the 16px margin; after a
+   48px leading button it starts at 56px */
+.title:first-child {
+  padding-inline-start: 12px;
+}
+
+/* Center-aligned: equal-width sides keep the title in the middle */
+.center .leading,
+.center .trailing {
+  flex: 1 1 0;
+}
+
+.center .trailing {
+  justify-content: flex-end;
+}
+
+.center .title {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+@media (forced-colors: active) {
+  .bar {
+    border-block-end: 1px solid CanvasText;
+  }
+}
