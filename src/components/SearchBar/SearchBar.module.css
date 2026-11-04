@@ -1,0 +1,96 @@
+/* M3 search bar (Material 3 Design Kit, Search page): 56px high, full
+   corners, surface-container-high, Body Large; on-surface icon and text,
+   on-surface-variant placeholder. Hover lays on-surface at 8% over the
+   container. The kit has no focused state (pressing opens the search view);
+   while the field has focus the bar rises to elevation level 1 and shows
+   the caret. No focus ring: text fields match :focus-visible on every
+   click, so it would show on each tap. */
+
+.bar {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  inline-size: 100%;
+  max-inline-size: 720px;
+  block-size: 56px;
+  padding-inline: 4px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  cursor: text;
+  transition:
+    background-color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing),
+    box-shadow var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+@media (hover: hover) {
+  .bar:not(.disabled):hover {
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      var(--md-sys-color-surface-container-high)
+    );
+  }
+}
+
+.bar:focus-within {
+  box-shadow: var(--md-sys-elevation-level1);
+}
+
+.leading {
+  /* A 24px icon, 16px from the edge (4px padding + 12px) */
+  --md-icon-size: 24px;
+  margin-inline: 12px;
+  pointer-events: none;
+}
+
+.input {
+  all: unset;
+  flex: 1;
+  min-inline-size: 0;
+  block-size: 100%;
+  padding-inline-start: 4px;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+  color: var(--md-sys-color-on-surface);
+  caret-color: var(--md-sys-color-primary);
+}
+
+.input::placeholder {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 1;
+}
+
+/* The browser's own clear button; the bar draws its own */
+.input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.disabled {
+  cursor: default;
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 4%,
+    var(--md-sys-color-surface-container-high)
+  );
+}
+
+.disabled .input,
+.disabled .input::placeholder {
+  color: inherit;
+}
+
+@media (forced-colors: active) {
+  .bar {
+    border: 1px solid CanvasText;
+  }
+}
