@@ -19,6 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
+| `EP-10` Backlog from the portfolio | ⬜ Not started | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -490,6 +491,24 @@ rest). **Size:** M.
       new API (`variant`/`size`/`shape`, native props)
 - [ ] Delete the portfolio's copies
 - [ ] Replace TabbedNavigation with Tabs where it fits
+
+---
+
+## EP-10 — Backlog from the portfolio
+
+Component work that was still open in the portfolio's roadmap when it
+decided to consume the library (2026-11-04): it is built here now, not
+there. **Dependencies:** none; each item ships when the portfolio needs it.
+**Size:** S each.
+
+- [ ] Chip: keyboard navigation inside a row of interactive chips (roving
+      tabindex, arrow keys), as Tabs already does
+- [ ] Skeleton: optional shimmer, off under `prefers-reduced-motion`
+      (design it first; the portfolio's Skeleton is static today)
+- [ ] Carousel (M3): horizontal-scroll layout for a row of cards — only once
+      the portfolio's Projects index needs it
+- [ ] `./color`: optional secondary and tertiary source colors, for brands
+      with more than one color (the portfolio's `EP-20`, project themes)
 
 ---
 
