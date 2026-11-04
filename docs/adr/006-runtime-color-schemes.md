@@ -13,20 +13,29 @@ about 330 kB of JavaScript before minification; consumers who keep the default
 or a fixed palette shouldn't pay for it.
 
 ## Decision
-- A second entry point, `@nic-soares/material-design-react/color`, exports a
-  helper that builds a scheme from a source color — variant, contrast level
-  and light or dark as options — and returns it as the library's
-  `--md-sys-color-*` variables, plus one that applies them to an element.
+- A second entry point, `@nic-soares/material-design-react/color`, exports:
+  - `createScheme({ sourceColor, variant, contrast, spec })`: the library's
+    `--md-sys-color-*` variables for a source color, each holding light and
+    dark as `light-dark()`, so the element's color-scheme still picks the
+    theme;
+  - `applyScheme(element, options)`: sets them on an element. Inline
+    variables win over the stylesheet, so this pins one contrast level;
+  - `schemeCss(options)`: a whole stylesheet with the structure of the
+    library's own color tokens (theme switch, three contrast levels,
+    prefers-contrast), for apps that would rather ship CSS than run code.
+- `spec` is `"2021"` by default, Material Theme Builder's colors (ADR-003),
+  or `"2025"` for the M3 Expressive colors Android uses.
 - Material Color Utilities is a dependency of the package, imported only by
   that entry point, and kept external in the build: it is installed next to
   the library, not copied into `dist/`, so a bundler includes it only when an
   app imports `/color`.
 - The dependency is pinned to `^0.4.0`, which npm reads as `0.4.x`: a new
   minor version of a `0.x` package can break, so moving to it is a decision.
-- The helper uses the same configuration as the build-time script and as
-  Material Theme Builder (2021 spec, Tonal Spot), so a source color gives the
-  same scheme in the library, in the committed tokens and in Theme Builder;
-  tests check both.
+- The build-time generator calls `schemeCss()` itself, so the default
+  tokens and any custom source color come from one code path; tests check
+  that the default source reproduces the committed tokens exactly, and that
+  a source color matches a Material Theme Builder export at every contrast
+  level.
 
 ## Consequences
 - An app can recolor every component at runtime with one call, and only apps
@@ -34,3 +43,7 @@ or a fixed palette shouldn't pay for it.
 - The library follows Google's algorithm and spec updates by upgrading the
   dependency, instead of maintaining its own implementation.
 - The public API now has two entry points to keep stable.
+- Material Color Utilities 0.4.0's extensionless imports (ADR-003) don't
+  affect apps that bundle the library, but code that imports `/color` in
+  plain Node (server rendering, tests) needs a bundler-style resolver until
+  upstream fixes it.

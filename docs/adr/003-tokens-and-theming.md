@@ -104,7 +104,7 @@ gives different colors for the same source.
   `.js` extension, which Node rejects
   ([issue #195](https://github.com/material-foundation/material-color-utilities/issues/195)).
   The generator runs with a resolve hook
-  (`scripts/fix-color-utilities-imports.ts`) and Vitest runs the package
+  (`scripts/resolve-extensionless.ts`) and Vitest runs the package
   through Vite's resolver; both go once a release fixes it.
 - Consumers can still set the values from any source; the runtime helper of
   [ADR-006](006-runtime-color-schemes.md) generates them from a source color.

@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.6 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.7 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -312,18 +312,22 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.7 — Runtime color schemes (`/color`)
 
-- [ ] Entry point `@nic-soares/material-design-react/color` (ADR-006):
-      `exports` in `package.json`, a second entry in the library build,
-      Material Color Utilities kept external
-- [ ] A helper that builds a scheme from a source color, with variant,
-      contrast level and light or dark as options, returning the
-      `--md-sys-color-*` variables
-- [ ] A `spec` option: `"2021"` by default (Material Theme Builder's
+- [x] Entry point `@nic-soares/material-design-react/color` (ADR-006):
+      `exports` in `package.json`, a second entry in the library build
+      (`dist/color.js`, 3 kB), Material Color Utilities kept external
+- [x] `createScheme()`: a source color, variant and contrast level →
+      `--md-sys-color-*` variables, light and dark in `light-dark()` values
+- [x] A `spec` option: `"2021"` by default (Material Theme Builder's
       colors, ADR-003) or `"2025"` for the livelier M3 Expressive colors
       Android uses
-- [ ] A helper that applies a scheme to an element
-- [ ] Tests: the default source color reproduces `src/tokens/color.css`
-      exactly; every `x` / `on-x` pair meets the contrast of its level
+- [x] `applyScheme()` sets a scheme on an element; `schemeCss()` returns a
+      whole stylesheet, which the token generator now uses too
+- [x] Tests: the default source color reproduces `src/tokens/color.css`
+      exactly; a source color matches a Theme Builder export at every
+      contrast level; every text role meets 4.5:1 (`tokens.test.ts`)
+- [x] `scripts/resolve-extensionless.ts` (was
+      `fix-color-utilities-imports.ts`) lets Node run the generators, which
+      now import the library's source
 
 ### ST-03.8 — Theme page in Storybook
 

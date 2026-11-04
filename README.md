@@ -144,7 +144,15 @@ pin it — on `<html>` or on any element, for a region in the other theme. Set
 `data-contrast="medium"` or `"high"` the same way; high contrast also follows
 the system's *Increase contrast* setting.
 
-To use your own colors, set the Material Design 3 system tokens:
+To theme it from any color at runtime, use the `/color` entry point:
+
+```tsx
+import { applyScheme } from "@nic-soares/material-design-react/color";
+
+applyScheme(document.documentElement, { sourceColor: "#63A002" });
+```
+
+Or set the Material Design 3 system tokens yourself:
 
 ```css
 :root {
