@@ -63,6 +63,25 @@ every token under **Foundations/Tokens**.
 The color tokens use CSS `light-dark()`, so the library needs Chrome or Edge
 123, Firefox 120, Safari 17.5 or later.
 
+## Dynamic color
+
+To theme the library from any color at runtime — one a user picks, say —
+use the `/color` entry point. It builds the scheme with Material Color
+Utilities, as Material Theme Builder does:
+
+```tsx
+import { applyScheme } from "@nic-soares/material-design-react/color";
+
+applyScheme(document.documentElement, { sourceColor: "#63A002" });
+```
+
+Options: `variant` (`"tonal-spot"` by default, or `"vibrant"`,
+`"expressive"`, `"neutral"`, …), `contrast` (`"standard"`, `"medium"`,
+`"high"`) and `spec` (`"2021"`, Theme Builder's colors, or `"2025"`, the
+M3 Expressive colors Android uses). `createScheme()` returns the variables
+instead, and `schemeCss()` a whole stylesheet to ship as CSS. Apps that
+don't import `/color` never load the color code.
+
 ## Typography
 
 The type scale follows Material Design 3, baseline and emphasized, as

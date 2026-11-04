@@ -21,6 +21,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./color": {
+      "types": "./dist/color/index.d.ts",
+      "import": "./dist/color.js"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
@@ -41,7 +45,7 @@
     "build": "vite build && tsc -p tsconfig.build.json",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
-    "tokens": "node --import ./scripts/fix-color-utilities-imports.ts scripts/generate-color-tokens.ts && node scripts/generate-motion-tokens.ts",
+    "tokens": "node --import ./scripts/resolve-extensionless.ts scripts/generate-color-tokens.ts && node scripts/generate-motion-tokens.ts",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",

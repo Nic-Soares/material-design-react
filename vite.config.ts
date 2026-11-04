@@ -40,9 +40,10 @@ export default defineConfig({
   // (@custom-media), so consumers need no CSS tooling of their own.
   build: {
     lib: {
-      entry: "src/index.ts",
+      // The components and tokens, and the runtime color helper (ADR-006)
+      entry: { index: "src/index.ts", color: "src/color/index.ts" },
       formats: ["es"],
-      fileName: "index",
+      fileName: (_format, name) => `${name}.js`,
       cssFileName: "styles",
     },
     cssCodeSplit: false,
@@ -50,7 +51,13 @@ export default defineConfig({
     cssTarget: cssBuildTarget,
     sourcemap: true,
     rolldownOptions: {
-      external: [/^react($|\/)/, /^react-dom($|\/)/],
+      // Peers and Material Color Utilities are installed next to the
+      // library, not copied into dist/ (ADR-006)
+      external: [
+        /^react($|\/)/,
+        /^react-dom($|\/)/,
+        /^@material\/material-color-utilities/,
+      ],
     },
   },
 
@@ -60,7 +67,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/test/setup.ts"],
     // Run Material Color Utilities through Vite's resolver: Node's rejects
-    // its extensionless imports (scripts/fix-color-utilities-imports.ts)
+    // its extensionless imports (scripts/resolve-extensionless.ts)
     server: { deps: { inline: ["@material/material-color-utilities"] } },
     include: ["src/**/*.test.{ts,tsx}", "scripts/**/*.test.ts"],
     coverage: {

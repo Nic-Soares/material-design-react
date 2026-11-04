@@ -42,9 +42,10 @@ The color tokens are generated with it (ADR-003), and `^0.4.0` only accepts
    versions can change colors. A visible change needs a changeset.
 2. Check whether the release fixes
    [issue #195](https://github.com/material-foundation/material-color-utilities/issues/195)
-   (extensionless imports). If it does, delete
-   `scripts/fix-color-utilities-imports.ts`, the `--import` flag in the
-   `tokens` script and `test.server.deps.inline` in `vite.config.ts`.
+   (extensionless imports). If it does, drop the `.js` retry in
+   `scripts/resolve-extensionless.ts` (the `.ts` one stays: the generators
+   import the library's source) and `test.server.deps.inline` in
+   `vite.config.ts`.
 
 ## 5. Upgrade React's peer range
 
