@@ -433,11 +433,14 @@ portfolio's `navigation/` content.
 
 **Dependencies:** `EP-05`. **Size:** S.
 
-- [ ] Publish workflow: on a version pull request merged by Changesets, build
-      and `npm publish --provenance`
-- [ ] `0.1.0` on npm and a GitHub Release
-- [ ] Installed in a clean Vite app as a smoke test (styles load, tree-shaking
-      keeps CSS)
+- [x] Publish workflow: a GitHub Release for a `vX.Y.Z` tag builds, checks
+      and runs `npm publish --provenance` (trusted publishing). Not the
+      Changesets bot's version pull request: its commits aren't signed and
+      it doesn't trigger CI, which the `main` ruleset requires
+- [ ] `0.1.0` on npm and a GitHub Release (the account owner's step:
+      `docs/runbooks/releases.md` §4)
+- [x] Installed in a clean Vite app as a smoke test (styles load, tree-shaking
+      keeps CSS), in CI and before every publish (`npm run smoke`)
 
 ---
 
