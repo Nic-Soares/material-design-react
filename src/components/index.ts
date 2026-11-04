@@ -67,6 +67,11 @@ export {
   type NavigationDrawerProps,
 } from "./NavigationDrawer/NavigationDrawer";
 export { SearchBar, type SearchBarProps } from "./SearchBar/SearchBar";
+export {
+  Select,
+  type SelectOption,
+  type SelectProps,
+} from "./Select/Select";
 export { Skeleton, type SkeletonProps } from "./Skeleton/Skeleton";
 export {
   Tab,

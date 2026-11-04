@@ -1,0 +1,253 @@
+/* M3 text field shell (Material 3 Design Kit, Text fields): 56px, Body
+   Large value and resting label, the label floating to Body Small when
+   focused or populated; 16px start padding, a 24px trailing icon 12px
+   from the end; supporting text in Body Small 4px below, 16px in.
+   Filled: surface-container-highest, extra-small top corners, a 1px
+   on-surface-variant active indicator that turns 2px primary on focus.
+   Outlined: a 1px outline border that turns 2px primary, the floating
+   label sitting in a notch of the border. Error turns the indicator,
+   label, trailing icon and supporting text to the error role. */
+
+.field {
+  --_accent: var(--md-sys-color-primary);
+  --_label: var(--md-sys-color-on-surface-variant);
+  --_indicator: var(--md-sys-color-on-surface-variant);
+  --_outline: var(--md-sys-color-outline);
+  --_duration: var(--md-sys-motion-spring-fast-effects-duration);
+  --_easing: var(--md-sys-motion-spring-fast-effects-easing);
+
+  display: inline-flex;
+  flex-direction: column;
+  min-inline-size: 210px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  block-size: 56px;
+  padding-inline: 16px 12px;
+}
+
+.control {
+  position: relative;
+  flex: 1;
+  min-inline-size: 0;
+  align-self: stretch;
+  display: flex;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+}
+
+.label {
+  position: absolute;
+  inset-inline-start: 16px;
+  inset-block-start: 50%;
+  max-inline-size: calc(100% - 64px);
+  overflow: hidden;
+  color: var(--_label);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  translate: 0 -50%;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+  transition:
+    inset-block-start var(--_duration) var(--_easing),
+    font-size var(--_duration) var(--_easing),
+    line-height var(--_duration) var(--_easing),
+    translate var(--_duration) var(--_easing),
+    color var(--_duration) var(--_easing);
+}
+
+.trailing {
+  position: relative;
+  display: flex;
+  flex: none;
+  margin-inline-start: 12px;
+  color: var(--md-sys-color-on-surface-variant);
+  --md-icon-size: 24px;
+}
+
+.supporting {
+  padding: 4px 16px 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-body-small-font);
+  font-weight: var(--md-sys-typescale-body-small-weight);
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  letter-spacing: var(--md-sys-typescale-body-small-tracking);
+}
+
+/* Focused (or a popup open): the accent color */
+.field:focus-within,
+.field[data-active] {
+  --_label: var(--_accent);
+  --_indicator: var(--_accent);
+  --_outline: var(--_accent);
+}
+
+.field[data-error] {
+  --_accent: var(--md-sys-color-error);
+  --_label: var(--md-sys-color-error);
+  --_indicator: var(--md-sys-color-error);
+  --_outline: var(--md-sys-color-error);
+}
+
+.field[data-error] .trailing,
+.field[data-error] .supporting {
+  color: var(--md-sys-color-error);
+}
+
+/* --- Filled --- */
+
+.filled .container {
+  border-start-start-radius: var(--md-sys-shape-corner-extra-small);
+  border-start-end-radius: var(--md-sys-shape-corner-extra-small);
+  background-color: var(--md-sys-color-surface-container-highest);
+  box-shadow: inset 0 -1px 0 var(--_indicator);
+}
+
+.filled:focus-within .container,
+.filled[data-active] .container {
+  box-shadow: inset 0 -2px 0 var(--_indicator);
+}
+
+@media (hover: hover) {
+  .filled:not([data-disabled]) .container:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      var(--md-sys-color-surface-container-highest)
+    );
+  }
+}
+
+/* The value sits under the floated label */
+.filled .control {
+  padding-block-start: 24px;
+  padding-block-end: 8px;
+  align-items: center;
+}
+
+.filled[data-populated] .label,
+.filled:focus-within .label,
+.filled[data-active] .label {
+  inset-block-start: 8px;
+  translate: 0 0;
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  letter-spacing: var(--md-sys-typescale-body-small-tracking);
+}
+
+/* --- Outlined --- */
+
+.outline {
+  position: absolute;
+  inset: -5px 0 0;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px solid var(--_outline);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  pointer-events: none;
+}
+
+.outlined:focus-within .outline,
+.outlined[data-active] .outline {
+  border-width: 2px;
+  padding-inline: 11px;
+}
+
+/* The notch: an invisible copy of the floated label that cuts the border */
+.notch {
+  display: block;
+  max-inline-size: 0.01px;
+  block-size: 11px;
+  padding: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  font-size: var(--md-sys-typescale-body-small-size);
+  letter-spacing: var(--md-sys-typescale-body-small-tracking);
+}
+
+.notch > span {
+  display: inline-block;
+  padding-inline: 4px;
+}
+
+.outlined[data-populated] .notch,
+.outlined:focus-within .notch,
+.outlined[data-active] .notch {
+  max-inline-size: 100%;
+}
+
+@media (hover: hover) {
+  .outlined:not([data-disabled], [data-active], :focus-within)
+    .container:hover
+    .outline {
+    border-color: var(--md-sys-color-on-surface);
+  }
+}
+
+.outlined .control {
+  align-items: center;
+}
+
+.outlined[data-populated] .label,
+.outlined:focus-within .label,
+.outlined[data-active] .label {
+  inset-block-start: 0;
+  font-size: var(--md-sys-typescale-body-small-size);
+  line-height: var(--md-sys-typescale-body-small-line-height);
+  letter-spacing: var(--md-sys-typescale-body-small-tracking);
+}
+
+/* --- Disabled: on-surface at 38%, the container at 4% --- */
+
+.field[data-disabled] {
+  --_label: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  --_indicator: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 38%,
+    transparent
+  );
+  --_outline: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 12%,
+    transparent
+  );
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+.field[data-disabled] .trailing,
+.field[data-disabled] .supporting {
+  color: inherit;
+}
+
+.filled[data-disabled] .container {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 4%,
+    transparent
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .filled .container {
+    border-block-end: 1px solid CanvasText;
+  }
+}
