@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.5 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.6 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -299,11 +299,15 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.6 — Delivery
 
-- [ ] `styles.css` carries the tokens and a minimal base (no global reset
-      beyond what components need)
-- [ ] Storybook page listing every token with its value in each scheme
-- [ ] Storybook toolbar: contrast switch next to the theme switch
-- [ ] Storybook branded with the library's name and colors (`manager.ts`)
+- [x] `styles.css` carries the tokens and no base styles: no global reset,
+      components style themselves
+- [x] Storybook pages for every token — color, typography, shape,
+      elevation, motion (`Foundations/Tokens`) — with the values the browser
+      resolves under the toolbar's settings; motion springs play side by side
+- [x] Storybook toolbar: contrast and motion switches next to the theme
+      switch, setting the same `data-*` attributes an app sets
+- [x] Storybook branded with the library's name and primary color
+      (`.storybook/manager.ts`)
 - [x] ADR `003` documents the theming contract consumers rely on
 
 ### ST-03.7 — Runtime color schemes (`/color`)
