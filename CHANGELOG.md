@@ -1,7 +1,14 @@
 # @nic-soares/material-design-react
 
-Release notes are written by [Changesets](https://github.com/changesets/changesets):
-each version below comes from the changesets merged since the previous one.
+## 0.2.0
+
+### Minor Changes
+
+- dff6c17: Add `Card` (elevated, filled or outlined; the whole card becomes a link with `href`), `Divider` (full width, inset or vertical) and `CircularProgress`, the M3 Expressive circular indicator with a gap between indicator and track, determinate or indeterminate.
+- 63ef9be: Add `DateRangePicker`, the M3 date range picker: a filled or outlined field that opens a calendar, docked under it or in a modal dialog. The first day chosen starts the range and the second ends it; the range applies on confirm. The calendar follows the WAI-ARIA date grid (arrows, Home, End, Page Up and Down, with Shift by year), honors `min` and `max`, and takes month names, weekday names, the first day of the week and the range format from the `locale` through `Intl`. With `name`, it submits `<name>-start` and `<name>-end` as ISO dates.
+- 742a2ec: Add `Dialog` (basic, with an optional icon, or full-screen) and `NavigationDrawer` with `NavigationDrawerItem`, the modal drawer for compact windows. Both are controlled (`open`, `onClose`) and built on the native modal `<dialog>`: focus stays inside and returns on close, the page behind is inert and doesn't scroll, and Escape or a click on the scrim asks to close. Drawer items take `href` or a `render` prop for any router.
+- 2820d56: Add `Select`, the M3 select: a filled or outlined field with a floating label, supporting text and error state that opens a menu of `options`. It follows the WAI-ARIA select-only combobox (focus stays on the field; arrows, Home, End, Page keys and letters move; Enter, Space or a click chooses; Escape closes), is controlled or uncontrolled by `value`, and submits its value with a form through `name`.
+- 4a3226a: Add `Tabs` with `TabList`, `Tab` and `TabPanel`, primary or secondary, controlled or uncontrolled by `value`, with the WAI-ARIA tabs keyboard pattern and an indicator that slides to the selected tab. Add `Tooltip`, plain or rich (with a `subhead`), shown after a hover delay or on keyboard focus and linked to its child through `aria-describedby`.
 
 ## 0.1.0
 
