@@ -473,7 +473,7 @@ Interaction (needed by `benefits-transactions-analytics` `EP-09`):
 
 **Dependencies:** `EP-07`. **Size:** S.
 
-- [ ] `0.2.0` on npm with the `EP-07` components
+- [x] `0.2.0` on npm with the `EP-07` components
 
 ---
 
