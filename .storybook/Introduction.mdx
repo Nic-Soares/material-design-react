@@ -49,9 +49,18 @@ variables:
 }
 ```
 
-The dark scheme applies on `[data-theme="dark"]`, or follows the system
-setting when no theme is set. Use the theme button in the toolbar above to
-switch it here.
+The library ships light and dark schemes in standard, medium and high
+contrast, generated with
+[Material Color Utilities](https://github.com/material-foundation/material-color-utilities).
+The theme follows the system setting; set `data-theme="light"` or `"dark"` to
+pin it — on `<html>` or on any element, for a region in the other theme. Set
+`data-contrast="medium"` or `"high"` the same way; high contrast also follows
+the system's *Increase contrast* setting.
+
+Use the theme button in the toolbar above to switch it here.
+
+The color tokens use CSS `light-dark()`, so the library needs Chrome or Edge
+123, Firefox 120, Safari 17.5 or later.
 
 ## Icons
 

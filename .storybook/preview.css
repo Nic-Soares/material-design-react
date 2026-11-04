@@ -1,0 +1,6 @@
+/* Stories sit on the theme's surface, so light and dark show as they would
+   in an app */
+body {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}

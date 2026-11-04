@@ -108,6 +108,8 @@ the UI layer of
 ### Prerequisites
 
 * React 19 and React DOM 19
+* A browser with CSS `light-dark()`: Chrome or Edge 123, Firefox 120,
+  Safari 17.5 or later
 
 ### Installation
 
@@ -134,7 +136,15 @@ export function App() {
 }
 ```
 
-To change the theme, set the Material Design 3 system tokens:
+The library ships light and dark schemes in standard, medium and high
+contrast, generated with
+[Material Color Utilities](https://github.com/material-foundation/material-color-utilities).
+The theme follows the system setting; set `data-theme="light"` or `"dark"` to
+pin it — on `<html>` or on any element, for a region in the other theme. Set
+`data-contrast="medium"` or `"high"` the same way; high contrast also follows
+the system's *Increase contrast* setting.
+
+To use your own colors, set the Material Design 3 system tokens:
 
 ```css
 :root {
@@ -169,6 +179,7 @@ npm install
 | `npm run typecheck` | Type-checks the project |
 | `npm run lint` | Lints with Biome |
 | `npm run check` | Lints and formats with Biome, applying fixes |
+| `npm run tokens` | Regenerates the color tokens (`src/tokens/color.css`) |
 | `npm run changeset` | Describes a change for the next release |
 
 Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.md).
@@ -187,7 +198,10 @@ material-design-react/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories
 │   └── runbooks/             # releases, setup, upgrades, docs deploy
+├── scripts/                  # color token generator
 ├── src/
+│   ├── color/                # M3 color roles → CSS variables
+│   ├── tokens/               # design tokens (color.css is generated)
 │   ├── index.ts              # public API
 │   └── test/                 # test setup and the axe helper (not published)
 ├── CHANGELOG.md
