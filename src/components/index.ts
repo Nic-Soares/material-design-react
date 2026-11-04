@@ -26,6 +26,11 @@ export {
   type ConnectedButtonGroupProps,
   type ConnectedButtonOption,
 } from "./ConnectedButtonGroup/ConnectedButtonGroup";
+export {
+  type DateRange,
+  DateRangePicker,
+  type DateRangePickerProps,
+} from "./DateRangePicker/DateRangePicker";
 export { Dialog, type DialogProps } from "./Dialog/Dialog";
 export {
   Divider,

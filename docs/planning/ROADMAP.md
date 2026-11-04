@@ -464,7 +464,8 @@ Interaction (needed by `benefits-transactions-analytics` `EP-09`):
 - [x] Tooltip (plain, rich), descriptive only: interactive content belongs
       in a Dialog or Menu
 - [x] Dialog (basic, full-screen), on the native `<dialog>`
-- [ ] Date range picker (docked and modal) — the largest item
+- [x] Date range picker (docked and modal) — one month at a time, the
+      WAI-ARIA date grid, `Intl` names and formats
 
 ---
 
