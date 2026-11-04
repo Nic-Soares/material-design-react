@@ -164,4 +164,43 @@ describe("Button as a toggle", () => {
 
     await expectNoA11yViolations(container);
   });
+
+  it("renders a link with href, forwarding anchor props and ref", async () => {
+    const ref = createRef<HTMLAnchorElement>();
+    const { container } = render(
+      <Button ref={ref} href="/projects" target="_blank" variant="tonal">
+        Projects
+      </Button>,
+    );
+    const link = screen.getByRole("link", { name: "Projects" });
+
+    expect(ref.current).toBe(link);
+    expect(link).toHaveAttribute("href", "/projects");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).not.toHaveAttribute("aria-pressed");
+    expect(link).not.toHaveAttribute("type");
+    await expectNoA11yViolations(container);
+  });
+
+  it("drops href and sets aria-disabled on a disabled link", () => {
+    render(
+      <Button href="/projects" disabled>
+        Projects
+      </Button>,
+    );
+    const link = screen.getByText("Projects").closest("a");
+
+    expect(link).not.toHaveAttribute("href");
+    expect(link).toHaveAttribute("aria-disabled", "true");
+  });
+
+  it("calls onRippleEnd once the press ripple has faded", async () => {
+    const onRippleEnd = vi.fn();
+    render(<Button onRippleEnd={onRippleEnd}>Save</Button>);
+
+    // jsdom can't animate, so the ripple fades at once
+    await userEvent.click(screen.getByRole("button"));
+
+    expect(onRippleEnd).toHaveBeenCalledOnce();
+  });
 });

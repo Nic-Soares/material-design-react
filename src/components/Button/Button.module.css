@@ -147,7 +147,7 @@
 }
 
 /* Pressed and selected buttons morph to a smaller corner */
-.button:not(:disabled):active,
+.button:not(:disabled, [aria-disabled="true"]):active,
 .selected {
   border-radius: var(--_press);
   --md-focus-ring-shape: var(--_press);
@@ -182,12 +182,12 @@
 
 /* Hover raises filled and tonal buttons one level, elevated ones to two */
 @media (hover: hover) {
-  .filled:not(:disabled):hover,
-  .tonal:not(:disabled):hover {
+  .filled:not(:disabled, [aria-disabled="true"]):hover,
+  .tonal:not(:disabled, [aria-disabled="true"]):hover {
     --_elevation: var(--md-sys-elevation-level1);
   }
 
-  .elevated:not(:disabled):hover {
+  .elevated:not(:disabled, [aria-disabled="true"]):hover {
     --_elevation: var(--md-sys-elevation-level2);
   }
 }
@@ -223,7 +223,7 @@
 
 /* --- Disabled: on-surface at 10% (container) and 38% (content) --- */
 
-.button:disabled {
+.button:is(:disabled, [aria-disabled="true"]) {
   cursor: default;
   --_content: color-mix(
     in srgb,
@@ -233,7 +233,7 @@
   --_elevation: none;
 }
 
-.button:disabled:not(.text, .outlined) {
+.button:is(:disabled, [aria-disabled="true"]):not(.text, .outlined) {
   --_container: color-mix(
     in srgb,
     var(--md-sys-color-on-surface) 10%,
@@ -241,7 +241,7 @@
   );
 }
 
-.outlined:disabled {
+.outlined:is(:disabled, [aria-disabled="true"]) {
   --_border: color-mix(
     in srgb,
     var(--md-sys-color-on-surface) 12%,
