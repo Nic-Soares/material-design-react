@@ -451,10 +451,10 @@ portfolio's `navigation/` content.
 Foundation (unblocks `benefits-transactions-analytics` `EP-07`, together
 with `0.1.0`):
 
-- [ ] Card (elevated, filled, outlined)
-- [ ] Divider
+- [x] Card (elevated, filled, outlined); a link with `href`
+- [x] Divider
 - [ ] Navigation drawer (modal, for compact windows)
-- [ ] Circular progress
+- [x] Circular progress (M3 Expressive: gap, round caps)
 
 Interaction (needed by `benefits-transactions-analytics` `EP-09`):
 

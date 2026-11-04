@@ -1,0 +1,41 @@
+/* M3 divider: 1px of outline-variant; inset 16px at the start or at both
+   ends. */
+
+.divider {
+  flex: none;
+  margin: 0;
+  border: 0;
+  background-color: var(--md-sys-color-outline-variant);
+}
+
+.horizontal {
+  block-size: 1px;
+}
+
+.vertical {
+  align-self: stretch;
+  inline-size: 1px;
+  block-size: auto;
+}
+
+.horizontal.start {
+  margin-inline-start: 16px;
+}
+
+.horizontal.middle {
+  margin-inline: 16px;
+}
+
+.vertical.start {
+  margin-block-start: 16px;
+}
+
+.vertical.middle {
+  margin-block: 16px;
+}
+
+@media (forced-colors: active) {
+  .divider {
+    background-color: CanvasText;
+  }
+}

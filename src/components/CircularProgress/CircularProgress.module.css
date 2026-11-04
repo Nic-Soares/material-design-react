@@ -1,0 +1,97 @@
+/* M3 Expressive circular progress (Material 3 Design Kit, Loading &
+   progress): 40px, 4px stroke with round caps, primary indicator, 4px gap,
+   secondary-container track. Arcs start at 12 o'clock and run clockwise. */
+
+.progress {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}
+
+.progress svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  rotate: -90deg;
+}
+
+.indicator,
+.track {
+  fill: none;
+  stroke-linecap: round;
+  transition:
+    stroke-dasharray var(--md-sys-motion-spring-default-effects-duration)
+    var(--md-sys-motion-spring-default-effects-easing),
+    stroke-dashoffset var(--md-sys-motion-spring-default-effects-duration)
+    var(--md-sys-motion-spring-default-effects-easing);
+}
+
+.indicator {
+  stroke: var(--md-sys-color-primary);
+}
+
+.track {
+  stroke: var(--md-sys-color-secondary-container);
+}
+
+/* Indeterminate: the ring turns while the arc grows and shrinks */
+.indeterminate svg {
+  animation: spin 1.4s linear infinite;
+}
+
+.indeterminate .indicator {
+  transition: none;
+  animation: arc 1.4s var(--md-sys-motion-easing-emphasized, ease-in-out)
+    infinite;
+}
+
+@keyframes spin {
+  from {
+    rotate: -90deg;
+  }
+  to {
+    rotate: 270deg;
+  }
+}
+
+@keyframes arc {
+  0% {
+    stroke-dasharray: 3 100;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 65 100;
+    stroke-dashoffset: -15;
+  }
+  100% {
+    stroke-dasharray: 3 100;
+    stroke-dashoffset: -97;
+  }
+}
+
+/* Reduced motion: a still three-quarter arc */
+@media (prefers-reduced-motion: reduce) {
+  .indicator,
+  .track {
+    transition: none;
+  }
+
+  .indeterminate svg,
+  .indeterminate .indicator {
+    animation: none;
+  }
+
+  .indeterminate .indicator {
+    stroke-dasharray: 70 100;
+  }
+}
+
+@media (forced-colors: active) {
+  .indicator {
+    stroke: CanvasText;
+  }
+
+  .track {
+    stroke: GrayText;
+  }
+}

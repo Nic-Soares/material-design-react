@@ -6,6 +6,7 @@ export {
   type ButtonSize,
   type ButtonVariant,
 } from "./Button/Button";
+export { Card, type CardProps, type CardVariant } from "./Card/Card";
 export {
   AssistChip,
   type AssistChipProps,
@@ -17,10 +18,19 @@ export {
   type SuggestionChipProps,
 } from "./Chip/Chip";
 export {
+  CircularProgress,
+  type CircularProgressProps,
+} from "./CircularProgress/CircularProgress";
+export {
   ConnectedButtonGroup,
   type ConnectedButtonGroupProps,
   type ConnectedButtonOption,
 } from "./ConnectedButtonGroup/ConnectedButtonGroup";
+export {
+  Divider,
+  type DividerInset,
+  type DividerProps,
+} from "./Divider/Divider";
 export {
   IconButton,
   type IconButtonProps,

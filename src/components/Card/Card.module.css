@@ -1,0 +1,61 @@
+/* M3 cards: medium corners (12px). Elevated: surface-container-low at
+   level 1 (2 on hover). Filled: surface-container-highest, flat (level 1
+   on hover). Outlined: surface with an outline-variant border. Content in
+   on-surface. */
+
+.card {
+  --_container: var(--md-sys-color-surface-container-low);
+  --_elevation: var(--md-sys-elevation-level1);
+  --_border: transparent;
+
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  border: 1px solid var(--_border);
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--_container);
+  box-shadow: var(--_elevation);
+  color: var(--md-sys-color-on-surface);
+  --md-focus-ring-shape: var(--md-sys-shape-corner-medium);
+  transition: box-shadow var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+.filled {
+  --_container: var(--md-sys-color-surface-container-highest);
+  --_elevation: var(--md-sys-elevation-level0);
+}
+
+.outlined {
+  --_container: var(--md-sys-color-surface);
+  --_elevation: var(--md-sys-elevation-level0);
+  --_border: var(--md-sys-color-outline-variant);
+}
+
+.interactive {
+  color: var(--md-sys-color-on-surface);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .interactive.elevated:hover {
+    --_elevation: var(--md-sys-elevation-level2);
+  }
+
+  .interactive.filled:hover {
+    --_elevation: var(--md-sys-elevation-level1);
+  }
+}
+
+.interactive.outlined:focus-visible {
+  --_border: var(--md-sys-color-on-surface-variant);
+}
+
+@media (forced-colors: active) {
+  .card {
+    border-color: CanvasText;
+  }
+}
