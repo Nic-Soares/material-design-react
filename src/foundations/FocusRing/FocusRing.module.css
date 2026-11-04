@@ -1,0 +1,55 @@
+/* The M3 focus indicator: a ring outside the element, shown for keyboard
+   focus only (:focus-visible), that pulses wide and settles. Values from the
+   M3 focus ring tokens (as Material Web's): 3px wide, 8px at its widest, 2px
+   outside, secondary color, long4 duration. */
+.ring {
+  --_color: var(--md-focus-ring-color, var(--md-sys-color-secondary));
+  --_width: var(--md-focus-ring-width, 3px);
+  --_active-width: var(--md-focus-ring-active-width, 8px);
+  --_offset: var(--md-focus-ring-outward-offset, 2px);
+  --_shape: var(--md-focus-ring-shape, var(--md-sys-shape-corner-full));
+  --_duration: var(
+    --md-focus-ring-duration,
+    var(--md-sys-motion-duration-long4, 600ms)
+  );
+
+  display: none;
+  position: absolute;
+  inset: calc(-1 * var(--_offset));
+  border-radius: calc(var(--_shape) + var(--_offset));
+  outline: var(--_width) solid var(--_color);
+  pointer-events: none;
+}
+
+:focus-visible > .ring {
+  display: block;
+  animation-name: grow, shrink;
+  animation-duration:
+    calc(var(--_duration) * 0.25), calc(var(--_duration) * 0.75);
+  animation-delay: 0s, calc(var(--_duration) * 0.25);
+  animation-timing-function: var(
+    --md-sys-motion-easing-emphasized,
+    cubic-bezier(0.2, 0, 0, 1)
+  );
+}
+
+@keyframes grow {
+  from {
+    outline-width: 0;
+  }
+  to {
+    outline-width: var(--_active-width);
+  }
+}
+
+@keyframes shrink {
+  from {
+    outline-width: var(--_active-width);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :focus-visible > .ring {
+    animation: none;
+  }
+}

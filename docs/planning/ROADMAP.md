@@ -13,7 +13,7 @@
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
-| `EP-04` Foundations | 🟡 In progress — Ripple and useReducedMotion done 2026-11-04 | `src/foundations/` |
+| `EP-04` Foundations | ✅ Done 2026-11-04 | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
 | `EP-07` New components for the dashboard | ⬜ Not started | `src/components/` |
@@ -349,14 +349,19 @@ state layer styles, `useReducedMotion`.
       `THIRD_PARTY_LICENSES.md`, shipped with the package. Opacity, color and
       easing come from tokens (`--md-ripple-pressed-color`, `-opacity`,
       `-easing`, defaulting to the `--md-sys-*` ones)
-- [ ] State layer and focus ring styles shared by every interactive
-      component, built with the `color-mix()` recipe of `ST-03.2`
+- [x] `StateLayer`: hover and focus in pure CSS, from the parent's
+      `:hover` (only where a pointer can hover) and `:focus-visible`, with
+      the `color-mix()` recipe of `ST-03.2`; off while disabled
+- [x] `FocusRing`: keyboard focus only, outside the element, with the M3
+      focus ring tokens (3px, 8px pulse, 2px offset, secondary, long4), its
+      corners from `--md-focus-ring-shape`; no pulse with reduced motion
 - [x] `useReducedMotion`, safe where `matchMedia` is missing (server,
       jsdom)
 - [x] Foundations are public exports, as Material Web's are, so apps can
       build their own interactive surfaces with them
-- [ ] Icon slot convention: size and color from the component, content from
-      the consumer
+- [x] `IconSlot`: size from `--md-icon-size`, color from the text, for SVG
+      components and icon fonts alike (ADR-005)
+- [x] `Foundations/Interactive surface` in Storybook shows the four together
 
 ---
 

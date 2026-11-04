@@ -1,0 +1,22 @@
+/* Where a component puts an icon it receives (ADR-005): the component sets
+   the size, the icon takes the color of the text around it. Works with SVG
+   components and with icon fonts such as Material Symbols. */
+.slot {
+  --_size: var(--md-icon-size, 24px);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_size);
+  block-size: var(--_size);
+  font-size: var(--_size);
+  line-height: 1;
+  color: inherit;
+}
+
+.slot > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  fill: currentColor;
+}

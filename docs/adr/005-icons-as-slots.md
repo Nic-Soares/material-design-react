@@ -14,7 +14,9 @@ bundling the full font would cost every consumer hundreds of kilobytes.
 - Components take icons as `ReactNode` (`icon`, `leadingIcon`, …): an SVG
   component, a font ligature, anything.
 - The component sizes and colors the slot (`currentColor`, the M3 icon size
-  for its size variant); the consumer provides the content.
+  for its size variant); the consumer provides the content. `IconSlot`
+  (`src/foundations/`) does it: the component sets `--md-icon-size`, and an
+  SVG fills the slot while an icon font takes it as its font size.
 - The library ships no icon font and no icon set. The docs show how to use
   Material Symbols, the icon set M3 recommends.
 
