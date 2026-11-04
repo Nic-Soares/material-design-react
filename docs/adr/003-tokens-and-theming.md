@@ -48,16 +48,34 @@ Theme Builder.
   the `*-dim` roles, which the 2025 spec uses only on watches, are left out.
 
 ### Schemes
-- Light on `:root`; dark on `[data-theme="dark"]`, and under
-  `prefers-color-scheme: dark` when no theme is set.
+- Light and dark live in one value per token, `light-dark(<light>, <dark>)`,
+  resolved by the CSS `color-scheme` of the element that uses it. `:root`
+  follows the system setting (`color-scheme: light dark`);
+  `data-theme="light"` or `"dark"` pins it, on `<html>` or on any element, so
+  a dark region can sit inside a light page. Roles that are the same in both
+  (the fixed ones) are plain values.
 - Contrast: standard by default; medium on `[data-contrast="medium"]`; high on
   `[data-contrast="high"]`, and under `prefers-contrast: more` when no
-  contrast is set. Each level exists in light and dark.
+  contrast is set (`data-contrast="standard"` opts out). Each level exists in
+  light and dark.
+- `light-dark()` must reach the browser as written: Lightning CSS's fallback
+  for older browsers resolves inside a custom property where the token is
+  declared, not where it is used, which breaks nested themes. The build
+  targets the oldest browsers with native support — Chrome and Edge 123,
+  Firefox 120, Safari 17.5 (2024) — and so does the library.
 
 ## Consequences
 - Changing a color role changes every component, including its states.
 - The token names are public API: renaming one is a breaking change.
 - The defaults can be regenerated at any time, and every role in every scheme
   meets the contrast the spec requires for its level.
+- Browsers older than the targets above get no color tokens; the library
+  states its browser support.
+- Material Color Utilities 0.4.0 imports some of its own modules without the
+  `.js` extension, which Node rejects
+  ([issue #195](https://github.com/material-foundation/material-color-utilities/issues/195)).
+  The generator runs with a resolve hook
+  (`scripts/fix-color-utilities-imports.ts`) and Vitest runs the package
+  through Vite's resolver; both go once a release fixes it.
 - Consumers can still set the values from any source; the runtime helper of
   [ADR-006](006-runtime-color-schemes.md) generates them from a source color.

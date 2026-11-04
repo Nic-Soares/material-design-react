@@ -1,10 +1,12 @@
 import { withThemeByDataAttribute } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react-vite";
+import "../src/tokens/color.css";
+import "./preview.css";
 
 const preview: Preview = {
   decorators: [
-    // Sets data-theme on <html>, the switch the library's tokens read
-    // (ADR-003): light by default, dark on [data-theme="dark"]
+    // Sets data-theme on <html>, which pins the color-scheme the tokens'
+    // light-dark() values follow (ADR-003)
     withThemeByDataAttribute({
       themes: { light: "light", dark: "dark" },
       defaultTheme: "light",

@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | ⬜ Not started | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -213,18 +213,27 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.1 — Color tokens, generated
 
-- [ ] Add `@material/material-color-utilities` (`^0.4.0`) as a dependency
-- [ ] Role-to-variable mapping (`src/color/`): each M3 color role to its
-      `--md-sys-color-*` variable; palette key colors and the watch-only
-      `*-dim` roles left out (ADR-003)
-- [ ] `scripts/generate-color-tokens.ts`: spec 2025, Tonal Spot, source color
-      `#6750A4` → the committed `src/tokens/color.css`
-- [ ] Six schemes: light and dark × standard, medium and high contrast
-- [ ] Selectors: light on `:root`; dark on `[data-theme="dark"]` and
-      `prefers-color-scheme: dark` when no theme is set; medium and high on
-      `[data-contrast="medium"|"high"]`; high under `prefers-contrast: more`
-      when no contrast is set
-- [ ] CI regenerates the file and fails if it differs from the committed one
+- [x] Add `@material/material-color-utilities` (`^0.4.0`) as a dependency
+- [x] Role-to-variable mapping (`src/color/tokens.ts`): 49 M3 color roles to
+      `--md-sys-color-*`; palette key colors and the watch-only `*-dim`
+      roles left out (ADR-003)
+- [x] `scripts/generate-color-tokens.ts` (`npm run tokens`): spec 2025, Tonal
+      Spot, source color `#6750A4` → the committed `src/tokens/color.css`
+- [x] Six schemes: light and dark × standard, medium and high contrast
+- [x] Light and dark as `light-dark()` values, resolved by `color-scheme`:
+      the system setting by default, `data-theme` pins it on any element;
+      medium and high on `[data-contrast="medium"|"high"]`, high under
+      `prefers-contrast: more` when no contrast is set
+- [x] CSS targets the browsers with native `light-dark()` (Chrome and Edge
+      123, Firefox 120, Safari 17.5), in the library build and in Storybook,
+      so the values reach the browser as written
+- [x] Tests: role names, hex values, every text role on its surface at least
+      4.5:1 in all six schemes, contrast rising with each level
+- [x] CI regenerates the file and fails if it differs from the committed one
+- [x] Storybook stories sit on the theme's surface color
+- [x] Worked around Material Color Utilities' extensionless imports
+      ([#195](https://github.com/material-foundation/material-color-utilities/issues/195)):
+      a Node resolve hook for the generator, Vite's resolver for Vitest
 
 ### ST-03.2 — State
 

@@ -19,6 +19,11 @@ none of them.
 - `tsc -p tsconfig.build.json` emits the type declarations.
 - `sideEffects: ["**/*.css"]`, so bundlers tree-shake the JavaScript and keep
   the stylesheet.
+- CSS targets the browsers the library supports (ADR-003): Lightning CSS
+  only lowers what those browsers lack. Vite reads the list in two places —
+  `css.lightningcss.targets` for the transform, `build.cssTarget` for the
+  minifier — and Storybook, which sets its own build target, gets it again in
+  `.storybook/main.ts`. All three come from `vite.config.ts`.
 
 ## Consequences
 - Consumers import plain ESM and one stylesheet; they need no CSS plugin.

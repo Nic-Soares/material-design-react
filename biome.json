@@ -9,6 +9,7 @@
     "ignoreUnknown": true,
     "includes": [
       "src/**",
+      "scripts/**",
       ".storybook/**",
       "*.ts",
       "*.json",
