@@ -67,9 +67,9 @@ M3 Expressive. It is built from the components of my portfolio site and is
 the UI layer of
 [Benefits Transactions Analytics](https://github.com/Nic-Soares/benefits-transactions-analytics).
 
-> **Status:** early development. The package is set up; tokens and components
-> are being added (see the [roadmap](docs/planning/ROADMAP.md)). Nothing is
-> published to npm yet.
+> **Status:** `0.x` — published on npm, API still settling (a breaking change
+> bumps the minor version). See the [changelog](CHANGELOG.md) and the
+> [roadmap](docs/planning/ROADMAP.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -158,9 +158,6 @@ Or set the Material Design 3 system tokens yourself:
 }
 ```
 
-> The API above is the target of the roadmap; components are not available
-> yet.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- DEVELOPMENT -->
@@ -180,11 +177,12 @@ npm install
 | `npm test` | Runs the unit and accessibility tests (Vitest) |
 | `npm run coverage` | Runs the tests with a coverage report |
 | `npm run build` | Builds `dist/`: ESM, `styles.css` and type declarations |
+| `npm run smoke` | Installs the packed build in a clean Vite app and checks it |
 | `npm run build-storybook` | Builds the docs into `storybook-static/` |
 | `npm run typecheck` | Type-checks the project |
 | `npm run lint` | Lints with Biome |
 | `npm run check` | Lints and formats with Biome, applying fixes |
-| `npm run tokens` | Regenerates the color tokens (`src/tokens/color.css`) |
+| `npm run tokens` | Regenerates the color and motion tokens (`src/tokens/`) |
 | `npm run changeset` | Describes a change for the next release |
 
 Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.md).
@@ -197,15 +195,16 @@ Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.
 ```text
 material-design-react/
 ├── .changeset/               # pending release notes (Changesets)
-├── .github/workflows/        # CI and docs deploy
+├── .github/workflows/        # CI, docs deploy and npm release
 ├── .storybook/               # Storybook: config, intro and token pages, docs Worker
 ├── docs/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories
 │   └── runbooks/             # releases, setup, upgrades, docs deploy
-├── scripts/                  # color and motion token generators
+├── scripts/                  # token generators and the smoke test
 ├── src/
-│   ├── color/                # M3 color roles → CSS variables
+│   ├── color/                # M3 color roles and the /color entry point
+│   ├── components/           # buttons, chips, menus, tabs, dialogs, pickers…
 │   ├── foundations/          # ripple, state layer, focus ring, hooks
 │   ├── tokens/               # design tokens (color.css is generated)
 │   ├── index.ts              # public API
@@ -226,14 +225,15 @@ material-design-react/
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Repository baseline
-- [ ] Docs (Storybook) and test infrastructure
-- [ ] Design tokens
-- [ ] Foundations (ripple, state layers, focus)
-- [ ] Components from the portfolio
-- [ ] Release `0.1.0`
-- [ ] New components for the dashboard
-- [ ] Release `0.2.0`
+- [x] Repository baseline
+- [x] Docs (Storybook) and test infrastructure
+- [x] Design tokens
+- [x] Foundations (ripple, state layers, focus)
+- [x] Components from the portfolio
+- [x] Release `0.1.0`
+- [x] New components for the dashboard
+- [x] Release `0.2.0`
+- [ ] Portfolio consumes the library (in `my-portfolio`)
 
 See the [full roadmap](docs/planning/ROADMAP.md) for epics and stories.
 
@@ -279,7 +279,7 @@ Project link: [https://github.com/Nic-Soares/material-design-react](https://gith
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[status-shield]: https://img.shields.io/badge/status-early%20development-orange?style=for-the-badge
+[status-shield]: https://img.shields.io/badge/status-0.x-yellow?style=for-the-badge
 [roadmap-url]: docs/planning/ROADMAP.md
 [ci-shield]: https://img.shields.io/github/actions/workflow/status/Nic-Soares/material-design-react/ci.yml?branch=main&style=for-the-badge&label=CI
 [ci-url]: https://github.com/Nic-Soares/material-design-react/actions/workflows/ci.yml

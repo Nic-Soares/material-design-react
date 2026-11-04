@@ -2,7 +2,7 @@
 
 **Repository:** `material-design-react` — a React component library that implements Material Design 3 (including M3 Expressive), published to npm as `@nic-soares/material-design-react`
 **Consumers:** [`benefits-transactions-analytics`](https://github.com/Nic-Soares/benefits-transactions-analytics) (its `EP-05` depends on this roadmap), [`my-portfolio`](https://github.com/Nic-Soares/my-portfolio)
-**Last updated:** 2026-11-03
+**Last updated:** 2026-11-04
 
 ---
 
@@ -14,10 +14,10 @@
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ✅ Done 2026-11-04 | `src/foundations/` |
-| `EP-05` Components from the portfolio | 🟡 In progress — ST-05.1 and ST-05.2 done 2026-11-04 | `src/components/` (source: `my-portfolio`) |
-| `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
-| `EP-07` New components for the dashboard | ⬜ Not started | `src/components/` |
-| `EP-08` Release `0.2.0` | ⬜ Not started | npm, GitHub Releases |
+| `EP-05` Components from the portfolio | ✅ Done 2026-11-04 | `src/components/` (source: `my-portfolio`) |
+| `EP-06` Release `0.1.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
+| `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
+| `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
 
 ### Git workflow
@@ -71,7 +71,7 @@
 | Docs | Storybook 10 (`@storybook/react-vite`) with the accessibility addon |
 | Tests | Vitest + Testing Library (jsdom) + axe |
 | Lint / format | Biome |
-| Versioning / release | Changesets; publish to npm with provenance from CI |
+| Versioning / release | Changesets; staged on npm with provenance from CI, published on a 2FA approval (from `0.3.0`) |
 | Icons | `ReactNode` slots; the docs show how to use Material Symbols |
 | Theme switch | Light on `:root`, dark on `[data-theme="dark"]` and `prefers-color-scheme: dark` |
 | Color | Generated with Material Color Utilities as Material Theme Builder does (spec 2021, Tonal Spot), source `#6750A4`; standard, medium and high contrast; a `/color` entry point builds schemes at runtime |
@@ -434,7 +434,9 @@ portfolio's `navigation/` content.
 **Dependencies:** `EP-05`. **Size:** S.
 
 - [x] Publish workflow: a GitHub Release for a `vX.Y.Z` tag builds, checks
-      and runs `npm publish --provenance` (trusted publishing). Not the
+      and publishes with provenance (trusted publishing); after `0.2.0` it
+      runs `npm stage publish`, and each version goes public only on the
+      owner's 2FA approval (`docs/runbooks/releases.md` §3–4). Not the
       Changesets bot's version pull request: its commits aren't signed and
       it doesn't trigger CI, which the `main` ruleset requires
 - [x] `0.1.0` on npm and a GitHub Release, with provenance, cut from the

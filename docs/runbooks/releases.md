@@ -73,8 +73,8 @@ published version can't be replaced: a mistake means a new patch version
 - The npm account `nic-soares` owns the `@nic-soares` scope, with 2FA.
 - `0.1.0` and `0.2.0` were published with a short-lived granular token,
   since npm only configures trusted publishing on a package that exists.
-  Once trusted publishing is set up, the token is revoked and the
-  `NPM_TOKEN` secret deleted (`gh secret delete NPM_TOKEN`).
+  The `NPM_TOKEN` repository secret is deleted; revoke the token on
+  npmjs.com too if it hasn't expired.
 - Trusted publisher on npmjs.com: GitHub Actions, `Nic-Soares` /
   `material-design-react`, workflow `release.yml`, environment `npm`, with
   **Allow npm publish unchecked**, so CI can only stage and every version
