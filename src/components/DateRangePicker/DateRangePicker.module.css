@@ -1,0 +1,254 @@
+/* M3 date range picker (Material 3 Design Kit, Date pickers). The field is
+   the text field shell with a calendar icon. The calendar: a month bar
+   (Label Large month, previous and next buttons), narrow weekday names in
+   Body Large, 48px cells with 40px day circles in Body Large. Today: a
+   1px primary ring and primary text. Range ends: primary circles with
+   on-primary text; between them a secondary-container band. Docked: a
+   surface-container-high popup with large corners at level 3. Modal: the
+   Dialog, with a Label Large title and the range in Headline Large. */
+
+.picker {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+/* Room for a range across years, "Dec 28, 2026 – Jan 3, 2027" */
+.field {
+  min-inline-size: 280px;
+}
+
+.trigger {
+  all: unset;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trigger:disabled {
+  cursor: default;
+}
+
+.docked {
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+  inline-size: 360px;
+  max-inline-size: calc(100vw - 16px);
+  padding-block-end: 8px;
+  border-radius: var(--md-sys-shape-corner-large);
+  background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-level3);
+  color: var(--md-sys-color-on-surface);
+  transform-origin: top;
+  animation: open var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing);
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    scale: 1 0.9;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px 0;
+}
+
+.calendar {
+  padding-inline: 12px;
+}
+
+.monthBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  block-size: 56px;
+  padding-inline-start: 12px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.month {
+  flex: 1;
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+}
+
+.grid {
+  inline-size: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  outline: none;
+}
+
+.weekday {
+  block-size: 48px;
+  padding: 0;
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+}
+
+.blank {
+  padding: 0;
+}
+
+.day {
+  position: relative;
+  block-size: 48px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+
+/* The band: whole cells between the ends, half cells at them. It reaches
+   1px into the next cell so no seam shows between cells. */
+.day[data-band]::before,
+.day[data-start]::before,
+.day[data-end]::before {
+  content: "";
+  position: absolute;
+  inset-block: 4px;
+  inset-inline: -1px;
+  background-color: var(--md-sys-color-secondary-container);
+}
+
+.day[data-start]::before {
+  inset-inline-start: 50%;
+}
+
+.day[data-end]::before {
+  inset-inline-end: 50%;
+}
+
+.day[data-start][data-end]::before {
+  display: none;
+}
+
+.dayCircle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 40px;
+  block-size: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface);
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+}
+
+.day[data-band] .dayCircle {
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.day[aria-current="date"] .dayCircle {
+  box-shadow: inset 0 0 0 1px var(--md-sys-color-primary);
+  color: var(--md-sys-color-primary);
+}
+
+@media (hover: hover) {
+  .day:not([aria-disabled="true"]):hover .dayCircle {
+    background-color: color-mix(
+      in srgb,
+      currentColor calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      transparent
+    );
+  }
+}
+
+.day:focus-visible .dayCircle {
+  outline: 3px solid var(--md-sys-color-secondary);
+  outline-offset: 2px;
+}
+
+.dayCircle[data-chosen] {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: none;
+}
+
+.day:hover .dayCircle[data-chosen] {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-primary)
+      calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+    var(--md-sys-color-primary)
+  );
+}
+
+.day[aria-disabled="true"] {
+  cursor: default;
+}
+
+.day[aria-disabled="true"] .dayCircle {
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+/* Modal: the title and the range in the dialog's headline */
+.modal {
+  inline-size: min(360px, calc(100vw - 48px));
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modalTitle {
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+}
+
+.modalRange {
+  font-family: var(--md-sys-typescale-headline-small-font);
+  font-weight: var(--md-sys-typescale-headline-small-weight);
+  font-size: var(--md-sys-typescale-headline-small-size);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
+}
+
+.modal .calendar {
+  margin-inline: -12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .docked {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .docked {
+    border: 1px solid CanvasText;
+  }
+
+  .dayCircle[data-chosen] {
+    background-color: Highlight;
+    color: HighlightText;
+  }
+
+  .day[data-band] {
+    outline: 1px dotted CanvasText;
+    outline-offset: -4px;
+  }
+}
