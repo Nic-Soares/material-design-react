@@ -437,8 +437,8 @@ portfolio's `navigation/` content.
       and runs `npm publish --provenance` (trusted publishing). Not the
       Changesets bot's version pull request: its commits aren't signed and
       it doesn't trigger CI, which the `main` ruleset requires
-- [ ] `0.1.0` on npm and a GitHub Release (the account owner's step:
-      `docs/runbooks/releases.md` §4)
+- [x] `0.1.0` on npm and a GitHub Release, with provenance, cut from the
+      end of `EP-06` so the `EP-07` work already on `main` waits for `0.2.0`
 - [x] Installed in a clean Vite app as a smoke test (styles load, tree-shaking
       keeps CSS), in CI and before every publish (`npm run smoke`)
 
