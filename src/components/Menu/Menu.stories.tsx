@@ -131,3 +131,17 @@ export const Placement: Story = {
     </div>
   ),
 };
+
+/** Beside the anchor, bottoms aligned: a navigation rail's menu. */
+export const SidePlacement: Story = {
+  args: unused,
+  render: () => (
+    <div style={{ paddingBlockStart: 240 }}>
+      <Demo label="Language" placement="right-end" defaultOpen>
+        <MenuItem selected>English</MenuItem>
+        <MenuItem selected={false}>Português</MenuItem>
+        <MenuItem selected={false}>Español</MenuItem>
+      </Demo>
+    </div>
+  ),
+};

@@ -25,11 +25,20 @@ import { StateLayer } from "../../foundations/StateLayer/StateLayer";
 import { useReducedMotion } from "../../foundations/useReducedMotion/useReducedMotion";
 import styles from "./Menu.module.css";
 
+/**
+ * `bottom-*` and `top-*` open below or above the anchor, aligned with its
+ * start or end edge; `right-*` and `left-*` open beside it (a navigation
+ * rail's menu), aligned with its top (`start`) or bottom (`end`) edge.
+ */
 export type MenuPlacement =
   | "bottom-start"
   | "bottom-end"
   | "top-start"
-  | "top-end";
+  | "top-end"
+  | "right-start"
+  | "right-end"
+  | "left-start"
+  | "left-end";
 
 type Name = { "aria-label": string } | { "aria-labelledby": string };
 
@@ -145,14 +154,39 @@ export function Menu({
     // scrollHeight: the content's height, steady while the open motion
     // animates the surface's own height
     const { offsetWidth: width, scrollHeight: height } = surface;
+    const clampLeft = (value: number) =>
+      Math.min(Math.max(8, value), window.innerWidth - width - 8);
+    const clampTop = (value: number) =>
+      Math.min(Math.max(8, value), window.innerHeight - height - 8);
+
+    // Beside the anchor, flipping to the other side when it doesn't fit;
+    // aligned with its bottom, the menu grows upwards
+    if (placement.startsWith("right") || placement.startsWith("left")) {
+      const fitsRight = anchorRect.right + GAP + width <= window.innerWidth;
+      const fitsLeft = anchorRect.left - GAP - width >= 0;
+      const right = placement.startsWith("right")
+        ? fitsRight || !fitsLeft
+        : !fitsLeft && fitsRight;
+      const up = placement.endsWith("end");
+      setPosition({
+        left: clampLeft(
+          right ? anchorRect.right + GAP : anchorRect.left - GAP - width,
+        ),
+        top: clampTop(up ? anchorRect.bottom - height : anchorRect.top),
+        up,
+      });
+      return;
+    }
+
     const wantsUp = placement.startsWith("top");
     const fitsBelow = anchorRect.bottom + GAP + height <= window.innerHeight;
     const fitsAbove = anchorRect.top - GAP - height >= 0;
     const up = wantsUp ? fitsAbove || !fitsBelow : !fitsBelow && fitsAbove;
     const top = up ? anchorRect.top - GAP - height : anchorRect.bottom + GAP;
     const alignEnd = placement.endsWith("end");
-    let left = alignEnd ? anchorRect.right - width : anchorRect.left;
-    left = Math.min(Math.max(8, left), window.innerWidth - width - 8);
+    const left = clampLeft(
+      alignEnd ? anchorRect.right - width : anchorRect.left,
+    );
     setPosition({ top, left, up });
   }, [anchor, placement]);
 
