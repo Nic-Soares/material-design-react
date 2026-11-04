@@ -10,5 +10,7 @@ import "./tokens/shape.css";
 import "./tokens/elevation.css";
 import "./tokens/motion.css";
 
+// Components
+export * from "./components";
 // Foundations: the building blocks of interactive components
 export * from "./foundations";

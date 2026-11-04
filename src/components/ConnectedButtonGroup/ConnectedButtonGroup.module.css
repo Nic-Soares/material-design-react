@@ -1,0 +1,53 @@
+/* M3 Expressive connected button group (Material 3 Design Kit): segments 2px
+   apart. The group's outer corners stay full; inner corners rest at 8px,
+   grow to 12px (16px from medium up) on hover, press and focus, and a
+   selected segment becomes a full pill. Doubled classes outrank the button's
+   own corner rules. */
+
+.group {
+  /* A fieldset, without its default frame */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.segment.segment {
+  --_inner: var(--md-sys-shape-corner-small);
+  --_outer: calc(var(--_height) / 2);
+  --_start: var(--_inner);
+  --_end: var(--_inner);
+
+  border-start-start-radius: var(--_start);
+  border-end-start-radius: var(--_start);
+  border-start-end-radius: var(--_end);
+  border-end-end-radius: var(--_end);
+  --md-focus-ring-shape: var(--_inner);
+}
+
+.segment.segment:first-child {
+  --_start: var(--_outer);
+}
+
+.segment.segment:last-child {
+  --_end: var(--_outer);
+}
+
+.segment.segment:not(:disabled):is(:hover, :active, :focus-visible) {
+  --_inner: var(--md-sys-shape-corner-medium);
+}
+
+.segment.segment:is(
+  [data-size="medium"],
+  [data-size="large"],
+  [data-size="xlarge"]
+):not(:disabled):is(:hover, :active, :focus-visible) {
+  --_inner: var(--md-sys-shape-corner-large);
+}
+
+.segment.segment[aria-pressed="true"] {
+  --_inner: var(--_outer);
+}

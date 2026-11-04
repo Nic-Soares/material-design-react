@@ -1,0 +1,257 @@
+/* M3 Expressive button. Sizes, shapes and colors from the Material 3 Design
+   Kit (Buttons and Toggle button pages); the portfolio's version, checked
+   against the kit. */
+
+.button {
+  /* Size (small by default) */
+  --_height: 40px;
+  --_padding: 16px;
+  --_gap: 8px;
+  --_icon: 20px;
+  /* Shape: resting and pressed/selected corners */
+  --_rest: calc(var(--_height) / 2);
+  --_press: var(--md-sys-shape-corner-small);
+  /* Colors */
+  --_container: transparent;
+  --_content: var(--md-sys-color-primary);
+  --_border: transparent;
+  --_elevation: none;
+
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_gap);
+  block-size: var(--_height);
+  min-inline-size: 48px;
+  padding-inline: var(--_padding);
+  border: 1px solid var(--_border);
+  border-radius: var(--_rest);
+  background-color: var(--_container);
+  color: var(--_content);
+  box-shadow: var(--_elevation);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: var(--_icon);
+  --md-focus-ring-shape: var(--_rest);
+  /* Round corners are half the height, not corner-full: a morph from 9999px
+     looks still until the radius drops under the height, then snaps */
+  transition:
+    border-radius var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing),
+    background-color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing),
+    color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing),
+    box-shadow var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+/* The 48px touch target around the 32px and 40px sizes */
+.button::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: max(100%, 48px);
+  translate: 0 -50%;
+}
+
+.label {
+  position: relative;
+  white-space: nowrap;
+  font-family: var(--_font);
+  font-weight: var(--_weight);
+  font-size: var(--_size);
+  line-height: var(--_line-height);
+  letter-spacing: var(--_tracking);
+}
+
+/* --- Sizes (height, padding, gap, icon, type) --- */
+
+.button,
+.xsmall,
+.small {
+  --_font: var(--md-sys-typescale-label-large-font);
+  --_weight: var(--md-sys-typescale-label-large-weight);
+  --_size: var(--md-sys-typescale-label-large-size);
+  --_line-height: var(--md-sys-typescale-label-large-line-height);
+  --_tracking: var(--md-sys-typescale-label-large-tracking);
+}
+
+.xsmall {
+  --_height: 32px;
+  --_padding: 12px;
+  --_gap: 4px;
+  --_icon: 20px;
+}
+
+.medium {
+  --_height: 56px;
+  --_padding: 24px;
+  --_gap: 8px;
+  --_icon: 24px;
+  --_press: var(--md-sys-shape-corner-medium);
+  --_font: var(--md-sys-typescale-title-medium-font);
+  --_weight: var(--md-sys-typescale-title-medium-weight);
+  --_size: var(--md-sys-typescale-title-medium-size);
+  --_line-height: var(--md-sys-typescale-title-medium-line-height);
+  --_tracking: var(--md-sys-typescale-title-medium-tracking);
+}
+
+.large {
+  --_height: 96px;
+  --_padding: 48px;
+  --_gap: 12px;
+  --_icon: 32px;
+  --_press: var(--md-sys-shape-corner-large);
+  --_font: var(--md-sys-typescale-headline-small-font);
+  --_weight: var(--md-sys-typescale-headline-small-weight);
+  --_size: var(--md-sys-typescale-headline-small-size);
+  --_line-height: var(--md-sys-typescale-headline-small-line-height);
+  --_tracking: var(--md-sys-typescale-headline-small-tracking);
+}
+
+.xlarge {
+  --_height: 136px;
+  --_padding: 64px;
+  --_gap: 16px;
+  --_icon: 40px;
+  --_press: var(--md-sys-shape-corner-large);
+  --_font: var(--md-sys-typescale-headline-large-font);
+  --_weight: var(--md-sys-typescale-headline-large-weight);
+  --_size: var(--md-sys-typescale-headline-large-size);
+  --_line-height: var(--md-sys-typescale-headline-large-line-height);
+  --_tracking: var(--md-sys-typescale-headline-large-tracking);
+}
+
+/* --- Shapes --- */
+
+/* Square corners at rest: 12 / 16 / 28px */
+.square.xsmall,
+.square.small {
+  --_rest: var(--md-sys-shape-corner-medium);
+}
+
+.square.medium {
+  --_rest: var(--md-sys-shape-corner-large);
+}
+
+.square.large,
+.square.xlarge {
+  --_rest: var(--md-sys-shape-corner-extra-large);
+}
+
+/* Pressed and selected buttons morph to a smaller corner */
+.button:not(:disabled):active,
+.selected {
+  border-radius: var(--_press);
+  --md-focus-ring-shape: var(--_press);
+}
+
+/* --- Variants --- */
+
+.filled {
+  --_container: var(--md-sys-color-primary);
+  --_content: var(--md-sys-color-on-primary);
+}
+
+.tonal {
+  --_container: var(--md-sys-color-secondary-container);
+  --_content: var(--md-sys-color-on-secondary-container);
+}
+
+.outlined {
+  --_content: var(--md-sys-color-on-surface-variant);
+  --_border: var(--md-sys-color-outline-variant);
+}
+
+.text {
+  --_content: var(--md-sys-color-primary);
+}
+
+.elevated {
+  --_container: var(--md-sys-color-surface-container-low);
+  --_content: var(--md-sys-color-primary);
+  --_elevation: var(--md-sys-elevation-level1);
+}
+
+/* Hover raises filled and tonal buttons one level, elevated ones to two */
+@media (hover: hover) {
+  .filled:not(:disabled):hover,
+  .tonal:not(:disabled):hover {
+    --_elevation: var(--md-sys-elevation-level1);
+  }
+
+  .elevated:not(:disabled):hover {
+    --_elevation: var(--md-sys-elevation-level2);
+  }
+}
+
+/* --- Toggle buttons (M3 Expressive) --- */
+
+/* An unselected filled toggle rests on a neutral container */
+.toggle.filled:not(.selected) {
+  --_container: var(--md-sys-color-surface-container);
+  --_content: var(--md-sys-color-on-surface-variant);
+}
+
+.selected.filled {
+  --_container: var(--md-sys-color-primary);
+  --_content: var(--md-sys-color-on-primary);
+}
+
+.selected.tonal {
+  --_container: var(--md-sys-color-secondary);
+  --_content: var(--md-sys-color-on-secondary);
+}
+
+.selected.outlined {
+  --_container: var(--md-sys-color-inverse-surface);
+  --_content: var(--md-sys-color-inverse-on-surface);
+  --_border: transparent;
+}
+
+.selected.elevated {
+  --_container: var(--md-sys-color-primary);
+  --_content: var(--md-sys-color-on-primary);
+}
+
+/* --- Disabled: on-surface at 10% (container) and 38% (content) --- */
+
+.button:disabled {
+  cursor: default;
+  --_content: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 38%,
+    transparent
+  );
+  --_elevation: none;
+}
+
+.button:disabled:not(.text, .outlined) {
+  --_container: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 10%,
+    transparent
+  );
+}
+
+.outlined:disabled {
+  --_border: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 12%,
+    transparent
+  );
+}
+
+/* Windows high contrast: keep a visible boundary */
+@media (forced-colors: active) {
+  .button {
+    border-color: ButtonText;
+  }
+}

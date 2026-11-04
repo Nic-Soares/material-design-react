@@ -1,0 +1,216 @@
+/* M3 Expressive icon button. Sizes, widths and colors from the Material 3
+   Design Kit (Icon button and Icon button togglable sets). */
+
+.button {
+  --_height: 40px;
+  --_width: 40px;
+  --_icon: 24px;
+  --_rest: calc(var(--_height) / 2);
+  --_press: var(--md-sys-shape-corner-small);
+  --_container: transparent;
+  --_content: var(--md-sys-color-on-surface-variant);
+  --_border: transparent;
+  --_border-width: 1px;
+
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_width);
+  block-size: var(--_height);
+  border: var(--_border-width) solid var(--_border);
+  border-radius: var(--_rest);
+  background-color: var(--_container);
+  color: var(--_content);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: var(--_icon);
+  --md-focus-ring-shape: var(--_rest);
+  transition:
+    border-radius var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing),
+    background-color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing),
+    color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+/* The 48px touch target around the smaller sizes */
+.button::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: max(100%, 48px);
+  block-size: max(100%, 48px);
+  translate: -50% -50%;
+}
+
+/* --- Sizes and widths (narrow / default / wide) --- */
+
+.xsmall {
+  --_height: 32px;
+  --_width: 32px;
+  --_icon: 20px;
+}
+.xsmall.narrow {
+  --_width: 28px;
+}
+.xsmall.wide {
+  --_width: 40px;
+}
+
+.small {
+  --_height: 40px;
+  --_width: 40px;
+}
+.small.narrow {
+  --_width: 32px;
+}
+.small.wide {
+  --_width: 52px;
+}
+
+.medium {
+  --_height: 56px;
+  --_width: 56px;
+  --_press: var(--md-sys-shape-corner-medium);
+}
+.medium.narrow {
+  --_width: 48px;
+}
+.medium.wide {
+  --_width: 72px;
+}
+
+.large {
+  --_height: 96px;
+  --_width: 96px;
+  --_icon: 32px;
+  --_press: var(--md-sys-shape-corner-large);
+  --_border-width: 2px;
+}
+.large.narrow {
+  --_width: 64px;
+}
+.large.wide {
+  --_width: 128px;
+}
+
+.xlarge {
+  --_height: 136px;
+  --_width: 136px;
+  --_icon: 40px;
+  --_press: var(--md-sys-shape-corner-large);
+  --_border-width: 2px;
+}
+.xlarge.narrow {
+  --_width: 104px;
+}
+.xlarge.wide {
+  --_width: 184px;
+}
+
+/* --- Shapes --- */
+
+.square.xsmall,
+.square.small {
+  --_rest: var(--md-sys-shape-corner-medium);
+}
+
+.square.medium {
+  --_rest: var(--md-sys-shape-corner-large);
+}
+
+.square.large,
+.square.xlarge {
+  --_rest: var(--md-sys-shape-corner-extra-large);
+}
+
+.button:not(:disabled):active,
+.selected {
+  border-radius: var(--_press);
+  --md-focus-ring-shape: var(--_press);
+}
+
+/* --- Variants --- */
+
+.filled {
+  --_container: var(--md-sys-color-primary);
+  --_content: var(--md-sys-color-on-primary);
+}
+
+.tonal {
+  --_container: var(--md-sys-color-secondary-container);
+  --_content: var(--md-sys-color-on-secondary-container);
+}
+
+.outlined {
+  --_border: var(--md-sys-color-outline-variant);
+}
+
+/* --- Toggles --- */
+
+.toggle.filled:not(.selected) {
+  --_container: var(--md-sys-color-surface-container);
+  --_content: var(--md-sys-color-on-surface-variant);
+}
+
+.selected.filled {
+  --_container: var(--md-sys-color-primary);
+  --_content: var(--md-sys-color-on-primary);
+}
+
+.selected.tonal {
+  --_container: var(--md-sys-color-secondary);
+  --_content: var(--md-sys-color-on-secondary);
+}
+
+.selected.outlined {
+  --_container: var(--md-sys-color-inverse-surface);
+  --_content: var(--md-sys-color-inverse-on-surface);
+  --_border: transparent;
+}
+
+.selected.standard {
+  --_content: var(--md-sys-color-primary);
+}
+
+/* --- Disabled --- */
+
+.button:disabled {
+  cursor: default;
+  --_content: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 38%,
+    transparent
+  );
+}
+
+.filled:disabled,
+.tonal:disabled,
+.selected.outlined:disabled {
+  --_container: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 10%,
+    transparent
+  );
+}
+
+.outlined:disabled:not(.selected) {
+  --_border: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 12%,
+    transparent
+  );
+}
+
+@media (forced-colors: active) {
+  .button {
+    border-color: ButtonText;
+  }
+}
