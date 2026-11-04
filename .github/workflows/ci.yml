@@ -50,6 +50,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      # The packed library installs and builds in a clean Vite app, keeps
+      # its styles and tree-shakes the components it doesn't use
+      - name: Smoke test
+        run: npm run smoke
+
       # Docs must build too: a broken story fails the pull request
       - name: Storybook build
         run: npm run build-storybook

@@ -39,6 +39,10 @@
     "CHANGELOG.md",
     "THIRD_PARTY_LICENSES.md"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "sideEffects": [
     "**/*.css"
   ],
@@ -46,6 +50,7 @@
     "build": "vite build && tsc -p tsconfig.build.json",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build -o storybook-static",
+    "smoke": "node scripts/smoke-test.ts",
     "tokens": "node --import ./scripts/resolve-extensionless.ts scripts/generate-color-tokens.ts && node scripts/generate-motion-tokens.ts",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
@@ -55,8 +60,7 @@
     "format": "biome format --write .",
     "check": "biome check --write .",
     "changeset": "changeset",
-    "version": "changeset version",
-    "release": "npm run build && changeset publish"
+    "version": "changeset version"
   },
   "peerDependencies": {
     "react": "^19.0.0",

@@ -1,0 +1,68 @@
+name: Release
+
+# Publishes to npm when a GitHub Release is published for a vX.Y.Z tag
+# (docs/runbooks/releases.md). Nothing else publishes: merging to main
+# never does.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  # OIDC token for npm trusted publishing and provenance
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Named in npm's trusted publisher settings; GitHub can add required
+    # reviewers to it for a manual approval before each publish
+    environment: npm
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+
+      # The tag names the version that package.json declares
+      - name: Tag matches package.json
+        run: |
+          version="v$(node -p "require('./package.json').version")"
+          if [ "$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME doesn't match package.json ($version)"
+            exit 1
+          fi
+
+      - name: Biome
+        run: npx biome ci .
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      # The packed library installs and builds in a clean Vite app
+      - name: Smoke test
+        run: npm run smoke
+
+      # Trusted publishing (OIDC) when configured on npmjs.com; otherwise
+      # the NPM_TOKEN secret. Provenance links the version to this run.
+      - name: Publish
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
