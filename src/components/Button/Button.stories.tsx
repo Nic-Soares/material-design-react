@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Button, type ButtonSize, type ButtonVariant } from "./Button";
+import {
+  Button,
+  type ButtonAsButtonProps,
+  type ButtonSize,
+  type ButtonVariant,
+} from "./Button";
 
 const star = (
   <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -98,7 +103,7 @@ export const Toggle: Story = {
             .map((variant) => (
               <Button
                 key={variant}
-                {...args}
+                {...(args as ButtonAsButtonProps)}
                 variant={variant}
                 icon={star}
                 defaultSelected={selected}
@@ -120,6 +125,32 @@ export const Disabled: Story = {
           {variant}
         </Button>
       ))}
+    </div>
+  ),
+};
+
+/**
+ * With `href` the button is a link (`<a>`), for navigation: it opens in a
+ * new tab with a modifier key and is announced as a link. Links don't
+ * toggle; a disabled one loses its `href`.
+ */
+export const Link: Story = {
+  render: ({ size, shape }) => (
+    <div style={row}>
+      {variants.map((variant) => (
+        <Button
+          key={variant}
+          size={size}
+          shape={shape}
+          variant={variant}
+          href="#link"
+        >
+          {variant}
+        </Button>
+      ))}
+      <Button size={size} shape={shape} href="#link" disabled>
+        disabled
+      </Button>
     </div>
   ),
 };

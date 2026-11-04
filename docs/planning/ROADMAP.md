@@ -19,7 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
-| `EP-10` Backlog from the portfolio | ⬜ Not started | `src/components/`, `src/color/` |
+| `EP-10` Backlog from the portfolio | 🟡 In progress (1 of 5) | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -509,6 +509,10 @@ there. **Dependencies:** none; each item ships when the portfolio needs it.
       the portfolio's Projects index needs it
 - [ ] `./color`: optional secondary and tertiary source colors, for brands
       with more than one color (the portfolio's `EP-20`, project themes)
+- [x] Button as a link: `href` renders an `<a>` (the portfolio's buttons
+      that change page), and `onRippleEnd` lets an app navigate after the
+      press ripple has faded, as the portfolio's `navigates` did (2026-11-04,
+      `0.3.0`)
 
 ---
 

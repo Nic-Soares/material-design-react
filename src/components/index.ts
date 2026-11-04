@@ -1,6 +1,8 @@
 // Components (roadmap EP-05 and EP-07)
 export {
   Button,
+  type ButtonAsButtonProps,
+  type ButtonAsLinkProps,
   type ButtonProps,
   type ButtonShape,
   type ButtonSize,
