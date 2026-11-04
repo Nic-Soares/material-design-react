@@ -10,7 +10,8 @@ import {
  * MaterialDynamicColors.
  *
  * Left out (ADR-003): the palette key colors, which are inputs rather than
- * roles, and the `*Dim` roles, which the 2025 spec uses only on watches.
+ * roles, and the `*Dim` roles, which only the 2025 spec defines, for watches.
+ * These are the 49 roles Material Theme Builder exports.
  */
 export const colorRoles = [
   "primary",

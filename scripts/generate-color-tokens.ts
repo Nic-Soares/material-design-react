@@ -1,6 +1,7 @@
 // Generates src/tokens/color.css, the library's default color tokens
-// (ADR-003), with Material Color Utilities: spec 2025, the Tonal Spot variant
-// and the M3 baseline source color.
+// (ADR-003), with Material Color Utilities configured as Material Theme
+// Builder is — spec 2021, the Tonal Spot variant — from the M3 baseline source
+// color. src/color/tokens.test.ts checks that parity against a real export.
 //
 //   npm run tokens
 //
@@ -24,7 +25,7 @@ import {
 } from "../src/color/tokens.ts";
 
 const SOURCE_COLOR = "#6750A4";
-const SPEC_VERSION = "2025";
+const SPEC_VERSION = "2021";
 
 const output = new URL("../src/tokens/color.css", import.meta.url);
 const libraryPackage = new URL(

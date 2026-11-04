@@ -23,9 +23,10 @@ or a fixed palette shouldn't pay for it.
   app imports `/color`.
 - The dependency is pinned to `^0.4.0`, which npm reads as `0.4.x`: a new
   minor version of a `0.x` package can break, so moving to it is a decision.
-- The role-to-variable mapping is shared with the build-time script, so the
-  default source color produces exactly the committed tokens; a test checks
-  it.
+- The helper uses the same configuration as the build-time script and as
+  Material Theme Builder (2021 spec, Tonal Spot), so a source color gives the
+  same scheme in the library, in the committed tokens and in Theme Builder;
+  tests check both.
 
 ## Consequences
 - An app can recolor every component at runtime with one call, and only apps

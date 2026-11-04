@@ -74,7 +74,7 @@
 | Versioning / release | Changesets; publish to npm with provenance from CI |
 | Icons | `ReactNode` slots; the docs show how to use Material Symbols |
 | Theme switch | Light on `:root`, dark on `[data-theme="dark"]` and `prefers-color-scheme: dark` |
-| Color | Generated with Material Color Utilities: spec 2025, Tonal Spot, source `#6750A4`; standard, medium and high contrast; a `/color` entry point builds schemes at runtime |
+| Color | Generated with Material Color Utilities as Material Theme Builder does (spec 2021, Tonal Spot), source `#6750A4`; standard, medium and high contrast; a `/color` entry point builds schemes at runtime |
 | Breakpoints | The five M3 window size classes: 600 / 840 / 1200 / 1600 |
 | License | MIT |
 
@@ -217,8 +217,11 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 - [x] Role-to-variable mapping (`src/color/tokens.ts`): 49 M3 color roles to
       `--md-sys-color-*`; palette key colors and the watch-only `*-dim`
       roles left out (ADR-003)
-- [x] `scripts/generate-color-tokens.ts` (`npm run tokens`): spec 2025, Tonal
-      Spot, source color `#6750A4` → the committed `src/tokens/color.css`
+- [x] `scripts/generate-color-tokens.ts` (`npm run tokens`): configured as
+      Material Theme Builder — spec 2021, Tonal Spot — from source color
+      `#6750A4` → the committed `src/tokens/color.css`
+- [x] Parity test with a real Theme Builder export
+      (`src/color/__fixtures__/`): 49 roles × 6 schemes, identical
 - [x] Six schemes: light and dark × standard, medium and high contrast
 - [x] Light and dark as `light-dark()` values, resolved by `color-scheme`:
       the system setting by default, `data-theme` pins it on any element;
