@@ -7,6 +7,16 @@ export {
   type ButtonVariant,
 } from "./Button/Button";
 export {
+  AssistChip,
+  type AssistChipProps,
+  FilterChip,
+  type FilterChipProps,
+  InputChip,
+  type InputChipProps,
+  SuggestionChip,
+  type SuggestionChipProps,
+} from "./Chip/Chip";
+export {
   ConnectedButtonGroup,
   type ConnectedButtonGroupProps,
   type ConnectedButtonOption,
@@ -17,3 +27,4 @@ export {
   type IconButtonVariant,
   type IconButtonWidth,
 } from "./IconButton/IconButton";
+export { SearchBar, type SearchBarProps } from "./SearchBar/SearchBar";

@@ -1,0 +1,199 @@
+/* M3 chips (Material 3 Design Kit, Chips page): 32px high, 8px corners,
+   Label Large, 18px icons, 24px avatars, 8px gaps. Padding 16px, 8px next
+   to an icon (input chips: 12px, 8px next to an icon, 4px next to an
+   avatar). */
+
+.chip {
+  --_start: 16px;
+  --_end: 16px;
+  --_container: transparent;
+  --_label: var(--md-sys-color-on-surface-variant);
+  --_icon: var(--md-sys-color-primary);
+  --_outline: var(--md-sys-color-outline-variant);
+  --_elevation: 0 0 transparent; /* not none: it joins a shadow list */
+
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-inline-size: 100%;
+  block-size: 32px;
+  padding-inline: var(--_start) var(--_end);
+  border-radius: var(--md-sys-shape-corner-small);
+  background-color: var(--_container);
+  box-shadow:
+    var(--_elevation),
+    inset 0 0 0 1px var(--_outline);
+  color: var(--_label);
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: 18px;
+  --md-focus-ring-shape: var(--md-sys-shape-corner-small);
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  text-decoration: none;
+  transition:
+    background-color var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing),
+    box-shadow var(--md-sys-motion-spring-fast-effects-duration)
+    var(--md-sys-motion-spring-fast-effects-easing);
+}
+
+/* The 48px touch target */
+.chip::before,
+.action::before,
+.remove::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: 48px;
+  translate: 0 -50%;
+}
+
+.label {
+  position: relative;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.icon {
+  position: relative;
+  color: var(--_icon);
+}
+
+.withIcon {
+  --_start: 8px;
+}
+
+.withTrailing {
+  --_end: 8px;
+}
+
+/* --- Types --- */
+
+.assist {
+  --_label: var(--md-sys-color-on-surface);
+}
+
+.elevated {
+  --_container: var(--md-sys-color-surface-container-low);
+  --_outline: transparent;
+  --_elevation: var(--md-sys-elevation-level1);
+}
+
+@media (hover: hover) {
+  .elevated:not(:disabled):hover {
+    --_elevation: var(--md-sys-elevation-level2);
+  }
+}
+
+.selected {
+  --_container: var(--md-sys-color-secondary-container);
+  --_label: var(--md-sys-color-on-secondary-container);
+  --_icon: var(--md-sys-color-on-secondary-container);
+  --_outline: transparent;
+}
+
+/* --- Input chips: a container around one or two controls --- */
+
+.input {
+  --_start: 12px;
+  --_end: 12px;
+  padding: 0;
+  cursor: default;
+}
+
+.input.withIcon {
+  --_start: 8px;
+}
+
+.input.withAvatar {
+  --_start: 4px;
+}
+
+.action,
+.remove {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  gap: 8px;
+  min-inline-size: 0;
+}
+
+.action {
+  padding-inline: var(--_start) var(--_end);
+  border-start-start-radius: inherit;
+  border-end-start-radius: inherit;
+}
+
+button.action {
+  cursor: pointer;
+}
+
+.withTrailing .action {
+  padding-inline-end: 0;
+}
+
+.remove {
+  padding-inline: 8px;
+  border-start-end-radius: inherit;
+  border-end-end-radius: inherit;
+  cursor: pointer;
+}
+
+.avatar {
+  --md-icon-size: 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.avatar > img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+/* --- Disabled: on-surface at 38% (label), 12% (outline and container) --- */
+
+.chip:disabled,
+.disabled {
+  cursor: default;
+  --_label: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+  --_icon: var(--_label);
+  --_outline: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 12%,
+    transparent
+  );
+  --_elevation: 0 0 transparent; /* not none: it joins a shadow list */
+}
+
+.elevated:disabled,
+.selected:disabled,
+.selected.disabled {
+  --_container: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface) 12%,
+    transparent
+  );
+  --_outline: transparent;
+}
+
+@media (forced-colors: active) {
+  .chip {
+    border: 1px solid ButtonText;
+  }
+}

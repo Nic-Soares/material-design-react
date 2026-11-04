@@ -14,7 +14,7 @@
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ✅ Done 2026-11-04 | `src/foundations/` |
-| `EP-05` Components from the portfolio | 🟡 In progress — ST-05.1 done 2026-11-04 | `src/components/` (source: `my-portfolio`) |
+| `EP-05` Components from the portfolio | 🟡 In progress — ST-05.1 and ST-05.2 done 2026-11-04 | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
 | `EP-07` New components for the dashboard | ⬜ Not started | `src/components/` |
 | `EP-08` Release `0.2.0` | ⬜ Not started | npm, GitHub Releases |
@@ -393,9 +393,16 @@ Every story follows the definition of done (`§3`).
 
 ### ST-05.2 — Selection and input
 
-- [ ] Chip: assist, filter, input (with remove), suggestion — text from props,
-      no i18n
-- [ ] Search bar — labels from props, no i18n
+- [x] Chips: `AssistChip`, `FilterChip`, `InputChip`, `SuggestionChip` — the
+      four M3 types (the portfolio had only the input chip), outlined or
+      `elevated`, colors and paddings from the Design Kit; filter chips are
+      toggles with a checkmark; input chips have a separate remove button
+      whose name (`removeLabel`) the types require; assist and suggestion
+      chips can be links
+- [x] Search bar: a native `<input type="search">` (role searchbox) with a
+      clear button (`clearLabel`, no i18n inside), `value` /
+      `onValueChange`, leading and trailing slots; Escape clears, then
+      leaves the field. The search landmark is left to the app
 
 ### ST-05.3 — Menus and feedback
 
