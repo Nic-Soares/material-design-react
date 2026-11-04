@@ -1,0 +1,201 @@
+/* M3 dialogs. Basic: surface-container-high, extra-large corners (28px),
+   24px padding, 280 to 560px wide, Headline Small title, Body Medium
+   content in on-surface-variant, actions at the end 24px below. Scrim:
+   the scrim color at 32%. Full-screen: the whole window on surface, a
+   56px header with a close button, a Title Large title and the confirming
+   action. Opening fades and grows in; closing fades out (where the browser
+   animates display, else instantly). */
+
+.dialog {
+  --_duration: var(--md-sys-motion-spring-default-effects-duration);
+  --_easing: var(--md-sys-motion-spring-default-effects-easing);
+
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  color: var(--md-sys-color-on-surface);
+  opacity: 0;
+  transition:
+    opacity var(--_duration) var(--_easing),
+    translate var(--_duration) var(--_easing),
+    scale var(--_duration) var(--_easing),
+    display var(--_duration) allow-discrete,
+    overlay var(--_duration) allow-discrete;
+}
+
+.dialog[open] {
+  opacity: 1;
+}
+
+.dialog::backdrop {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-scrim) 32%,
+    transparent
+  );
+  opacity: 0;
+  transition:
+    opacity var(--_duration) var(--_easing),
+    display var(--_duration) allow-discrete,
+    overlay var(--_duration) allow-discrete;
+}
+
+.dialog[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .dialog[open] {
+    opacity: 0;
+  }
+
+  .dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-block-size: inherit;
+}
+
+/* --- Basic --- */
+
+.basic {
+  min-inline-size: 280px;
+  max-inline-size: min(560px, calc(100vw - 48px));
+  max-block-size: calc(100dvh - 48px);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  background-color: var(--md-sys-color-surface-container-high);
+  box-shadow: var(--md-sys-elevation-level3);
+}
+
+.basic[open] {
+  scale: 1;
+}
+
+@starting-style {
+  .basic[open] {
+    scale: 0.9;
+  }
+}
+
+.basic .container {
+  padding: 24px;
+}
+
+.icon {
+  align-self: center;
+  margin-block-end: 16px;
+  color: var(--md-sys-color-secondary);
+  --md-icon-size: 24px;
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--md-sys-typescale-headline-small-font);
+  font-weight: var(--md-sys-typescale-headline-small-weight);
+  font-size: var(--md-sys-typescale-headline-small-size);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
+  letter-spacing: var(--md-sys-typescale-headline-small-tracking);
+}
+
+.headline[data-centered] {
+  text-align: center;
+}
+
+.body {
+  min-block-size: 0;
+  margin-block-start: 16px;
+  overflow: auto;
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-body-medium-font);
+  font-weight: var(--md-sys-typescale-body-medium-weight);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  line-height: var(--md-sys-typescale-body-medium-line-height);
+  letter-spacing: var(--md-sys-typescale-body-medium-tracking);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-block-start: 24px;
+}
+
+/* --- Full-screen --- */
+
+.fullScreen {
+  inline-size: 100vw;
+  max-inline-size: none;
+  block-size: 100dvh;
+  max-block-size: none;
+  margin: 0;
+  background-color: var(--md-sys-color-surface);
+}
+
+.fullScreen[open] {
+  translate: 0 0;
+}
+
+@starting-style {
+  .fullScreen[open] {
+    translate: 0 48px;
+  }
+}
+
+.fullScreen .container {
+  block-size: 100%;
+}
+
+.header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 4px;
+  block-size: 56px;
+  padding-inline: 4px 12px;
+}
+
+.header .headline {
+  flex: 1;
+  min-inline-size: 0;
+  padding-inline-start: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--md-sys-typescale-title-large-font);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  font-size: var(--md-sys-typescale-title-large-size);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+  letter-spacing: var(--md-sys-typescale-title-large-tracking);
+}
+
+.headerActions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.fullScreen .body {
+  flex: 1;
+  margin: 0;
+  padding: 8px 24px 24px;
+  color: var(--md-sys-color-on-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog,
+  .dialog::backdrop {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .basic {
+    border: 1px solid CanvasText;
+  }
+}

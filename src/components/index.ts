@@ -26,6 +26,7 @@ export {
   type ConnectedButtonGroupProps,
   type ConnectedButtonOption,
 } from "./ConnectedButtonGroup/ConnectedButtonGroup";
+export { Dialog, type DialogProps } from "./Dialog/Dialog";
 export {
   Divider,
   type DividerInset,
@@ -58,6 +59,13 @@ export {
   NavigationRail,
   type NavigationRailProps,
 } from "./Navigation/Navigation";
+export {
+  NavigationDrawer,
+  NavigationDrawerItem,
+  type NavigationDrawerItemProps,
+  type NavigationDrawerItemRenderProps,
+  type NavigationDrawerProps,
+} from "./NavigationDrawer/NavigationDrawer";
 export { SearchBar, type SearchBarProps } from "./SearchBar/SearchBar";
 export { Skeleton, type SkeletonProps } from "./Skeleton/Skeleton";
 export {
