@@ -193,7 +193,7 @@ Setup details are in [`docs/runbooks/local-setup.md`](docs/runbooks/local-setup.
 material-design-react/
 ├── .changeset/               # pending release notes (Changesets)
 ├── .github/workflows/        # CI and docs deploy
-├── .storybook/               # Storybook: config, intro page, docs Worker
+├── .storybook/               # Storybook: config, intro and token pages, docs Worker
 ├── docs/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories

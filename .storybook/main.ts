@@ -5,6 +5,7 @@ const config: StorybookConfig = {
   framework: "@storybook/react-vite",
   stories: [
     "./Introduction.mdx",
+    "./foundations/*.stories.tsx",
     "../src/**/*.mdx",
     "../src/**/*.stories.@(ts|tsx)",
   ],
