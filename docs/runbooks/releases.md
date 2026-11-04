@@ -50,31 +50,34 @@ only a GitHub Release starts it. On the merged release commit:
 git switch main && git pull
 git tag -s vX.Y.Z -m "vX.Y.Z"
 git push origin vX.Y.Z
-gh release create vX.Y.Z --verify-tag --title vX.Y.Z --notes "<the CHANGELOG.md section>"
+gh release create vX.Y.Z --verify-tag --title vX.Y.Z --notes "$(awk '/^## X.Y.Z/{f=1;next} /^## /{f=0} f' CHANGELOG.md)"
+gh run watch             # wait until it finishes
 ```
 
 The workflow checks that the tag matches `package.json`, runs the checks and
-the smoke test, and runs `npm publish --provenance`, so every version on npm
-links back to the commit and run that built it. A version on npm can't be
-replaced: a mistake means a new patch version (`npm deprecate` the bad one).
+the smoke test, and **stages** the version with `npm stage publish
+--provenance`: it is on npm but not public yet. Approve it with your 2FA:
 
-## 4. Before the first publish
+```sh
+npm stage list @nic-soares/material-design-react
+npm stage approve <stage-id>
+```
 
-Done once, by the npm account owner:
+Approval publishes it, with provenance linking it to the commit and run
+that built it. `npm stage reject <stage-id>` drops a bad one instead. A
+published version can't be replaced: a mistake means a new patch version
+(`npm deprecate` the bad one).
 
-- [ ] The npm account owns the `@nic-soares` scope (`npm whoami` →
-      `nic-soares`)
-- [ ] `npm pack --dry-run` lists only `dist/`, the shipped `src/`,
-      `README.md`, `LICENSE`, `CHANGELOG.md`, `THIRD_PARTY_LICENSES.md` and
-      `package.json`
-- [ ] Trusted publishing on npmjs.com: the package's Settings → Trusted
-      publisher → GitHub Actions, with owner `Nic-Soares`, repository
-      `material-design-react`, workflow `release.yml` and environment
-      `npm`. No token is stored anywhere.
-- [ ] If npm only offers that setting once the package exists, publish
-      `0.1.0` with a token instead: create a granular access token
-      (read and write on `@nic-soares`, short expiry), save it as the
-      `NPM_TOKEN` repository secret, run the release, then set up trusted
-      publishing and delete both the secret and the token.
-- [ ] Optional: in GitHub, Settings → Environments → `npm` → Required
-      reviewers, so each publish waits for an approval.
+## 4. npm setup (done)
+
+- The npm account `nic-soares` owns the `@nic-soares` scope, with 2FA.
+- `0.1.0` and `0.2.0` were published with a short-lived granular token,
+  since npm only configures trusted publishing on a package that exists.
+  Once trusted publishing is set up, the token is revoked and the
+  `NPM_TOKEN` secret deleted (`gh secret delete NPM_TOKEN`).
+- Trusted publisher on npmjs.com: GitHub Actions, `Nic-Soares` /
+  `material-design-react`, workflow `release.yml`, environment `npm`, with
+  **Allow npm publish unchecked**, so CI can only stage and every version
+  waits for a 2FA approval.
+- Optional: in GitHub, Settings → Environments → `npm` → Required
+  reviewers, so the workflow itself waits for an approval too.

@@ -1,8 +1,8 @@
 name: Release
 
-# Publishes to npm when a GitHub Release is published for a vX.Y.Z tag
-# (docs/runbooks/releases.md). Nothing else publishes: merging to main
-# never does.
+# Stages a version on npm when a GitHub Release is published for a vX.Y.Z
+# tag; the owner then approves it with 2FA (docs/runbooks/releases.md).
+# Nothing else publishes: merging to main never does.
 on:
   release:
     types: [published]
@@ -60,9 +60,9 @@ jobs:
       - name: Smoke test
         run: npm run smoke
 
-      # Trusted publishing (OIDC) when configured on npmjs.com; otherwise
-      # the NPM_TOKEN secret. Provenance links the version to this run.
-      - name: Publish
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # Staged publishing through trusted publishing (OIDC): the version
+      # waits on npm, not public, until the owner approves it with 2FA
+      # (docs/runbooks/releases.md). No token is stored; provenance links
+      # the version to this run.
+      - name: Stage on npm
+        run: npm stage publish --provenance --access public
