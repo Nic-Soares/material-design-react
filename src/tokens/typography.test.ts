@@ -40,17 +40,23 @@ describe("typography tokens", () => {
     );
   });
 
-  // Spot checks against the M3 tokens, in rem (1rem = 16sp)
+  // Spot checks against the Material 3 Design Kit, in rem (1rem = 16px)
   it.each([
     ["--md-sys-typescale-display-large-size", "3.5625rem"],
-    ["--md-sys-typescale-display-large-tracking", "-0.0125rem"],
-    ["--md-sys-typescale-body-medium-tracking", "0.0125rem"],
+    ["--md-sys-typescale-display-large-tracking", "-0.015625rem"],
+    ["--md-sys-typescale-title-medium-tracking", "0.009375rem"],
+    ["--md-sys-typescale-body-medium-tracking", "0.015625rem"],
     ["--md-sys-typescale-label-small-size", "0.6875rem"],
     [
       "--md-sys-typescale-emphasized-label-large-weight",
-      "var(--md-ref-typeface-weight-bold)",
+      "var(--md-ref-typeface-weight-semibold)",
     ],
-    ["--md-sys-typescale-emphasized-body-large-tracking", "0.009375rem"],
+    [
+      "--md-sys-typescale-emphasized-body-large-weight",
+      "var(--md-ref-typeface-weight-medium)",
+    ],
+    // Emphasized styles keep the baseline tracking
+    ["--md-sys-typescale-emphasized-body-large-tracking", "0.03125rem"],
   ])("sets %s to %s", (token, expected) => {
     expect(value(token)).toBe(expected);
   });

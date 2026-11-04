@@ -255,16 +255,16 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 - [x] Type scale as `--md-sys-typescale-<role>-<size>-<property>` (font,
       weight, size, line-height, tracking) for display, headline, title, body
       and label × large, medium, small (`src/tokens/typography.css`)
-- [x] Emphasized styles as `--md-sys-typescale-emphasized-*`, all five
-      properties: they change tracking too, not only weight
-- [x] Values from the M3 tokens as Compose Material 3 generates them, not
-      the portfolio's: emphasized medium-weight styles are bold (700, not
-      600), and some tracking differs (display large −0.2, body medium 0.2,
-      title medium 0.2)
+- [x] Emphasized styles as `--md-sys-typescale-emphasized-*`: one weight step
+      heavier (medium; semibold for the medium-weight styles), same size,
+      line height and tracking
+- [x] Values from the Material 3 Design Kit in Figma, the official source
+      (ADR-003). Compose's code differs (other tracking, bold emphasized
+      labels and titles) and was not followed
 - [x] Sizes, line heights and tracking in `rem`, so text follows the user's
       browser font size
 - [x] Two reference typefaces, `--md-ref-typeface-brand` and `-plain`
-      (Roboto, then system-ui), and the regular, medium and bold weights;
+      (Roboto, then system-ui), and the regular, medium and semibold weights;
       the docs show how to self-host Roboto (the library ships no font files)
 
 ### ST-03.4 — Shape, elevation, motion

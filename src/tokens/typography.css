@@ -1,10 +1,11 @@
 /*
  * Material Design 3 type scale (md.sys.typescale), baseline and emphasized.
  *
- * Values from Compose Material 3's TypeScaleTokens (androidx-main,
- * 2026-11-03), the code generated from the M3 tokens; sizes, line heights
- * and tracking converted from sp to rem (1rem = 16sp), so text follows the
- * font size the user sets in the browser.
+ * Values from the Material 3 Design Kit in Figma (its typescale variables);
+ * where Google's code differs (Compose has other tracking and bold emphasized
+ * labels), the kit wins (ADR-003). Sizes, line heights and tracking are
+ * converted from px to rem (1rem = 16px), so text follows the font size the
+ * user sets in the browser. The emphasized styles change only the weight.
  *
  * Fonts come from two reference typefaces: brand (display, headline, title
  * large) and plain (everything else). Set them to change every style; the
@@ -15,7 +16,7 @@
   --md-ref-typeface-plain: Roboto, system-ui, sans-serif;
   --md-ref-typeface-weight-regular: 400;
   --md-ref-typeface-weight-medium: 500;
-  --md-ref-typeface-weight-bold: 700;
+  --md-ref-typeface-weight-semibold: 600;
 
   /* Baseline */
   --md-sys-typescale-display-large-font: var(--md-ref-typeface-brand);
@@ -24,7 +25,7 @@
   );
   --md-sys-typescale-display-large-size: 3.5625rem;
   --md-sys-typescale-display-large-line-height: 4rem;
-  --md-sys-typescale-display-large-tracking: -0.0125rem;
+  --md-sys-typescale-display-large-tracking: -0.015625rem;
   --md-sys-typescale-display-medium-font: var(--md-ref-typeface-brand);
   --md-sys-typescale-display-medium-weight: var(
     --md-ref-typeface-weight-regular
@@ -69,7 +70,7 @@
   --md-sys-typescale-title-medium-weight: var(--md-ref-typeface-weight-medium);
   --md-sys-typescale-title-medium-size: 1rem;
   --md-sys-typescale-title-medium-line-height: 1.5rem;
-  --md-sys-typescale-title-medium-tracking: 0.0125rem;
+  --md-sys-typescale-title-medium-tracking: 0.009375rem;
   --md-sys-typescale-title-small-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-title-small-weight: var(--md-ref-typeface-weight-medium);
   --md-sys-typescale-title-small-size: 0.875rem;
@@ -84,7 +85,7 @@
   --md-sys-typescale-body-medium-weight: var(--md-ref-typeface-weight-regular);
   --md-sys-typescale-body-medium-size: 0.875rem;
   --md-sys-typescale-body-medium-line-height: 1.25rem;
-  --md-sys-typescale-body-medium-tracking: 0.0125rem;
+  --md-sys-typescale-body-medium-tracking: 0.015625rem;
   --md-sys-typescale-body-small-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-body-small-weight: var(--md-ref-typeface-weight-regular);
   --md-sys-typescale-body-small-size: 0.75rem;
@@ -106,7 +107,7 @@
   --md-sys-typescale-label-small-line-height: 1rem;
   --md-sys-typescale-label-small-tracking: 0.03125rem;
 
-  /* Emphasized: heavier weights and, for some styles, tighter tracking */
+  /* Emphasized: one step heavier */
   --md-sys-typescale-emphasized-display-large-font: var(
     --md-ref-typeface-brand
   );
@@ -115,7 +116,7 @@
   );
   --md-sys-typescale-emphasized-display-large-size: 3.5625rem;
   --md-sys-typescale-emphasized-display-large-line-height: 4rem;
-  --md-sys-typescale-emphasized-display-large-tracking: 0;
+  --md-sys-typescale-emphasized-display-large-tracking: -0.015625rem;
   --md-sys-typescale-emphasized-display-medium-font: var(
     --md-ref-typeface-brand
   );
@@ -170,14 +171,14 @@
   --md-sys-typescale-emphasized-title-large-tracking: 0;
   --md-sys-typescale-emphasized-title-medium-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-title-medium-weight: var(
-    --md-ref-typeface-weight-bold
+    --md-ref-typeface-weight-semibold
   );
   --md-sys-typescale-emphasized-title-medium-size: 1rem;
   --md-sys-typescale-emphasized-title-medium-line-height: 1.5rem;
   --md-sys-typescale-emphasized-title-medium-tracking: 0.009375rem;
   --md-sys-typescale-emphasized-title-small-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-title-small-weight: var(
-    --md-ref-typeface-weight-bold
+    --md-ref-typeface-weight-semibold
   );
   --md-sys-typescale-emphasized-title-small-size: 0.875rem;
   --md-sys-typescale-emphasized-title-small-line-height: 1.25rem;
@@ -188,7 +189,7 @@
   );
   --md-sys-typescale-emphasized-body-large-size: 1rem;
   --md-sys-typescale-emphasized-body-large-line-height: 1.5rem;
-  --md-sys-typescale-emphasized-body-large-tracking: 0.009375rem;
+  --md-sys-typescale-emphasized-body-large-tracking: 0.03125rem;
   --md-sys-typescale-emphasized-body-medium-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-body-medium-weight: var(
     --md-ref-typeface-weight-medium
@@ -205,21 +206,21 @@
   --md-sys-typescale-emphasized-body-small-tracking: 0.025rem;
   --md-sys-typescale-emphasized-label-large-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-label-large-weight: var(
-    --md-ref-typeface-weight-bold
+    --md-ref-typeface-weight-semibold
   );
   --md-sys-typescale-emphasized-label-large-size: 0.875rem;
   --md-sys-typescale-emphasized-label-large-line-height: 1.25rem;
   --md-sys-typescale-emphasized-label-large-tracking: 0.00625rem;
   --md-sys-typescale-emphasized-label-medium-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-label-medium-weight: var(
-    --md-ref-typeface-weight-bold
+    --md-ref-typeface-weight-semibold
   );
   --md-sys-typescale-emphasized-label-medium-size: 0.75rem;
   --md-sys-typescale-emphasized-label-medium-line-height: 1rem;
   --md-sys-typescale-emphasized-label-medium-tracking: 0.03125rem;
   --md-sys-typescale-emphasized-label-small-font: var(--md-ref-typeface-plain);
   --md-sys-typescale-emphasized-label-small-weight: var(
-    --md-ref-typeface-weight-bold
+    --md-ref-typeface-weight-semibold
   );
   --md-sys-typescale-emphasized-label-small-size: 0.6875rem;
   --md-sys-typescale-emphasized-label-small-line-height: 1rem;
