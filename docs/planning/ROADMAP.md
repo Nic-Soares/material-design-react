@@ -453,7 +453,7 @@ with `0.1.0`):
 
 - [x] Card (elevated, filled, outlined); a link with `href`
 - [x] Divider
-- [ ] Navigation drawer (modal, for compact windows)
+- [x] Navigation drawer (modal, for compact windows)
 - [x] Circular progress (M3 Expressive: gap, round caps)
 
 Interaction (needed by `benefits-transactions-analytics` `EP-09`):
@@ -461,7 +461,7 @@ Interaction (needed by `benefits-transactions-analytics` `EP-09`):
 - [ ] Tabs (primary, secondary)
 - [ ] Select (menu-based)
 - [ ] Tooltip (plain, rich)
-- [ ] Dialog (basic, full-screen)
+- [x] Dialog (basic, full-screen), on the native `<dialog>`
 - [ ] Date range picker (docked and modal) — the largest item
 
 ---

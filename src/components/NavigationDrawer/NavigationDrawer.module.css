@@ -1,0 +1,198 @@
+/* M3 modal navigation drawer: up to 360px of surface-container-low with
+   large corners on its end side, level 1, 12px padding, over a 32% scrim.
+   Items: 56px, full corners, 16px start and 24px end padding, 12px
+   between icon and Label Large label; the selected one in
+   secondary-container. It slides in from the start edge. */
+
+.drawer {
+  --_duration: var(--md-sys-motion-spring-default-spatial-duration);
+  --_easing: var(--md-sys-motion-spring-default-spatial-easing);
+
+  box-sizing: border-box;
+  inline-size: min(360px, calc(100vw - 56px));
+  max-inline-size: none;
+  block-size: 100dvh;
+  max-block-size: none;
+  margin: 0;
+  margin-inline-end: auto;
+  padding: 0;
+  border: 0;
+  border-start-end-radius: var(--md-sys-shape-corner-large);
+  border-end-end-radius: var(--md-sys-shape-corner-large);
+  background-color: var(--md-sys-color-surface-container-low);
+  box-shadow: var(--md-sys-elevation-level1);
+  color: var(--md-sys-color-on-surface-variant);
+  translate: -100% 0;
+  transition:
+    translate var(--_duration) var(--_easing),
+    display var(--_duration) allow-discrete,
+    overlay var(--_duration) allow-discrete;
+}
+
+.drawer:dir(rtl) {
+  translate: 100% 0;
+}
+
+.drawer[open] {
+  translate: 0 0;
+}
+
+@starting-style {
+  .drawer[open] {
+    translate: -100% 0;
+  }
+
+  .drawer[open]:dir(rtl) {
+    translate: 100% 0;
+  }
+}
+
+.drawer::backdrop {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-scrim) 32%,
+    transparent
+  );
+  opacity: 0;
+  transition:
+    opacity var(--_duration) var(--_easing),
+    display var(--_duration) allow-discrete,
+    overlay var(--_duration) allow-discrete;
+}
+
+.drawer[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .drawer[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+.sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.headline {
+  padding: 18px 16px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: var(--md-sys-typescale-title-small-font);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  font-size: var(--md-sys-typescale-title-small-size);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
+}
+
+.item {
+  --_container: transparent;
+
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  block-size: 56px;
+  padding-inline: 16px 24px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--_container);
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: 24px;
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+}
+
+.icon,
+.label,
+.badge {
+  position: relative;
+}
+
+.label {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    --_container: color-mix(
+      in srgb,
+      var(--md-sys-color-on-surface)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      transparent
+    );
+  }
+}
+
+.item:focus-visible {
+  --_container: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface)
+      calc(var(--md-sys-state-focus-state-layer-opacity) * 100%),
+    transparent
+  );
+  outline: 3px solid var(--md-sys-color-secondary);
+  outline-offset: -3px;
+}
+
+.selected {
+  --_container: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.selected .label {
+  font-weight: var(--md-sys-typescale-emphasized-label-large-weight);
+}
+
+@media (hover: hover) {
+  .selected:hover {
+    --_container: color-mix(
+      in srgb,
+      var(--md-sys-color-on-secondary-container)
+        calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+      var(--md-sys-color-secondary-container)
+    );
+  }
+}
+
+.selected:focus-visible {
+  --_container: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container)
+      calc(var(--md-sys-state-focus-state-layer-opacity) * 100%),
+    var(--md-sys-color-secondary-container)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .drawer::backdrop {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .drawer {
+    border-inline-end: 1px solid CanvasText;
+  }
+
+  .selected {
+    outline: 2px solid LinkText;
+  }
+}
