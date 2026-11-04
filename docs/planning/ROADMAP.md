@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.7 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -331,8 +331,10 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.8 — Theme page in Storybook
 
-- [ ] A page to pick a source color, a variant and a contrast level and see
-      the scheme applied, with the CSS to copy
+- [x] `Foundations/Theme`: pick a source color, a variant, a contrast level
+      and a spec, see the scheme in light and dark side by side, and copy
+      the whole stylesheet `schemeCss()` writes — the library's own theme
+      builder, built on `/color`
 
 ---
 
