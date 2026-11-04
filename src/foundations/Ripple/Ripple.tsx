@@ -46,8 +46,9 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * The M3 pressed state: a wave in the content color that grows from the
- * pointer. Place it inside an interactive element with
- * `position: relative` and `overflow: hidden`; it listens to the nearest
+ * pointer. Place it inside an interactive element with `position: relative`
+ * (it clips its own waves to the element's corners, so the element can keep
+ * `overflow: visible` for the focus ring); it listens to the nearest
  * control, so keyboard clicks ripple too.
  *
  * Color and opacity follow `--md-ripple-pressed-color` (the content color by

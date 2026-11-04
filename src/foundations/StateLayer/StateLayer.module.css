@@ -1,0 +1,49 @@
+/* The M3 hover and focus states: the content color laid over the container
+   at the state's opacity, through color-mix() (ST-03.2). Pure CSS: it reacts
+   to its parent's :hover and :focus-visible. The pressed state is the
+   ripple's. */
+.layer {
+  --_color: var(--md-state-layer-color, currentColor);
+  --_hover-opacity: var(
+    --md-state-layer-hover-opacity,
+    var(--md-sys-state-hover-state-layer-opacity, 0.08)
+  );
+  --_focus-opacity: var(
+    --md-state-layer-focus-opacity,
+    var(--md-sys-state-focus-state-layer-opacity, 0.1)
+  );
+
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: transparent;
+  transition: background-color
+    var(--md-sys-motion-spring-fast-effects-duration, 150ms)
+    var(--md-sys-motion-spring-fast-effects-easing, linear);
+}
+
+/* Hover only where a pointer can hover, so taps don't leave it on */
+@media (hover: hover) {
+  :not(:disabled, [aria-disabled="true"]):hover > .layer {
+    background-color: color-mix(
+      in srgb,
+      var(--_color) calc(var(--_hover-opacity) * 100%),
+      transparent
+    );
+  }
+}
+
+:focus-visible > .layer {
+  background-color: color-mix(
+    in srgb,
+    var(--_color) calc(var(--_focus-opacity) * 100%),
+    transparent
+  );
+}
+
+@media (forced-colors: active) {
+  .layer {
+    display: none;
+  }
+}
