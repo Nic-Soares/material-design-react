@@ -1,0 +1,139 @@
+/* M3 select: a text field (filled or outlined) with a dropdown arrow that
+   opens a menu as wide as the field. The menu as in Menu: surface-
+   container, extra-small corners, level 2; 48px options in Body Large;
+   the active one with the hover state layer, the chosen one in secondary-
+   container. */
+
+.select {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.combobox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.combobox[aria-disabled="true"] {
+  cursor: default;
+}
+
+.value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.arrow,
+.arrowUp {
+  transition: rotate var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing);
+}
+
+.arrowUp {
+  rotate: 180deg;
+}
+
+.list {
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+  max-block-size: min(320px, calc(100vh - 16px));
+  padding-block: 8px;
+  overflow-y: auto;
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  background-color: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-sys-elevation-level2);
+  color: var(--md-sys-color-on-surface);
+  transform-origin: top;
+  animation: open var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing);
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    scale: 1 0.8;
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  block-size: 48px;
+  padding-inline: 12px;
+  cursor: pointer;
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-weight: var(--md-sys-typescale-body-large-weight);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+  --md-icon-size: 24px;
+}
+
+.icon {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.label {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.option[aria-selected="true"] {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.option[data-active] {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-surface)
+      calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+    transparent
+  );
+}
+
+.option[aria-selected="true"][data-active] {
+  background-color: color-mix(
+    in srgb,
+    var(--md-sys-color-on-secondary-container)
+      calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+    var(--md-sys-color-secondary-container)
+  );
+}
+
+.option[aria-disabled="true"] {
+  cursor: default;
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .list {
+    animation: none;
+  }
+
+  .arrow,
+  .arrowUp {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .list {
+    border: 1px solid CanvasText;
+  }
+
+  .option[data-active] {
+    outline: 2px solid Highlight;
+    outline-offset: -2px;
+  }
+}
