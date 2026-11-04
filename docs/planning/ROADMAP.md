@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 and ST-03.2 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -240,12 +240,15 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.2 — State
 
-- [ ] Opacity tokens: `--md-sys-state-hover-state-layer-opacity` (0.08),
-      focus (0.10), pressed (0.10), dragged (0.16)
-- [ ] State layers computed with `color-mix()` from the color role and the
-      opacity — replacing the portfolio's ~30 precomputed
-      `--md-state-layers-light-*` variables per theme, which break when a
-      consumer changes colors
+- [x] Opacity tokens (`src/tokens/state.css`):
+      `--md-sys-state-hover-state-layer-opacity` (0.08), focus (0.10),
+      pressed (0.10), dragged (0.16) — the current M3 values; the older
+      material-web table had 0.12 for focus and pressed
+- [x] The `color-mix()` recipe that turns a color role and an opacity into a
+      state layer, documented in the token file — replacing the portfolio's
+      ~30 precomputed `--md-state-layers-light-*` variables per theme, which
+      break when a consumer changes colors. The shared state layer styles
+      that apply it are `EP-04`
 
 ### ST-03.3 — Typography
 
@@ -305,7 +308,7 @@ state layer styles, `useReducedMotion`.
 
 - [ ] Ripple (pressed state), with tests (from the portfolio)
 - [ ] State layer and focus ring styles shared by every interactive
-      component
+      component, built with the `color-mix()` recipe of `ST-03.2`
 - [ ] Internal `useReducedMotion`
 - [ ] Icon slot convention: size and color from the component, content from
       the consumer

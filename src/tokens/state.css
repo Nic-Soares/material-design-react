@@ -1,0 +1,21 @@
+/*
+ * Material Design 3 state layer opacities (md.sys.state).
+ *
+ * A state layer is the color a component's content uses, laid over its
+ * container at one of these opacities while it is hovered, focused, pressed
+ * or dragged. Components build it with color-mix(), so it follows any color
+ * scheme (ADR-003):
+ *
+ *   color-mix(
+ *     in srgb,
+ *     var(--md-sys-color-on-surface)
+ *       calc(var(--md-sys-state-hover-state-layer-opacity) * 100%),
+ *     transparent
+ *   )
+ */
+:root {
+  --md-sys-state-hover-state-layer-opacity: 0.08;
+  --md-sys-state-focus-state-layer-opacity: 0.1;
+  --md-sys-state-pressed-state-layer-opacity: 0.1;
+  --md-sys-state-dragged-state-layer-opacity: 0.16;
+}
