@@ -1,0 +1,25 @@
+/*
+ * Material Design 3 window size classes, by available width
+ * (m3.material.io, layout: window size classes):
+ *
+ *   compact      < 600
+ *   medium       600 – 839
+ *   expanded     840 – 1199
+ *   large        1200 – 1599
+ *   extra-large  ≥ 1600
+ *
+ * For the library's own CSS Modules. Import this file at the top of a module
+ * and use the names in media queries:
+ *
+ *   @import "../../tokens/breakpoints.css";
+ *   @media (--expanded), (--large) { … }
+ *
+ * Lightning CSS replaces them with the real queries at build time, so the
+ * published stylesheet holds plain media queries and consumers need no CSS
+ * tooling. This file emits nothing on its own.
+ */
+@custom-media --compact (width < 600px);
+@custom-media --medium (600px <= width < 840px);
+@custom-media --expanded (840px <= width < 1200px);
+@custom-media --large (1200px <= width < 1600px);
+@custom-media --extra-large (width >= 1600px);
