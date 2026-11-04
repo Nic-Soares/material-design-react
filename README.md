@@ -113,9 +113,6 @@ the UI layer of
 
 ### Installation
 
-> Not published yet — the first release is `0.1.0`
-> ([roadmap](docs/planning/ROADMAP.md)).
-
 ```sh
 npm install @nic-soares/material-design-react
 ```
