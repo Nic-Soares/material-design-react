@@ -1,0 +1,27 @@
+/* A loading placeholder (from the portfolio's kit-based Skeleton): a block in
+   a surface container tone, pill or rounded rectangle. */
+.skeleton {
+  flex: none;
+}
+
+.pill {
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.rect {
+  border-radius: var(--md-sys-shape-corner-large);
+}
+
+.high {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.highest {
+  background-color: var(--md-sys-color-surface-container-highest);
+}
+
+@media (forced-colors: active) {
+  .skeleton {
+    border: 1px dashed GrayText;
+  }
+}
