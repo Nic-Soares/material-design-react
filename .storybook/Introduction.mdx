@@ -62,6 +62,33 @@ Use the theme button in the toolbar above to switch it here.
 The color tokens use CSS `light-dark()`, so the library needs Chrome or Edge
 123, Firefox 120, Safari 17.5 or later.
 
+## Typography
+
+The type scale follows Material Design 3, baseline and emphasized, as
+`--md-sys-typescale-*` tokens in `rem`, so text follows the font size set in
+the browser. Every style uses one of two typefaces, both Roboto by default:
+
+```css
+:root {
+  --md-ref-typeface-brand: "Your Display Font", sans-serif; /* display, headline, title large */
+  --md-ref-typeface-plain: "Your Text Font", sans-serif; /* everything else */
+}
+```
+
+The library ships no font files. To use Roboto, load it in your app — for
+example, self-hosted with Fontsource:
+
+```sh
+npm install @fontsource-variable/roboto
+```
+
+```tsx
+import "@fontsource-variable/roboto";
+```
+
+and point the typefaces at it: `--md-ref-typeface-plain: "Roboto Variable",
+sans-serif;` (and the same for brand).
+
 ## Icons
 
 Components take icons as React nodes, so you load only the icons you use, in

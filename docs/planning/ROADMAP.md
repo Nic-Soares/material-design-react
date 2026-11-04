@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 and ST-03.2 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.3 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -252,11 +252,20 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.3 — Typography
 
-- [ ] Type scale renamed to `--md-sys-typescale-<role>-<size>-<property>`
-      (display, headline, title, body, label × large, medium, small), plus
-      the emphasized weights
-- [ ] Roboto as the default font family, overridable; the docs show how to
-      self-host it (the library does not ship the font files)
+- [x] Type scale as `--md-sys-typescale-<role>-<size>-<property>` (font,
+      weight, size, line-height, tracking) for display, headline, title, body
+      and label × large, medium, small (`src/tokens/typography.css`)
+- [x] Emphasized styles as `--md-sys-typescale-emphasized-*`: one weight step
+      heavier (medium; semibold for the medium-weight styles), same size,
+      line height and tracking
+- [x] Values from the Material 3 Design Kit in Figma, the official source
+      (ADR-003). Compose's code differs (other tracking, bold emphasized
+      labels and titles) and was not followed
+- [x] Sizes, line heights and tracking in `rem`, so text follows the user's
+      browser font size
+- [x] Two reference typefaces, `--md-ref-typeface-brand` and `-plain`
+      (Roboto, then system-ui), and the regular, medium and semibold weights;
+      the docs show how to self-host Roboto (the library ships no font files)
 
 ### ST-03.4 — Shape, elevation, motion
 
