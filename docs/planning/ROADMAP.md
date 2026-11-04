@@ -14,7 +14,7 @@
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ✅ Done 2026-11-04 | `src/foundations/` |
-| `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
+| `EP-05` Components from the portfolio | 🟡 In progress — ST-05.1 done 2026-11-04 | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
 | `EP-07` New components for the dashboard | ⬜ Not started | `src/components/` |
 | `EP-08` Release `0.2.0` | ⬜ Not started | npm, GitHub Releases |
@@ -374,11 +374,22 @@ Every story follows the definition of done (`§3`).
 
 ### ST-05.1 — Buttons
 
-- [ ] Button: `variant` (filled, tonal, outlined, text, elevated), `size`
-      (xsmall…xlarge), `shape` (round, square), toggle; label in a `<span>`,
-      not a `<p>`; no default icon
-- [ ] Icon button
-- [ ] Connected button group (single and multiple selection)
+- [x] Button: `variant` (filled, tonal, outlined, text, elevated), `size`
+      (xsmall…xlarge), `shape` (round, square), leading `icon`, toggle
+      (`selected` / `defaultSelected` / `onSelectedChange`, `aria-pressed`);
+      label in a `<span>`, no default icon; corners morph on press and
+      selection with the fast spatial spring
+- [x] Toggle colors from the Design Kit, which corrected the portfolio:
+      unselected filled toggles rest on surface-container, selected tonal
+      is secondary (not primary), selected elevated is primary; text
+      buttons don't toggle
+- [x] Icon button: standard, filled, tonal, outlined; five sizes × narrow,
+      default and wide widths from the kit; `selectedIcon`; the types
+      require `aria-label` or `aria-labelledby`
+- [x] Connected button group: a `<fieldset>` of two to five toggle
+      segments, `value`-based (not index-based), single or `multiple`,
+      `required`; corners per the kit (outer full, inner 8px, 12/16px on
+      interaction, full when selected)
 
 ### ST-05.2 — Selection and input
 
