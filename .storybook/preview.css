@@ -4,3 +4,11 @@ body {
   background-color: var(--md-sys-color-surface);
   color: var(--md-sys-color-on-surface);
 }
+
+/* Body text in the theme's plain typeface */
+body {
+  font-family: var(--md-sys-typescale-body-large-font);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+  letter-spacing: var(--md-sys-typescale-body-large-tracking);
+}

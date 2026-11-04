@@ -5,3 +5,4 @@
 // Design tokens, emitted into dist/styles.css
 import "./tokens/color.css";
 import "./tokens/state.css";
+import "./tokens/typography.css";
