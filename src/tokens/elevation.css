@@ -1,0 +1,37 @@
+/*
+ * Material Design 3 elevation (md.sys.elevation), levels 0 to 5, as
+ * box-shadow values. Shadows from the Material 3 Design Kit in Figma
+ * (Elevation Light and Dark, which are the same): two drop shadows per level,
+ * a key shadow at 30% and an ambient one at 15% with spread — the spread the
+ * portfolio left out.
+ *
+ * The shadow color is the scheme's shadow role, so a theme can change it.
+ */
+:root {
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1:
+    0 1px 2px 0px
+    color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent),
+    0 1px 3px 1px
+    color-mix(in srgb, var(--md-sys-color-shadow) 15%, transparent);
+  --md-sys-elevation-level2:
+    0 1px 2px 0px
+    color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent),
+    0 2px 6px 2px
+    color-mix(in srgb, var(--md-sys-color-shadow) 15%, transparent);
+  --md-sys-elevation-level3:
+    0 1px 3px 0px
+    color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent),
+    0 4px 8px 3px
+    color-mix(in srgb, var(--md-sys-color-shadow) 15%, transparent);
+  --md-sys-elevation-level4:
+    0 2px 3px 0px
+    color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent),
+    0 6px 10px 4px
+    color-mix(in srgb, var(--md-sys-color-shadow) 15%, transparent);
+  --md-sys-elevation-level5:
+    0 4px 4px 0px
+    color-mix(in srgb, var(--md-sys-color-shadow) 30%, transparent),
+    0 8px 12px 6px
+    color-mix(in srgb, var(--md-sys-color-shadow) 15%, transparent);
+}

@@ -198,7 +198,7 @@ material-design-react/
 │   ├── adr/                  # architecture decisions
 │   ├── planning/ROADMAP.md   # epics and stories
 │   └── runbooks/             # releases, setup, upgrades, docs deploy
-├── scripts/                  # color token generator
+├── scripts/                  # color and motion token generators
 ├── src/
 │   ├── color/                # M3 color roles → CSS variables
 │   ├── tokens/               # design tokens (color.css is generated)

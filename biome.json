@@ -14,7 +14,9 @@
       "*.ts",
       "*.json",
       "*.jsonc",
-      "!package-lock.json"
+      "!package-lock.json",
+      "!src/tokens/color.css",
+      "!src/tokens/motion.css"
     ]
   },
   "formatter": {

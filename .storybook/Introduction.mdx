@@ -89,6 +89,25 @@ import "@fontsource-variable/roboto";
 and point the typefaces at it: `--md-ref-typeface-plain: "Roboto Variable",
 sans-serif;` (and the same for brand).
 
+## Shape, elevation and motion
+
+Corners use `--md-sys-shape-corner-*` (none to extra-extra-large, the M3
+Expressive *increased* steps and full), shadows `--md-sys-elevation-level0`
+to `level5`.
+
+Motion follows M3 Expressive's springs. Each spring is an easing and a
+duration, used together:
+
+```css
+.card {
+  transition: transform var(--md-sys-motion-spring-default-spatial-duration)
+    var(--md-sys-motion-spring-default-spatial-easing);
+}
+```
+
+Spatial springs (position, size) overshoot a little; effects springs (color,
+opacity) don't. Set `data-motion="standard"` for the calmer standard springs.
+
 ## Icons
 
 Components take icons as React nodes, so you load only the icons you use, in
