@@ -12,3 +12,20 @@ body {
   line-height: var(--md-sys-typescale-body-large-line-height);
   letter-spacing: var(--md-sys-typescale-body-large-tracking);
 }
+
+/* Docs pages (Introduction) follow the theme picked in the toolbar too:
+   Storybook paints them white otherwise. Two classes per selector outrank
+   Storybook's own single-class styles, so no !important is needed. */
+.sbdocs.sbdocs-wrapper,
+.sbdocs.sbdocs-content {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}
+
+.sbdocs.sbdocs-content :is(h1, h2, h3, h4, p, li) {
+  color: inherit;
+}
+
+.sbdocs.sbdocs-content a {
+  color: var(--md-sys-color-primary);
+}

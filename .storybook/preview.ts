@@ -49,10 +49,12 @@ const preview: Preview = {
   decorators: [
     withContrastAndMotion,
     // Sets data-theme on <html>, which pins the color-scheme the tokens'
-    // light-dark() values follow (ADR-003)
+    // light-dark() values follow (ADR-003). Starts from the system setting.
     withThemeByDataAttribute({
       themes: { light: "light", dark: "dark" },
-      defaultTheme: "light",
+      defaultTheme: window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light",
       attributeName: "data-theme",
     }),
   ],
