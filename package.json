@@ -36,7 +36,8 @@
     "!src/**/*.mdx",
     "!src/test",
     "!src/**/__fixtures__",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "THIRD_PARTY_LICENSES.md"
   ],
   "sideEffects": [
     "**/*.css"

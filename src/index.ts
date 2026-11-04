@@ -9,3 +9,6 @@ import "./tokens/typography.css";
 import "./tokens/shape.css";
 import "./tokens/elevation.css";
 import "./tokens/motion.css";
+
+// Foundations: the building blocks of interactive components
+export * from "./foundations";

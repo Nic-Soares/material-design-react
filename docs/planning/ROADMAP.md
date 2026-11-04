@@ -13,7 +13,7 @@
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
 | `EP-03` Design tokens | ✅ Done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
-| `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
+| `EP-04` Foundations | 🟡 In progress — Ripple and useReducedMotion done 2026-11-04 | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
 | `EP-07` New components for the dashboard | ⬜ Not started | `src/components/` |
@@ -343,10 +343,18 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 **Dependencies:** `EP-03`. **Size:** S. **Source:** `my-portfolio` `Ripple`,
 state layer styles, `useReducedMotion`.
 
-- [ ] Ripple (pressed state), with tests (from the portfolio)
+- [x] Ripple (pressed state), with tests, from the portfolio
+      (`src/foundations/Ripple/`): a port of Material Web's ripple, so the
+      Apache-2.0 notice and the changes are kept in
+      `THIRD_PARTY_LICENSES.md`, shipped with the package. Opacity, color and
+      easing come from tokens (`--md-ripple-pressed-color`, `-opacity`,
+      `-easing`, defaulting to the `--md-sys-*` ones)
 - [ ] State layer and focus ring styles shared by every interactive
       component, built with the `color-mix()` recipe of `ST-03.2`
-- [ ] Internal `useReducedMotion`
+- [x] `useReducedMotion`, safe where `matchMedia` is missing (server,
+      jsdom)
+- [x] Foundations are public exports, as Material Web's are, so apps can
+      build their own interactive surfaces with them
 - [ ] Icon slot convention: size and color from the component, content from
       the consumer
 
