@@ -1,0 +1,111 @@
+/* M3 tabs: 48px (64px with an icon over the label), Title Small labels,
+   a 1px outline-variant line under the row. Primary: active label and
+   indicator in primary, the indicator 3px with rounded top corners and as
+   wide as the tab's content (at least 24px). Secondary: active label in
+   on-surface, a 2px indicator as wide as the tab. Inactive: on-surface-
+   variant. The indicator slides to the selected tab. */
+
+.list {
+  --_indicator-start: 0px;
+  --_indicator-width: 0px;
+
+  position: relative;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background-color: var(--md-sys-color-surface);
+  box-shadow: inset 0 -1px 0 var(--md-sys-color-outline-variant);
+}
+
+.tab {
+  all: unset;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 90px;
+  block-size: 48px;
+  padding-inline: 16px;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  --md-icon-size: 24px;
+  --md-focus-ring-shape: var(--md-sys-shape-corner-small);
+  --md-focus-ring-outward-offset: -3px;
+}
+
+.primary .withIcon {
+  block-size: 64px;
+}
+
+.content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-inline-size: 24px;
+  justify-content: center;
+}
+
+.primary .content {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  white-space: nowrap;
+  font-family: var(--md-sys-typescale-title-small-font);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  font-size: var(--md-sys-typescale-title-small-size);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
+}
+
+.primary .tab[aria-selected="true"] {
+  color: var(--md-sys-color-primary);
+}
+
+.secondary .tab[aria-selected="true"] {
+  color: var(--md-sys-color-on-surface);
+}
+
+.tab:disabled {
+  cursor: default;
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+.indicator {
+  position: absolute;
+  inset-block-end: 0;
+  left: var(--_indicator-start);
+  inline-size: var(--_indicator-width);
+  block-size: 3px;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--md-sys-color-primary);
+  pointer-events: none;
+  transition:
+    left var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing),
+    inline-size var(--md-sys-motion-spring-fast-spatial-duration)
+    var(--md-sys-motion-spring-fast-spatial-easing);
+}
+
+.secondary .indicator {
+  block-size: 2px;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .indicator {
+    background-color: Highlight;
+  }
+}

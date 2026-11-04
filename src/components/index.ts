@@ -69,6 +69,22 @@ export {
 export { SearchBar, type SearchBarProps } from "./SearchBar/SearchBar";
 export { Skeleton, type SkeletonProps } from "./Skeleton/Skeleton";
 export {
+  Tab,
+  TabList,
+  type TabListProps,
+  TabPanel,
+  type TabPanelProps,
+  type TabProps,
+  Tabs,
+  type TabsProps,
+  type TabsVariant,
+} from "./Tabs/Tabs";
+export {
+  Tooltip,
+  type TooltipPlacement,
+  type TooltipProps,
+} from "./Tooltip/Tooltip";
+export {
   TopAppBar,
   type TopAppBarProps,
   type TopAppBarVariant,
