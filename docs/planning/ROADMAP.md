@@ -458,9 +458,10 @@ with `0.1.0`):
 
 Interaction (needed by `benefits-transactions-analytics` `EP-09`):
 
-- [ ] Tabs (primary, secondary)
+- [x] Tabs (primary, secondary), selection follows focus, sliding indicator
 - [ ] Select (menu-based)
-- [ ] Tooltip (plain, rich)
+- [x] Tooltip (plain, rich), descriptive only: interactive content belongs
+      in a Dialog or Menu
 - [x] Dialog (basic, full-screen), on the native `<dialog>`
 - [ ] Date range picker (docked and modal) — the largest item
 
