@@ -1,0 +1,119 @@
+/* M3 menu (from the portfolio's kit-based menu): surface-container-low,
+   large corners, elevation 3, 112 to 280px wide, 2px above and below the
+   items. Items: 44px content (12px padding) with extra-small corners, 2px
+   and 4px around; the selected one is tertiary-container with medium
+   corners. The surface clips its items while Menu.tsx animates its height. */
+
+.menu {
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 112px;
+  max-inline-size: 280px;
+  max-block-size: calc(100vh - 16px);
+  padding-block: 2px;
+  overflow: hidden auto;
+  border-radius: var(--md-sys-shape-corner-large);
+  background-color: var(--md-sys-color-surface-container-low);
+  box-shadow: var(--md-sys-elevation-level3);
+  color: var(--md-sys-color-on-surface);
+}
+
+.item {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  inline-size: 100%;
+  padding: 2px 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--md-sys-shape-corner-extra-small);
+  font-family: var(--md-sys-typescale-label-large-font);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  font-size: var(--md-sys-typescale-label-large-size);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  --md-icon-size: 24px;
+}
+
+.icon {
+  position: relative;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.label {
+  position: relative;
+  flex: 1;
+  min-inline-size: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trailing {
+  position: relative;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.selected .content {
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+}
+
+.selected .icon,
+.selected .trailing {
+  color: inherit;
+}
+
+.item[aria-disabled="true"] {
+  cursor: default;
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+.item[aria-disabled="true"] .content > span:first-child {
+  background-color: transparent;
+}
+
+.item[aria-disabled="true"] .icon,
+.item[aria-disabled="true"] .trailing {
+  color: inherit;
+}
+
+/* The state layer and ripple live inside the rounded content, so hover
+   follows it, not the item's padding; focus comes from the item */
+.item:focus-visible .content {
+  outline: 3px solid var(--md-sys-color-secondary);
+  outline-offset: -3px;
+}
+
+.item:focus-visible .content > span:first-child {
+  background-color: color-mix(
+    in srgb,
+    currentColor calc(var(--md-sys-state-focus-state-layer-opacity) * 100%),
+    transparent
+  );
+}
+
+.divider {
+  block-size: 1px;
+  margin: 8px 0;
+  border: 0;
+  background-color: var(--md-sys-color-outline-variant);
+}
+
+@media (forced-colors: active) {
+  .menu {
+    border: 1px solid CanvasText;
+  }
+}

@@ -406,9 +406,12 @@ Every story follows the definition of done (`§3`).
 
 ### ST-05.3 — Menus and feedback
 
-- [ ] Menu: generic placement, keyboard navigation (already there)
-- [ ] Linear progress — label from props
-- [ ] Skeleton
+- [x] Menu: anchored to any element in a portal, four placements that flip
+      when there's no room, keyboard navigation (arrows, Home, End,
+      typeahead, Escape back to the anchor), single-choice items, dividers
+- [x] Linear progress — label from props; the M3 Expressive design (gap
+      and stop dot), 4 or 8px thick, indeterminate
+- [x] Skeleton
 
 ### ST-05.4 — App structure
 

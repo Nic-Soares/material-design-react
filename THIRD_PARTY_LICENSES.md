@@ -17,6 +17,16 @@ was changed, as those licenses require.
   library's design tokens, and the hover state moved to a separate state
   layer.
 
+- **Source:** [material-components/material-web](https://github.com/material-components/material-web),
+  `menu/internal/menu.ts` — Copyright 2023 Google LLC,
+  SPDX-License-Identifier: Apache-2.0
+- **Used in:** `src/components/Menu/Menu.tsx`
+- **Changes:** only the open and close motion is derived: the surface
+  grows from the anchor and the items fade in one after another, then
+  shrink to 35% and fade out. Ported from a Lit web component to Web
+  Animations on plain elements in a React component; the timings and
+  easing curves follow the original.
+
 The full text of the Apache License 2.0 follows.
 
 ```text

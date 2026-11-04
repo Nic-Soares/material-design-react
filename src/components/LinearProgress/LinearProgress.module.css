@@ -1,0 +1,95 @@
+/* M3 Expressive linear progress (Material 3 Design Kit, Loading & progress):
+   primary indicator, 4px gap, secondary-container track with a stop dot at
+   its end; 4 or 8px thick, full corners. The wavy style isn't built yet. */
+
+.progress {
+  --_gap: 4px;
+
+  position: relative;
+  inline-size: 100%;
+  block-size: var(--_thickness);
+}
+
+.indicator,
+.track,
+.stop {
+  position: absolute;
+  inset-block: 0;
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.indicator {
+  inset-inline-start: 0;
+  inline-size: calc(var(--_value) * 100%);
+  background-color: var(--md-sys-color-primary);
+  transition: inline-size var(--md-sys-motion-spring-default-effects-duration)
+    var(--md-sys-motion-spring-default-effects-easing);
+}
+
+.track {
+  /* Starts after the indicator and the gap; from 0 with no progress */
+  inset-inline-start: min(
+    100%,
+    calc(var(--_value) * 100% + var(--_gap) * min(1, var(--_value) * 1000))
+  );
+  inset-inline-end: 0;
+  background-color: var(--md-sys-color-secondary-container);
+  transition: inset-inline-start
+    var(--md-sys-motion-spring-default-effects-duration)
+    var(--md-sys-motion-spring-default-effects-easing);
+}
+
+.stop {
+  inset-inline-end: 0;
+  inline-size: var(--_thickness);
+  background-color: var(--md-sys-color-primary);
+}
+
+/* Indeterminate: a bar sweeps along the track */
+.indeterminate .indicator {
+  inline-size: 40%;
+  transition: none;
+  animation: sweep 1.8s var(--md-sys-motion-easing-emphasized) infinite;
+}
+
+.indeterminate .track {
+  inset-inline-start: 0;
+}
+
+@keyframes sweep {
+  from {
+    inset-inline-start: -40%;
+  }
+  to {
+    inset-inline-start: 100%;
+  }
+}
+
+.indeterminate {
+  overflow: hidden;
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+/* Reduced motion: the indeterminate bar rests in place */
+@media (prefers-reduced-motion: reduce) {
+  .indicator,
+  .track {
+    transition: none;
+  }
+
+  .indeterminate .indicator {
+    inset-inline-start: 30%;
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .indicator,
+  .stop {
+    background-color: CanvasText;
+  }
+
+  .track {
+    background-color: GrayText;
+  }
+}
