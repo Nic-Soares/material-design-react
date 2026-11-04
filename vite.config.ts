@@ -16,7 +16,7 @@ export const cssBuildTarget = [
 // Lightning CSS encodes a browser version as major << 16 | minor << 8
 const version = (major: number, minor = 0) => (major << 16) | (minor << 8);
 
-const cssTransformTargets = {
+export const cssTransformTargets = {
   chrome: version(123),
   edge: version(123),
   firefox: version(120),

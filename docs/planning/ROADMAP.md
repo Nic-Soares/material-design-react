@@ -12,7 +12,7 @@
 |---|---|---|
 | `EP-01` Repository baseline | ✅ Done 2026-11-03 | repo root, `.github/`, `docs/` |
 | `EP-02` Docs and test infrastructure | ✅ Done 2026-11-03 | `.storybook/`, `src/test/`, `.github/workflows/docs.yml` |
-| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.4 done 2026-11-03 | `src/tokens/`, `src/color/`, `scripts/` |
+| `EP-03` Design tokens | 🟡 In progress — ST-03.1 to ST-03.5 done 2026-11-04 | `src/tokens/`, `src/color/`, `scripts/` |
 | `EP-04` Foundations | ⬜ Not started | `src/foundations/` |
 | `EP-05` Components from the portfolio | ⬜ Not started | `src/components/` (source: `my-portfolio`) |
 | `EP-06` Release `0.1.0` | ⬜ Not started | npm, GitHub Releases |
@@ -242,8 +242,9 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 - [x] Opacity tokens (`src/tokens/state.css`):
       `--md-sys-state-hover-state-layer-opacity` (0.08), focus (0.10),
-      pressed (0.10), dragged (0.16) — the current M3 values; the older
-      material-web table had 0.12 for focus and pressed
+      pressed (0.10), dragged (0.16) — the current M3 values, confirmed in
+      the Design Kit's button states (hover 0.08, focus and pressed 0.10);
+      the older material-web table had 0.12 for focus and pressed
 - [x] The `color-mix()` recipe that turns a color role and an opacity into a
       state layer, documented in the token file — replacing the portfolio's
       ~30 precomputed `--md-state-layers-light-*` variables per theme, which
@@ -288,10 +289,13 @@ All tokens use the M3 names as CSS variables (`--md-sys-<group>-<name>`).
 
 ### ST-03.5 — Window size classes
 
-- [ ] Custom media for the five M3 classes: compact (< 600), medium
-      (600–839), expanded (840–1199), large (1200–1599), extra-large (≥ 1600)
-      — the portfolio merges medium and expanded
-- [ ] Compiled at build time, so consumers need no CSS tooling
+- [x] Custom media for the five M3 classes (`src/tokens/breakpoints.css`):
+      compact (< 600), medium (600–839), expanded (840–1199), large
+      (1200–1599), extra-large (≥ 1600) — the portfolio merges medium and
+      expanded
+- [x] Compiled at build time, so consumers need no CSS tooling: a test
+      compiles each class with the library's Lightning CSS settings
+      (custom media only resolve when browser targets are set)
 
 ### ST-03.6 — Delivery
 
