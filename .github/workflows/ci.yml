@@ -37,11 +37,11 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
-      # The committed color tokens must be what the generator produces
-      - name: Color tokens up to date
+      # The committed tokens must be what the generators produce
+      - name: Generated tokens up to date
         run: |
           npm run tokens
-          git diff --exit-code src/tokens/color.css
+          git diff --exit-code src/tokens/color.css src/tokens/motion.css
 
       # Unit and accessibility tests, with the coverage report in the log
       - name: Tests

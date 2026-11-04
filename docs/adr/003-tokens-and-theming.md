@@ -64,6 +64,18 @@ gives different colors for the same source.
   colors and the `*-dim` roles, which only the 2025 spec defines (for
   watches), are left out.
 
+### Shape, elevation and motion
+- Shape and elevation come from the Design Kit. The kit's "full" corner is
+  50%, which CSS draws as an ellipse on a non-square box; the token is 9999px,
+  the pill the kit shows. Shadows mix `--md-sys-color-shadow` with
+  `color-mix()`, so a theme can change their color.
+- The kit has no motion and the spec's tokens can't be read outside its
+  site, so motion comes from Google's code (Compose Material 3). M3
+  Expressive moves with springs; CSS has none, so a script simulates each
+  spring and writes it as a `linear()` easing plus the time it takes to
+  settle. The expressive springs are the default; `data-motion="standard"`
+  switches to the standard ones.
+
 ### Schemes
 - Light and dark live in one value per token, `light-dark(<light>, <dark>)`,
   resolved by the CSS `color-scheme` of the element that uses it. `:root`

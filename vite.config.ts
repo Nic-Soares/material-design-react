@@ -62,7 +62,7 @@ export default defineConfig({
     // Run Material Color Utilities through Vite's resolver: Node's rejects
     // its extensionless imports (scripts/fix-color-utilities-imports.ts)
     server: { deps: { inline: ["@material/material-color-utilities"] } },
-    include: ["src/**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}", "scripts/**/*.test.ts"],
     coverage: {
       provider: "v8",
       include: ["src/**/*.{ts,tsx}"],

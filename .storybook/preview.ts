@@ -3,6 +3,9 @@ import type { Preview } from "@storybook/react-vite";
 import "../src/tokens/color.css";
 import "../src/tokens/state.css";
 import "../src/tokens/typography.css";
+import "../src/tokens/shape.css";
+import "../src/tokens/elevation.css";
+import "../src/tokens/motion.css";
 import "./preview.css";
 
 const preview: Preview = {
