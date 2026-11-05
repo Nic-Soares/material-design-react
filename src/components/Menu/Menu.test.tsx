@@ -151,7 +151,7 @@ describe("Menu", () => {
       .spyOn(HTMLElement.prototype, "scrollHeight", "get")
       .mockReturnValue(120);
 
-    const Side = ({ left }: { left: number }) => (
+    const side = (left: number) => (
       <Menu
         aria-label="Language"
         anchor={{
@@ -167,7 +167,7 @@ describe("Menu", () => {
       </Menu>
     );
 
-    const { unmount } = render(<Side left={16} />);
+    const { unmount } = render(side(16));
     const menu = screen.getByRole("menu");
     // Right of the anchor, bottoms aligned
     expect(menu.style.left).toBe("60px");
@@ -175,7 +175,7 @@ describe("Menu", () => {
     unmount();
 
     // No room on the right: it flips to the left
-    render(<Side left={900} />);
+    render(side(900));
     expect(screen.getByRole("menu").style.left).toBe("696px");
 
     width.mockRestore();
