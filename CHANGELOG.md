@@ -1,5 +1,16 @@
 # @nic-soares/material-design-react
 
+## 0.3.0
+
+### Minor Changes
+
+- 83fd15d: `Button` renders a link (`<a>`) when given `href`, for navigation; a disabled link loses its `href` and gets `aria-disabled`. New `onRippleEnd` runs once a press's ripple has faded, so an app can navigate after the press is seen. `ButtonProps` is now a union of `ButtonAsButtonProps` and `ButtonAsLinkProps`.
+- ac2e0c1: `Menu` can open beside its anchor: `placement` takes `right-start`, `right-end`, `left-start` and `left-end` (aligned with the anchor's top or bottom, flipping to the other side when there's no room), for a navigation rail's menu.
+
+### Patch Changes
+
+- 40e034c: A static `InputChip` (no `onClick`) no longer has the 48px touch target: it isn't a control, and the target reached 8px outside the chip, so a row of chips measured taller than it looks.
+
 ## 0.2.0
 
 ### Minor Changes
