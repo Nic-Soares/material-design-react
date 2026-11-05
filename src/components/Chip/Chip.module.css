@@ -45,9 +45,10 @@
     var(--md-sys-motion-spring-fast-effects-easing);
 }
 
-/* The 48px touch target */
-.chip::before,
-.action::before,
+/* The 48px touch target, on the controls only: a static input chip has
+   none, so it doesn't reach outside its 32px box */
+:is(a, button).chip::before,
+button.action::before,
 .remove::before {
   content: "";
   position: absolute;
