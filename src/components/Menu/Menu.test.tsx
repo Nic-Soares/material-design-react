@@ -138,4 +138,47 @@ describe("Menu", () => {
 
     expect(screen.queryByRole("menu")).not.toBeInTheDocument();
   });
+
+  it("opens beside the anchor with a side placement, flipping when needed", () => {
+    // jsdom has no layout: a 40px anchor and a 200 x 120 menu in its
+    // 1024 x 768 window
+    const rect = (left: number, top: number) =>
+      ({ left, top, right: left + 40, bottom: top + 40 }) as DOMRect;
+    const width = vi
+      .spyOn(HTMLElement.prototype, "offsetWidth", "get")
+      .mockReturnValue(200);
+    const height = vi
+      .spyOn(HTMLElement.prototype, "scrollHeight", "get")
+      .mockReturnValue(120);
+
+    const side = (left: number) => (
+      <Menu
+        aria-label="Language"
+        anchor={{
+          current: Object.assign(document.createElement("button"), {
+            getBoundingClientRect: () => rect(left, 600),
+          }),
+        }}
+        open
+        onClose={() => {}}
+        placement="right-end"
+      >
+        <MenuItem>English</MenuItem>
+      </Menu>
+    );
+
+    const { unmount } = render(side(16));
+    const menu = screen.getByRole("menu");
+    // Right of the anchor, bottoms aligned
+    expect(menu.style.left).toBe("60px");
+    expect(menu.style.top).toBe("520px");
+    unmount();
+
+    // No room on the right: it flips to the left
+    render(side(900));
+    expect(screen.getByRole("menu").style.left).toBe("696px");
+
+    width.mockRestore();
+    height.mockRestore();
+  });
 });
