@@ -40,6 +40,14 @@ export {
   type DividerProps,
 } from "./Divider/Divider";
 export {
+  Fab,
+  type FabAsButtonProps,
+  type FabAsLinkProps,
+  type FabColor,
+  type FabProps,
+  type FabSize,
+} from "./Fab/Fab";
+export {
   IconButton,
   type IconButtonProps,
   type IconButtonVariant,
