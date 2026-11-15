@@ -19,7 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
-| `EP-10` Backlog from the portfolio | 🟡 In progress (4 of 8) | `src/components/`, `src/color/` |
+| `EP-10` Backlog from the portfolio | 🟡 In progress (5 of 8) | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -505,10 +505,12 @@ there. **Dependencies:** none; each item ships when the portfolio needs it.
       tabindex, arrow keys), as Tabs already does
 - [ ] Skeleton: optional shimmer, off under `prefers-reduced-motion`
       (design it first; the portfolio's Skeleton is static today)
-- [ ] Carousel (M3): scrolling row of items with the M3 layouts (multi-browse,
+- [x] Carousel (M3): scrolling row of items with the M3 layouts (multi-browse,
       uncontained, hero) — design reference: Figma kit node `55141-14172`;
       code reference: the portfolio's `ProjectCarousel`
       (`client/src/features/home/components/`), extracted, not rewritten
+      (2026-11-15; multi-browse masks items by scroll position instead of
+      the kit's fixed keylines, see the component's docs)
 - [x] FAB (M3 / Expressive): small, regular, large and extended, with the
       icon as a slot — design reference: Figma kit node `58016-36879`
       (2026-11-15; also the kit's 80px medium size, and `href` renders an
