@@ -10,6 +10,13 @@ export {
 } from "./Button/Button";
 export { Card, type CardProps, type CardVariant } from "./Card/Card";
 export {
+  Carousel,
+  CarouselItem,
+  type CarouselItemProps,
+  type CarouselLayout,
+  type CarouselProps,
+} from "./Carousel/Carousel";
+export {
   AssistChip,
   type AssistChipProps,
   FilterChip,
