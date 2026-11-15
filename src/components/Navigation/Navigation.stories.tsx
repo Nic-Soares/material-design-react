@@ -97,7 +97,7 @@ export const Rail: Story = {
 
 /**
  * Actions that aren't destinations go in the `footer`, pinned to the
- * bottom: here the language and the theme, as two IconButtons.
+ * bottom: here the language and the theme, as two outlined IconButtons.
  */
 export const RailWithFooter: Story = {
   render: (args) => (
@@ -114,12 +114,14 @@ export const RailWithFooter: Story = {
         <>
           <IconButton
             aria-label="Language"
+            variant="outlined"
             icon={icon(
               "M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z",
             )}
           />
           <IconButton
             aria-label="Dark theme"
+            variant="outlined"
             icon={icon(
               "M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z",
             )}

@@ -28,8 +28,8 @@ export type NavigationRailProps = ComponentProps<"nav"> &
     header?: ReactNode;
     /**
      * Pinned to the bottom of the rail, under the items: up to two
-     * IconButtons for actions that aren't destinations, such as the
-     * language and the theme.
+     * outlined IconButtons for actions that aren't destinations, such as
+     * the language and the theme.
      */
     footer?: ReactNode;
   };
