@@ -26,14 +26,30 @@ export type NavigationRailProps = ComponentProps<"nav"> &
   Name & {
     /** Above the items: a menu button, a FAB or a logo. */
     header?: ReactNode;
+    /**
+     * Pinned to the bottom of the rail, under the items: up to two
+     * IconButtons for actions that aren't destinations, such as the
+     * language and the theme.
+     */
+    footer?: ReactNode;
   };
 
 /**
  * The M3 navigation rail, for medium windows and up: a 96px column of
- * NavigationItems under an optional header. It renders a `<nav>` (name it).
+ * NavigationItems under an optional header, with an optional footer pinned
+ * to the bottom. It renders a `<nav>` (name it); give it a block size, such
+ * as the viewport's, for the footer to reach the bottom.
+ *
+ * Measurements follow the Material 3 Design Kit (node 58016-36879): 44px
+ * above the header, 40px between header and items, 56px below. Where the
+ * portfolio's Sidebar differs, the kit wins:
+ * - the bottom padding is 56px, not the Sidebar's 24px;
+ * - the container is `surface`, not the Sidebar's `surface-container`;
+ * - the kit has no footer, so the footer's 8px gap comes from the Sidebar.
  */
 export function NavigationRail({
   header,
+  footer,
   className,
   children,
   ...props
@@ -45,6 +61,7 @@ export function NavigationRail({
     >
       {header !== undefined && <div className={styles.header}>{header}</div>}
       <div className={styles.items}>{children}</div>
+      {footer !== undefined && <div className={styles.footer}>{footer}</div>}
     </nav>
   );
 }
