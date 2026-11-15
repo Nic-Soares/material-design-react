@@ -19,7 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
-| `EP-10` Backlog from the portfolio | 🟡 In progress (5 of 8) | `src/components/`, `src/color/` |
+| `EP-10` Backlog from the portfolio | 🟡 In progress (6 of 9) | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -519,6 +519,11 @@ there. **Dependencies:** none; each item ships when the portfolio needs it.
       (as the portfolio's `Sidebar` has them), and the FAB in the `header`
       slot — reference: Figma kit node `58016-36879` (2026-11-15; the FAB
       in the `header` is shown with the FAB's story)
+- [x] Tabs `bar` variant: the portfolio's Tab Bar (its `TabbedNavigation`,
+      Figma "Tab Bar" in the portfolio's file, node `1329-368`) as a variant
+      of Tabs, with its sliding selection pill and `sticky` mode, so the
+      project page keeps its look with the tabs' roles and keyboard
+      (2026-11-15)
 - [ ] `./color`: optional secondary and tertiary source colors, for brands
       with more than one color (the portfolio's `EP-20`, project themes)
 - [x] Button as a link: `href` renders an `<a>` (the portfolio's buttons

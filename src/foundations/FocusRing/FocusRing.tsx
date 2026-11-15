@@ -9,6 +9,11 @@ import styles from "./FocusRing.module.css";
  * own corner radius (full by default), plus `--md-focus-ring-color`,
  * `-width`, `-active-width`, `-outward-offset` and `-duration`.
  */
-export function FocusRing() {
-  return <span className={styles.ring} aria-hidden="true" />;
+export function FocusRing({ className }: { className?: string } = {}) {
+  return (
+    <span
+      className={className ? `${styles.ring} ${className}` : styles.ring}
+      aria-hidden="true"
+    />
+  );
 }

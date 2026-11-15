@@ -1,3 +1,5 @@
+@import "../../tokens/breakpoints.css";
+
 /* M3 tabs: 48px (64px with an icon over the label), Title Small labels,
    a 1px outline-variant line under the row. Primary: active label and
    indicator in primary, the indicator 3px with rounded top corners and as
@@ -107,5 +109,238 @@
 @media (forced-colors: active) {
   .indicator {
     background-color: Highlight;
+  }
+}
+
+/* --- Bar: the portfolio's Tab Bar (its Figma "Tab Bar", node 1329-368):
+   a surface-variant pill, tabs sharing its width with primary labels, and
+   a primary pill with on-primary labels on the selected one. Small 48px
+   (Label Large), medium 56px (Title Medium), large 96px (Headline Small).
+   Not an M3 tab style. --- */
+
+.bar {
+  /* Size (small) */
+  --_height: 48px;
+  --_padding-block: 10px;
+  --_padding-inline: 16px;
+  --_gap: 8px;
+  --_icon: 20px;
+  --_font: var(--md-sys-typescale-label-large-font);
+  --_weight: var(--md-sys-typescale-label-large-weight);
+  --_size: var(--md-sys-typescale-label-large-size);
+  --_line-height: var(--md-sys-typescale-label-large-line-height);
+  --_tracking: var(--md-sys-typescale-label-large-tracking);
+  --_elevation: none;
+  --_motion: var(--md-sys-motion-duration-medium4)
+    var(--md-sys-motion-easing-emphasized);
+  --_pill-start: 50%;
+  --_pill-end: 50%;
+
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-surface-variant);
+  box-shadow: var(--_elevation);
+  transition: box-shadow var(--_motion);
+}
+
+.bar.medium {
+  --_height: 56px;
+  --_padding-block: 16px;
+  --_padding-inline: 24px;
+  --_font: var(--md-sys-typescale-title-medium-font);
+  --_weight: var(--md-sys-typescale-title-medium-weight);
+  --_size: var(--md-sys-typescale-title-medium-size);
+  --_line-height: var(--md-sys-typescale-title-medium-line-height);
+  --_tracking: var(--md-sys-typescale-title-medium-tracking);
+}
+
+.bar.large {
+  --_height: 96px;
+  --_padding-block: 32px;
+  --_padding-inline: 48px;
+  --_gap: 12px;
+  --_icon: 28px;
+  --_font: var(--md-sys-typescale-headline-small-font);
+  --_weight: var(--md-sys-typescale-headline-small-weight);
+  --_size: var(--md-sys-typescale-headline-small-size);
+  --_line-height: var(--md-sys-typescale-headline-small-line-height);
+  --_tracking: var(--md-sys-typescale-headline-small-tracking);
+}
+
+@media (--medium), (--expanded) {
+  .bar.responsive {
+    --_height: 56px;
+    --_padding-block: 16px;
+    --_padding-inline: 24px;
+    --_font: var(--md-sys-typescale-title-medium-font);
+    --_weight: var(--md-sys-typescale-title-medium-weight);
+    --_size: var(--md-sys-typescale-title-medium-size);
+    --_line-height: var(--md-sys-typescale-title-medium-line-height);
+    --_tracking: var(--md-sys-typescale-title-medium-tracking);
+  }
+}
+
+@media (--large), (--extra-large) {
+  .bar.responsive {
+    --_height: 96px;
+    --_padding-block: 32px;
+    --_padding-inline: 48px;
+    --_gap: 12px;
+    --_icon: 28px;
+    --_font: var(--md-sys-typescale-headline-small-font);
+    --_weight: var(--md-sys-typescale-headline-small-weight);
+    --_size: var(--md-sys-typescale-headline-small-size);
+    --_line-height: var(--md-sys-typescale-headline-small-line-height);
+    --_tracking: var(--md-sys-typescale-headline-small-tracking);
+  }
+}
+
+/* Each tab takes an equal share of the bar; size changes ease */
+.bar .tab {
+  flex: 1 1 0;
+  min-inline-size: 0;
+  block-size: var(--_height);
+  padding: var(--_padding-block) var(--_padding-inline);
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-primary);
+  --md-icon-size: var(--_icon);
+  --md-focus-ring-shape: var(--md-sys-shape-corner-full);
+  transition:
+    block-size var(--_motion),
+    padding var(--_motion);
+}
+
+.bar .content {
+  gap: var(--_gap);
+}
+
+.bar .label {
+  font-family: var(--_font);
+  font-weight: var(--_weight);
+  font-size: var(--_size);
+  line-height: var(--_line-height);
+  letter-spacing: var(--_tracking);
+  transition:
+    font-size var(--_motion),
+    line-height var(--_motion);
+}
+
+.bar .tab:disabled {
+  color: color-mix(in srgb, var(--md-sys-color-on-surface) 38%, transparent);
+}
+
+/* The focus ring sits above the selection pill */
+.bar .ring {
+  z-index: 1;
+}
+
+/* The selection pill: a copy of the row in the selected colors, clipped to
+   the selected tab; a new selection slides the clip */
+.pill {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-primary);
+  pointer-events: none;
+  clip-path: inset(
+    0 var(--_pill-end) 0 var(--_pill-start) round
+      var(--md-sys-shape-corner-full)
+  );
+}
+
+.bar[data-ready] .pill {
+  transition: clip-path var(--_motion);
+}
+
+.pill .tab {
+  color: var(--md-sys-color-on-primary);
+}
+
+/* --- Sticky bar: it sticks at --md-tabs-sticky-top and, once stuck,
+   shrinks to the small size over the page and rises to elevation 2. The
+   host keeps the bar's full height, so the page doesn't move; only the
+   bar takes clicks. --- */
+
+.sentinel {
+  display: block;
+  block-size: 1px;
+  margin-block-start: -1px;
+}
+
+.stickyHost {
+  --_host-height: 48px;
+
+  position: sticky;
+  inset-block-start: var(--md-tabs-sticky-top, 0px);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  block-size: var(--_host-height);
+  pointer-events: none;
+}
+
+.stickyHost.medium {
+  --_host-height: 56px;
+}
+
+.stickyHost.large {
+  --_host-height: 96px;
+}
+
+@media (--medium), (--expanded) {
+  .stickyHost.responsive {
+    --_host-height: 56px;
+  }
+}
+
+@media (--large), (--extra-large) {
+  .stickyHost.responsive {
+    --_host-height: 96px;
+  }
+}
+
+.stickyHost > .bar {
+  flex: 1 1 auto;
+  max-inline-size: 100%;
+  pointer-events: auto;
+  transition:
+    box-shadow var(--_motion),
+    max-inline-size var(--_motion);
+}
+
+.stickyHost[data-stuck] > .bar {
+  --_height: 48px;
+  --_padding-block: 10px;
+  --_padding-inline: 16px;
+  --_gap: 8px;
+  --_icon: 20px;
+  --_font: var(--md-sys-typescale-label-large-font);
+  --_weight: var(--md-sys-typescale-label-large-weight);
+  --_size: var(--md-sys-typescale-label-large-size);
+  --_line-height: var(--md-sys-typescale-label-large-line-height);
+  --_tracking: var(--md-sys-typescale-label-large-tracking);
+  --_elevation: var(--md-sys-elevation-level2);
+
+  max-inline-size: var(--md-tabs-stuck-max-inline-size, 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .bar .tab,
+  .bar .label,
+  .bar[data-ready] .pill,
+  .stickyHost > .bar {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .pill {
+    background-color: Highlight;
+  }
+
+  .pill .tab {
+    color: HighlightText;
   }
 }
