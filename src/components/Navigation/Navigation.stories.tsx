@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
+import { Fab } from "../Fab/Fab";
 import { IconButton } from "../IconButton/IconButton";
 import { NavigationBar, NavigationItem, NavigationRail } from "./Navigation";
 
@@ -77,38 +78,30 @@ export const Bar: Story = {
   ),
 };
 
-/** Medium windows and up, with a menu button in the header. */
-export const Rail: Story = {
-  render: (args) => (
-    <NavigationRail
-      {...args}
-      style={{ blockSize: 480 }}
-      header={
-        <IconButton
-          aria-label="Open navigation"
-          icon={icon("M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z")}
-        />
-      }
-    >
-      <Items />
-    </NavigationRail>
-  ),
-};
-
 /**
- * Actions that aren't destinations go in the `footer`, pinned to the
- * bottom: here the language and the theme, as two outlined IconButtons.
+ * Medium windows and up, as in the kit (node 58016-36879): a menu button
+ * and a FAB in the `header`, the destinations under it, and the actions
+ * that aren't destinations (here the language and the theme) as outlined
+ * IconButtons in the `footer`, pinned to the bottom.
  */
-export const RailWithFooter: Story = {
+export const Rail: Story = {
   render: (args) => (
     <NavigationRail
       {...args}
       style={{ blockSize: 560 }}
       header={
-        <IconButton
-          aria-label="Open navigation"
-          icon={icon("M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z")}
-        />
+        <>
+          <IconButton
+            aria-label="Open navigation"
+            icon={icon("M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z")}
+          />
+          <Fab
+            aria-label="Compose"
+            icon={icon(
+              "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
+            )}
+          />
+        </>
       }
       footer={
         <>

@@ -19,7 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
-| `EP-10` Backlog from the portfolio | 🟡 In progress (3 of 8) | `src/components/`, `src/color/` |
+| `EP-10` Backlog from the portfolio | 🟡 In progress (4 of 8) | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -509,8 +509,10 @@ there. **Dependencies:** none; each item ships when the portfolio needs it.
       uncontained, hero) — design reference: Figma kit node `55141-14172`;
       code reference: the portfolio's `ProjectCarousel`
       (`client/src/features/home/components/`), extracted, not rewritten
-- [ ] FAB (M3 / Expressive): small, regular, large and extended, with the
+- [x] FAB (M3 / Expressive): small, regular, large and extended, with the
       icon as a slot — design reference: Figma kit node `58016-36879`
+      (2026-11-15; also the kit's 80px medium size, and `href` renders an
+      `<a>`)
 - [x] NavigationRail: a `footer` slot for two icon buttons at the bottom
       (as the portfolio's `Sidebar` has them), and the FAB in the `header`
       slot — reference: Figma kit node `58016-36879` (2026-11-15; the FAB
