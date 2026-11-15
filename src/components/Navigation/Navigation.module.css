@@ -22,7 +22,8 @@
   align-items: center;
   gap: 40px;
   inline-size: 96px;
-  padding-block: 44px 16px;
+  /* Kit node 58016-36879 ("Alignment=Top"): 44px above, 56px below */
+  padding-block: 44px 56px;
   background-color: var(--md-sys-color-surface);
 }
 
@@ -38,6 +39,17 @@
   flex-direction: column;
   gap: 4px;
   inline-size: 100%;
+}
+
+/* Pushed to the bottom of the rail: the items keep their place under the
+   header, whatever the rail's height. The kit's rail has no footer; the
+   8px gap between its buttons is the portfolio Sidebar's. */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-block-start: auto;
 }
 
 .item {

@@ -2,7 +2,7 @@
 
 **Repository:** `material-design-react` — a React component library that implements Material Design 3 (including M3 Expressive), published to npm as `@nic-soares/material-design-react`
 **Consumers:** [`benefits-transactions-analytics`](https://github.com/Nic-Soares/benefits-transactions-analytics) (its `EP-05` depends on this roadmap), [`my-portfolio`](https://github.com/Nic-Soares/my-portfolio)
-**Last updated:** 2026-11-04
+**Last updated:** 2026-11-15
 
 ---
 
@@ -19,7 +19,7 @@
 | `EP-07` New components for the dashboard | ✅ Done 2026-11-04 | `src/components/` |
 | `EP-08` Release `0.2.0` | ✅ Done 2026-11-04 | npm, GitHub Releases |
 | `EP-09` Portfolio consumes the library | ⬜ Not started | **`my-portfolio`** |
-| `EP-10` Backlog from the portfolio | 🟡 In progress (2 of 6) | `src/components/`, `src/color/` |
+| `EP-10` Backlog from the portfolio | 🟡 In progress (3 of 8) | `src/components/`, `src/color/` |
 
 ### Git workflow
 
@@ -505,8 +505,16 @@ there. **Dependencies:** none; each item ships when the portfolio needs it.
       tabindex, arrow keys), as Tabs already does
 - [ ] Skeleton: optional shimmer, off under `prefers-reduced-motion`
       (design it first; the portfolio's Skeleton is static today)
-- [ ] Carousel (M3): horizontal-scroll layout for a row of cards — only once
-      the portfolio's Projects index needs it
+- [ ] Carousel (M3): scrolling row of items with the M3 layouts (multi-browse,
+      uncontained, hero) — design reference: Figma kit node `55141-14172`;
+      code reference: the portfolio's `ProjectCarousel`
+      (`client/src/features/home/components/`), extracted, not rewritten
+- [ ] FAB (M3 / Expressive): small, regular, large and extended, with the
+      icon as a slot — design reference: Figma kit node `58016-36879`
+- [x] NavigationRail: a `footer` slot for two icon buttons at the bottom
+      (as the portfolio's `Sidebar` has them), and the FAB in the `header`
+      slot — reference: Figma kit node `58016-36879` (2026-11-15; the FAB
+      in the `header` is shown with the FAB's story)
 - [ ] `./color`: optional secondary and tertiary source colors, for brands
       with more than one color (the portfolio's `EP-20`, project themes)
 - [x] Button as a link: `href` renders an `<a>` (the portfolio's buttons
