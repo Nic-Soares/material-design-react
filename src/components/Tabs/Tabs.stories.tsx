@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import type { CSSProperties } from "react";
 import { Tab, TabList, TabPanel, Tabs } from "./Tabs";
 
 const icon = (path: string) => (
@@ -33,11 +34,15 @@ const meta = {
   component: Tabs,
   args: { defaultValue: "overview", variant: "primary" },
   decorators: [
-    (Story) => (
-      <div style={{ inlineSize: 480, maxInlineSize: "100%" }}>
+    // The M3 tabs at a phone's width; the bar stories set their own
+    (Story, { args }) =>
+      args.variant === "bar" ? (
         <Story />
-      </div>
-    ),
+      ) : (
+        <div style={{ inlineSize: 480, maxInlineSize: "100%" }}>
+          <Story />
+        </div>
+      ),
   ],
 } satisfies Meta<typeof Tabs>;
 
@@ -95,5 +100,100 @@ export const Secondary: Story = {
       </TabList>
       {panels}
     </Tabs>
+  ),
+};
+
+const sections = ["Overview", "Features", "Setup"];
+
+/**
+ * The portfolio's Tab Bar (`variant="bar"`, not an M3 tab style): tabs
+ * share the bar, and the primary pill slides to the selected one. By
+ * default its size steps with the window; resize the canvas.
+ */
+export const Bar: Story = {
+  args: { variant: "bar", defaultValue: "Overview" },
+  decorators: [
+    (Story) => (
+      <div style={{ inlineSize: 724, maxInlineSize: "100%" }}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: (args) => (
+    <Tabs {...args}>
+      <TabList aria-label="Project">
+        {sections.map((section) => (
+          <Tab key={section} value={section}>
+            {section}
+          </Tab>
+        ))}
+      </TabList>
+      {sections.map((section) => (
+        <TabPanel key={section} value={section} style={{ padding: 16 }}>
+          {section} content
+        </TabPanel>
+      ))}
+    </Tabs>
+  ),
+};
+
+/** Small (48px), medium (56px) and large (96px), as in the Figma. */
+export const BarSizes: Story = {
+  args: { variant: "bar", defaultValue: "Features" },
+  decorators: Bar.decorators,
+  render: (args) => (
+    <div style={{ display: "grid", gap: 24 }}>
+      {(["small", "medium", "large"] as const).map((size) => (
+        <Tabs key={size} {...args} size={size}>
+          <TabList aria-label={`Project (${size})`}>
+            {sections.map((section) => (
+              <Tab key={section} value={section}>
+                {section}
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
+      ))}
+    </div>
+  ),
+};
+
+/**
+ * `sticky`: scroll the canvas. The bar sticks to the top, shrinks to the
+ * small size and rises to elevation 2; its place in the page keeps its
+ * height. `--md-tabs-stuck-max-inline-size` narrows it once stuck.
+ */
+export const BarSticky: Story = {
+  args: { variant: "bar", defaultValue: "Overview" },
+  parameters: { layout: "fullscreen" },
+  render: (args) => (
+    <div
+      style={
+        {
+          padding: 16,
+          "--md-tabs-stuck-max-inline-size": "480px",
+        } as CSSProperties
+      }
+    >
+      <p style={{ blockSize: 120 }}>Scroll down.</p>
+      <Tabs {...args}>
+        <TabList aria-label="Project" sticky>
+          {sections.map((section) => (
+            <Tab key={section} value={section}>
+              {section}
+            </Tab>
+          ))}
+        </TabList>
+        {sections.map((section) => (
+          <TabPanel
+            key={section}
+            value={section}
+            style={{ padding: 16, blockSize: 2000 }}
+          >
+            {section} content
+          </TabPanel>
+        ))}
+      </Tabs>
+    </div>
   ),
 };
